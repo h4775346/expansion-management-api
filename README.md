@@ -39,14 +39,21 @@ A production-ready backend system for managing client projects, vendor matching,
 
 Want to get started as quickly as possible? Run this single command:
 
-**On Windows:**
+**On Windows (PowerShell):**
+```powershell
+curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.bat
+.\setup.bat
+```
+
+**On Windows (Command Prompt):**
 ```cmd
-curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/main/setup.bat && setup.bat
+curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.bat
+setup.bat
 ```
 
 **On macOS/Linux:**
 ```bash
-curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/main/setup.sh && chmod +x setup.sh && ./setup.sh
+curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 
 This will:
