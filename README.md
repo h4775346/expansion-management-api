@@ -18,7 +18,7 @@ A production-ready backend system for managing client projects, vendor matching,
 
 ## Table of Contents
 
-- [One-Command Setup](#one-command-setup)
+- [Simplest Setup](#simplest-setup)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
@@ -35,36 +35,37 @@ A production-ready backend system for managing client projects, vendor matching,
 - [CI/CD](#cicd)
 - [License](#license)
 
-## One-Command Setup
+## Simplest Setup
 
-Want to get started as quickly as possible? Run this single command:
+Just two commands to get started:
 
-**On Windows (PowerShell):**
-```powershell
-curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.bat
-.\setup.bat
-```
-
-**On Windows (Command Prompt):**
-```cmd
-curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.bat
-setup.bat
-```
-
-**On macOS/Linux:**
+1. Download the docker-compose.yml file:
 ```bash
-curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/refs/heads/master/setup.sh && chmod +x setup.sh && ./setup.sh
+# On Windows (PowerShell)
+curl -o docker-compose.yml https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+
+# On macOS/Linux
+wget https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
 ```
 
-This will:
-1. Clone the repository
-2. Install all dependencies
-3. Start MySQL, MongoDB, and the API with Docker
-4. Run database migrations
-5. Seed the database with sample data
-6. Provide you with the final URL to access the system
+2. Start everything:
+```bash
+docker-compose up -d
+```
 
-**Final URL:** http://localhost:3000
+That's it! The system will:
+- Clone the repository
+- Install all dependencies
+- Set up MySQL and MongoDB
+- Run database migrations
+- Seed the database
+- Start the application
+
+Access at: http://localhost:3000
+
+Login with:
+- Email: englishh7366@gmail.com
+- Password: password123
 
 ## Prerequisites
 
@@ -216,7 +217,7 @@ npm run migrate-fresh-seed
 ```
 
 This will create:
-- Sample clients with real email addresses
+- Sample clients with real email addresses (englishh7366@gmail.com, englishh7366@yahoo.com, sw.abanoub.hany@gmail.com, a10979516@gmail.com)
 - Services list
 - Sample vendors with services and countries
 - Sample projects
