@@ -1,7 +1,7 @@
 # Makefile for Expansion Management System
 
 # Variables
-DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE = docker-compose -f docker-compose.full-install.yml
 NPM = npm
 
 # Default target
@@ -22,6 +22,7 @@ help:
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
+	@echo "  download         - Download the docker-compose file"
 
 # Build targets
 .PHONY: build
@@ -41,6 +42,10 @@ start-dev:
 .PHONY: stop
 stop:
 	$(DOCKER_COMPOSE) down
+
+.PHONY: download
+download:
+	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
 
 # Test targets
 .PHONY: test

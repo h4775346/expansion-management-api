@@ -55,12 +55,11 @@ curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-managemen
 curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 
-### 🐳 Docker-Only Approach
+### 🐳 Docker-Only Approach (Most Efficient)
 ```bash
-# Clone the repository and start with Docker
-git clone https://github.com/h4775346/expansion-management-api.git
-cd expansion-management-api
-docker-compose up -d
+# Download just the docker-compose file and start with Docker
+curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
+docker-compose -f docker-compose.full-install.yml up -d
 ```
 
 That's it! The system will automatically:
@@ -74,7 +73,7 @@ That's it! The system will automatically:
 
 ## 📋 Prerequisites
 
-- **Node.js** (v16 or higher)
+- **Node.js** (v18 or higher)
 - **Docker** and **Docker Compose**
 - **Git**
 - **MySQL**
@@ -146,13 +145,13 @@ For a complete list of environment variables, see [.env.example](.env.example).
 
 ```bash
 # Start all services
-docker-compose up -d
+docker-compose -f docker-compose.full-install.yml up -d
 
 # View logs
-docker-compose logs -f
+docker-compose -f docker-compose.full-install.yml logs -f
 
 # Stop services
-docker-compose down
+docker-compose -f docker-compose.full-install.yml down
 ```
 
 ### 💻 Locally

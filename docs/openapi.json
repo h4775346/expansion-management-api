@@ -4,13 +4,13 @@
     "/": {
       "get": {
         "operationId": "AppController_getHello",
-        "summary": "Get API welcome message",
         "parameters": [],
         "responses": {
           "200": {
             "description": "Welcome message retrieved successfully."
           }
         },
+        "summary": "Get API welcome message",
         "tags": [
           "health"
         ]
@@ -19,13 +19,13 @@
     "/health": {
       "get": {
         "operationId": "AppController_getHealth",
-        "summary": "Check API health status",
         "parameters": [],
         "responses": {
           "200": {
             "description": "Health status retrieved successfully."
           }
         },
+        "summary": "Check API health status",
         "tags": [
           "health"
         ]
@@ -34,7 +34,6 @@
     "/auth/register": {
       "post": {
         "operationId": "AuthController_register",
-        "summary": "Register a new client",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -54,6 +53,7 @@
             "description": "Bad request."
           }
         },
+        "summary": "Register a new client",
         "tags": [
           "auth"
         ]
@@ -62,7 +62,6 @@
     "/auth/login": {
       "post": {
         "operationId": "AuthController_login",
-        "summary": "Login a client",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -82,6 +81,7 @@
             "description": "Unauthorized."
           }
         },
+        "summary": "Login a client",
         "tags": [
           "auth"
         ]
@@ -90,7 +90,6 @@
     "/auth/me": {
       "get": {
         "operationId": "AuthController_getProfile",
-        "summary": "Get current client profile",
         "parameters": [],
         "responses": {
           "200": {
@@ -100,20 +99,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "auth"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get current client profile",
+        "tags": [
+          "auth"
         ]
       }
     },
     "/clients": {
       "post": {
         "operationId": "ClientsController_create",
-        "summary": "Create a new client (admin only)",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -136,18 +135,18 @@
             "description": "Forbidden."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Create a new client (admin only)",
+        "tags": [
+          "clients"
         ]
       },
       "get": {
         "operationId": "ClientsController_findAll",
-        "summary": "Get all clients (admin only)",
         "parameters": [
           {
             "name": "select",
@@ -215,20 +214,20 @@
             "description": "Forbidden."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get all clients (admin only)",
+        "tags": [
+          "clients"
         ]
       }
     },
     "/clients/me": {
       "get": {
         "operationId": "ClientsController_getProfile",
-        "summary": "Get current client profile",
         "parameters": [],
         "responses": {
           "200": {
@@ -238,20 +237,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get current client profile",
+        "tags": [
+          "clients"
         ]
       }
     },
     "/clients/{id}": {
       "get": {
         "operationId": "ClientsController_findOne",
-        "summary": "Get a client by ID (admin can see any, clients can see their own)",
         "parameters": [
           {
             "name": "id",
@@ -276,18 +275,18 @@
             "description": "Client not found."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get a client by ID (admin can see any, clients can see their own)",
+        "tags": [
+          "clients"
         ]
       },
       "patch": {
         "operationId": "ClientsController_update",
-        "summary": "Update a client by ID (admin can update any, clients can update their own)",
         "parameters": [
           {
             "name": "id",
@@ -322,18 +321,18 @@
             "description": "Client not found."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Update a client by ID (admin can update any, clients can update their own)",
+        "tags": [
+          "clients"
         ]
       },
       "delete": {
         "operationId": "ClientsController_remove",
-        "summary": "Delete a client by ID (admin only)",
         "parameters": [
           {
             "name": "id",
@@ -358,20 +357,20 @@
             "description": "Client not found."
           }
         },
-        "tags": [
-          "clients"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Delete a client by ID (admin only)",
+        "tags": [
+          "clients"
         ]
       }
     },
     "/projects": {
       "post": {
         "operationId": "ProjectsController_create",
-        "summary": "Create a new project",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -391,18 +390,18 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "projects"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
         ]
       },
       "get": {
         "operationId": "ProjectsController_findAll",
-        "summary": "Get all projects (admin) or client's projects",
         "parameters": [
           {
             "name": "select",
@@ -475,20 +474,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "projects"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get all projects (admin) or client's projects",
+        "tags": [
+          "projects"
         ]
       }
     },
     "/projects/{id}": {
       "get": {
         "operationId": "ProjectsController_findOne",
-        "summary": "Get a project by ID",
         "parameters": [
           {
             "name": "id",
@@ -510,18 +509,18 @@
             "description": "Project not found."
           }
         },
-        "tags": [
-          "projects"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get a project by ID",
+        "tags": [
+          "projects"
         ]
       },
       "patch": {
         "operationId": "ProjectsController_update",
-        "summary": "Update a project",
         "parameters": [
           {
             "name": "id",
@@ -553,18 +552,18 @@
             "description": "Project not found."
           }
         },
-        "tags": [
-          "projects"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Update a project",
+        "tags": [
+          "projects"
         ]
       },
       "delete": {
         "operationId": "ProjectsController_remove",
-        "summary": "Delete a project",
         "parameters": [
           {
             "name": "id",
@@ -586,20 +585,20 @@
             "description": "Project not found."
           }
         },
-        "tags": [
-          "projects"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Delete a project",
+        "tags": [
+          "projects"
         ]
       }
     },
     "/vendors": {
       "post": {
         "operationId": "VendorsController_create",
-        "summary": "Create a new vendor (admin only)",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -622,18 +621,18 @@
             "description": "Forbidden."
           }
         },
-        "tags": [
-          "vendors"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Create a new vendor (admin only)",
+        "tags": [
+          "vendors"
         ]
       },
       "get": {
         "operationId": "VendorsController_findAll",
-        "summary": "Get all vendors with optional filtering",
         "parameters": [
           {
             "name": "country",
@@ -714,20 +713,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "vendors"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get all vendors with optional filtering",
+        "tags": [
+          "vendors"
         ]
       }
     },
     "/vendors/{id}": {
       "get": {
         "operationId": "VendorsController_findOne",
-        "summary": "Get a vendor by ID",
         "parameters": [
           {
             "name": "id",
@@ -749,18 +748,18 @@
             "description": "Vendor not found."
           }
         },
-        "tags": [
-          "vendors"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get a vendor by ID",
+        "tags": [
+          "vendors"
         ]
       },
       "patch": {
         "operationId": "VendorsController_update",
-        "summary": "Update a vendor by ID (admin only)",
         "parameters": [
           {
             "name": "id",
@@ -795,18 +794,18 @@
             "description": "Vendor not found."
           }
         },
-        "tags": [
-          "vendors"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Update a vendor by ID (admin only)",
+        "tags": [
+          "vendors"
         ]
       },
       "delete": {
         "operationId": "VendorsController_remove",
-        "summary": "Delete a vendor by ID (admin only)",
         "parameters": [
           {
             "name": "id",
@@ -831,20 +830,20 @@
             "description": "Vendor not found."
           }
         },
-        "tags": [
-          "vendors"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Delete a vendor by ID (admin only)",
+        "tags": [
+          "vendors"
         ]
       }
     },
     "/projects/{id}/matches/rebuild": {
       "post": {
         "operationId": "MatchingController_rebuildMatches",
-        "summary": "Rebuild matches for a project (Admin only)",
         "parameters": [
           {
             "name": "id",
@@ -869,20 +868,20 @@
             "description": "Project not found."
           }
         },
-        "tags": [
-          "matching"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Rebuild matches for a project (Admin only)",
+        "tags": [
+          "matching"
         ]
       }
     },
     "/research": {
       "post": {
         "operationId": "ResearchController_create",
-        "summary": "Create a research document",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -902,18 +901,18 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Create a research document",
+        "tags": [
+          "research"
         ]
       },
       "get": {
         "operationId": "ResearchController_findAll",
-        "summary": "Get all research documents",
         "parameters": [
           {
             "name": "select",
@@ -978,20 +977,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get all research documents",
+        "tags": [
+          "research"
         ]
       }
     },
     "/research/search": {
       "get": {
         "operationId": "ResearchController_search",
-        "summary": "Search research documents",
         "parameters": [],
         "responses": {
           "200": {
@@ -1001,20 +1000,20 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Search research documents",
+        "tags": [
+          "research"
         ]
       }
     },
     "/research/{id}": {
       "get": {
         "operationId": "ResearchController_findOne",
-        "summary": "Get a research document by ID",
         "parameters": [
           {
             "name": "id",
@@ -1036,18 +1035,18 @@
             "description": "Research document not found."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get a research document by ID",
+        "tags": [
+          "research"
         ]
       },
       "patch": {
         "operationId": "ResearchController_update",
-        "summary": "Update a research document",
         "parameters": [
           {
             "name": "id",
@@ -1079,18 +1078,18 @@
             "description": "Research document not found."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Update a research document",
+        "tags": [
+          "research"
         ]
       },
       "delete": {
         "operationId": "ResearchController_remove",
-        "summary": "Delete a research document",
         "parameters": [
           {
             "name": "id",
@@ -1112,20 +1111,20 @@
             "description": "Research document not found."
           }
         },
-        "tags": [
-          "research"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Delete a research document",
+        "tags": [
+          "research"
         ]
       }
     },
     "/analytics/top-vendors": {
       "get": {
         "operationId": "AnalyticsController_getTopVendors",
-        "summary": "Get top vendors by country",
         "parameters": [],
         "responses": {
           "200": {
@@ -1135,13 +1134,14 @@
             "description": "Unauthorized."
           }
         },
-        "tags": [
-          "analytics"
-        ],
         "security": [
           {
             "bearer": []
           }
+        ],
+        "summary": "Get top vendors by country",
+        "tags": [
+          "analytics"
         ]
       }
     }

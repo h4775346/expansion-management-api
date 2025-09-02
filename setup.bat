@@ -35,18 +35,13 @@ if %errorlevel% neq 0 (
 
 echo ✅ Docker found.
 
-REM Clone the repository
-echo 📥 Cloning repository from GitHub...
-git clone https://github.com/h4775346/expansion-management-api.git
-cd expansion-management-api
-
-REM Copy environment file
-echo ⚙️  Setting up environment...
-copy .env.example .env >nul
+REM Download docker-compose file directly
+echo 📥 Downloading docker-compose file...
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml' -OutFile 'docker-compose.full-install.yml'"
 
 REM Start with Docker Compose
 echo 🐳 Starting all services with Docker Compose...
-docker-compose up -d
+docker-compose -f docker-compose.full-install.yml up -d
 
 echo.
 echo 🎉 Setup initiated! Services are starting up...
@@ -61,7 +56,7 @@ echo 👤 Test Accounts:
 echo    👨‍💼 Admin: admin@expansion.com / admin123
 echo    👥 Client: englishh7366@gmail.com / password123
 echo.
-echo 🛑 To stop the services later, run: docker-compose down
+echo 🛑 To stop the services later, run: docker-compose -f docker-compose.full-install.yml down
 echo.
 echo 💡 For more details, check the README.md file
 echo.

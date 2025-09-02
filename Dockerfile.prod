@@ -1,40 +1,27 @@
-# Production Dockerfile
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install dependencies - important to do this in the container to get correct architecture binaries
+RUN npm install --legacy-peer-deps
 
 # Copy source code
 COPY . .
 
+# Remove any existing node_modules to ensure clean build
+RUN rm -rf node_modules
+
+# Reinstall dependencies in container
+RUN npm install --legacy-peer-deps
+
 # Build the application
 RUN npm run build
 
-# Production stage
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
-# Copy dependencies
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/docs ./docs
-COPY --from=builder /app/.env.example ./
-
-# Change ownership to non-root user
-RUN chown -R nextjs:nodejs /app
-USER nextjs
-
+# Expose port
 EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+# Start the application
+CMD ["npm", "run", "start:prod"]
