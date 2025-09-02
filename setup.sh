@@ -165,4 +165,30 @@ main() {
     curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
     
     # Start with Docker Compose
-    echo "
+    echo "Starting all services with Docker Compose..."
+    $DOCKER_COMPOSE_CMD up -d
+    
+    echo
+    echo "🎉 Setup completed successfully!"
+    echo
+    echo "⏳ This may take 2-3 minutes for the first time as Docker:"
+    echo "   - Pulls required images"
+    echo "   - Sets up databases"
+    echo "   - Runs migrations and seeding"
+    echo
+    echo "📋 Once running, access your application at:"
+    echo "   🔗 API: http://localhost:3000"
+    echo "   📚 Docs: http://localhost:3000/docs"
+    echo
+    echo "👤 Test Accounts:"
+    echo "   👨‍💼 Admin: admin@example.com / admin123"
+    echo "   👥 Client: englishh7366@gmail.com / password123"
+    echo
+    echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD down"
+    echo
+    echo "💡 For more details, check the README.md file"
+    echo
+}
+
+# Run main setup
+main
