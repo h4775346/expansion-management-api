@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ResearchDoc, ResearchDocDocument } from './schemas/research-doc.schema';
@@ -6,12 +6,17 @@ import { CreateResearchDocDto } from './dto/create-research-doc.dto';
 import { SearchResearchDocDto } from './dto/search-research-doc.dto';
 import { PaginateQuery } from 'nestjs-paginate';
 import { Paginated } from 'nestjs-paginate/lib/paginate';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Project } from '../projects/entities/project.entity';
 
 @Injectable()
 export class ResearchService {
   constructor(
     @InjectModel(ResearchDoc.name)
     private researchDocModel: Model<ResearchDocDocument>,
+    @InjectRepository(Project)
+    private projectsRepository: Repository<Project>,
   ) {}
 
   async create(createResearchDocDto: CreateResearchDocDto): Promise<ResearchDoc> {
@@ -19,8 +24,25 @@ export class ResearchService {
     return createdResearchDoc;
   }
 
-  async search(searchDto: SearchResearchDocDto): Promise<ResearchDoc[]> {
+  async search(user: any, searchDto: SearchResearchDocDto): Promise<ResearchDoc[]> {
     const query: any = {};
+    
+    // For non-admin users, filter by their projects
+    if (user.role !== 'admin') {
+      const userProjects = await this.projectsRepository.find({
+        where: { client_id: user.id },
+        select: ['id'],
+      });
+      
+      const projectIds = userProjects.map(project => project.id.toString());
+      
+      // If user has no projects, return empty array
+      if (projectIds.length === 0) {
+        return [];
+      }
+      
+      query.projectId = { $in: projectIds };
+    }
     
     if (searchDto.projectId) {
       query.projectId = searchDto.projectId;
@@ -41,16 +63,54 @@ export class ResearchService {
     return mongoQuery.exec();
   }
 
-  async findAll(query: PaginateQuery): Promise<Paginated<ResearchDoc>> {
+  async findAll(user: any, query: PaginateQuery): Promise<Paginated<ResearchDoc>> {
     const { page = 1, limit = 10 } = query;
     const skip = (page - 1) * limit;
 
     // Build the MongoDB query
-    let mongoQuery = this.researchDocModel.find();
+    const mongoQuery: any = {};
+    
+    // For non-admin users, filter by their projects
+    if (user.role !== 'admin') {
+      const userProjects = await this.projectsRepository.find({
+        where: { client_id: user.id },
+        select: ['id'],
+      });
+      
+      const projectIds = userProjects.map(project => project.id.toString());
+      
+      // If user has no projects, return empty result
+      if (projectIds.length === 0) {
+        return {
+          data: [],
+          meta: {
+            itemsPerPage: limit,
+            totalItems: 0,
+            currentPage: page,
+            totalPages: 0,
+            sortBy: query.sortBy || [],
+            searchBy: query.searchBy || [],
+            search: query.search || '',
+            select: query.select || [],
+          },
+          links: {
+            first: '',
+            previous: '',
+            current: '',
+            next: '',
+            last: '',
+          },
+        } as Paginated<ResearchDoc>;
+      }
+      
+      mongoQuery.projectId = { $in: projectIds };
+    }
+
+    let mongoFindQuery = this.researchDocModel.find(mongoQuery);
     
     // Apply search if provided
     if (query.search) {
-      mongoQuery = mongoQuery.find({
+      mongoFindQuery = mongoFindQuery.find({
         $or: [
           { title: { $regex: query.search, $options: 'i' } },
           { content: { $regex: query.search, $options: 'i' } }
@@ -64,15 +124,17 @@ export class ResearchService {
       query.sortBy.forEach(([field, direction]) => {
         sort[field] = direction.toLowerCase() === 'desc' ? -1 : 1;
       });
-      mongoQuery = mongoQuery.sort(sort);
+      mongoFindQuery = mongoFindQuery.sort(sort);
     } else {
       // Default sorting
-      mongoQuery = mongoQuery.sort({ createdAt: -1 });
+      mongoFindQuery = mongoFindQuery.sort({ createdAt: -1 });
     }
 
     // Execute query with pagination
-    const data = await mongoQuery.skip(skip).limit(limit).exec();
-    const total = await this.researchDocModel.countDocuments(mongoQuery.getFilter()).exec();
+    const data = await mongoFindQuery.skip(skip).limit(limit).exec();
+    
+    // For counting, we need to use the base filter without skip/limit
+    const total = await this.researchDocModel.countDocuments(mongoQuery);
 
     // Build links
     const path = query.path || '';
@@ -112,15 +174,49 @@ export class ResearchService {
     } as Paginated<ResearchDoc>;
   }
 
-  async findOne(id: string): Promise<ResearchDoc> {
+  async findOne(user: any, id: string): Promise<ResearchDoc> {
     const researchDoc = await this.researchDocModel.findById(id).exec();
     if (!researchDoc) {
       throw new NotFoundException(`Research document with ID ${id} not found`);
     }
+    
+    // For non-admin users, check if the document belongs to their project
+    if (user.role !== 'admin') {
+      const userProject = await this.projectsRepository.findOne({
+        where: { 
+          id: parseInt(researchDoc.projectId), 
+          client_id: user.id 
+        }
+      });
+      
+      if (!userProject) {
+        throw new ForbiddenException('You do not have permission to access this research document');
+      }
+    }
+    
     return researchDoc;
   }
 
-  async update(id: string, updateResearchDocDto: CreateResearchDocDto): Promise<ResearchDoc> {
+  async update(user: any, id: string, updateResearchDocDto: CreateResearchDocDto): Promise<ResearchDoc> {
+    // For non-admin users, check if the document belongs to their project
+    if (user.role !== 'admin') {
+      const researchDoc = await this.researchDocModel.findById(id).exec();
+      if (!researchDoc) {
+        throw new NotFoundException(`Research document with ID ${id} not found`);
+      }
+      
+      const userProject = await this.projectsRepository.findOne({
+        where: { 
+          id: parseInt(researchDoc.projectId), 
+          client_id: user.id 
+        }
+      });
+      
+      if (!userProject) {
+        throw new ForbiddenException('You do not have permission to update this research document');
+      }
+    }
+    
     const updatedResearchDoc = await this.researchDocModel.findByIdAndUpdate(
       id, 
       updateResearchDocDto, 
@@ -134,7 +230,26 @@ export class ResearchService {
     return updatedResearchDoc;
   }
 
-  async remove(id: string): Promise<ResearchDoc> {
+  async remove(user: any, id: string): Promise<ResearchDoc> {
+    // For non-admin users, check if the document belongs to their project
+    if (user.role !== 'admin') {
+      const researchDoc = await this.researchDocModel.findById(id).exec();
+      if (!researchDoc) {
+        throw new NotFoundException(`Research document with ID ${id} not found`);
+      }
+      
+      const userProject = await this.projectsRepository.findOne({
+        where: { 
+          id: parseInt(researchDoc.projectId), 
+          client_id: user.id 
+        }
+      });
+      
+      if (!userProject) {
+        throw new ForbiddenException('You do not have permission to delete this research document');
+      }
+    }
+    
     const deletedResearchDoc = await this.researchDocModel.findByIdAndDelete(id).exec();
     
     if (!deletedResearchDoc) {
