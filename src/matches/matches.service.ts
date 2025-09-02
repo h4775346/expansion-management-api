@@ -8,6 +8,8 @@ import { VendorCountry } from '../vendors/entities/vendor-country.entity';
 import { VendorService } from '../vendors/entities/vendor-service.entity';
 import { NotificationsService } from '../notifications/notifications.service';
 import { Client } from '../clients/entities/client.entity';
+import { ProjectService } from '../projects/entities/project-service.entity';
+import { Service } from '../common/entities/service.entity';
 
 @Injectable()
 export class MatchesService {
@@ -20,6 +22,14 @@ export class MatchesService {
     private vendorsRepository: Repository<Vendor>,
     @InjectRepository(Client)
     private clientsRepository: Repository<Client>,
+    @InjectRepository(VendorService)
+    private vendorServiceRepository: Repository<VendorService>,
+    @InjectRepository(VendorCountry)
+    private vendorCountryRepository: Repository<VendorCountry>,
+    @InjectRepository(ProjectService)
+    private projectServiceRepository: Repository<ProjectService>,
+    @InjectRepository(Service)
+    private serviceRepository: Repository<Service>,
     private notificationsService: NotificationsService,
   ) {}
 
@@ -108,19 +118,9 @@ export class MatchesService {
     
     // Send notifications for high-score matches
     for (const match of savedMatches) {
-      // Check if this is a new match by looking for it in the database before we updated
-      const existingMatch = await this.matchesRepository.findOne({
-        where: { project_id: match.project_id, vendor_id: match.vendor_id }
-      });
-      
-      // Send notification if this is a new match or if the score is now high enough
-      if (!existingMatch || match.score >= parseFloat(process.env.MATCH_NOTIFICATION_THRESHOLD || '8.0')) {
-        await this.notificationsService.sendHighScoreMatchNotification(
-          match,
-          project,
-          project.client
-        );
-      }
+      // For rebuild, we want to send notifications for all matches (not just new ones)
+      // The upsert method will handle whether to send notifications based on score
+      // We don't need to send additional notifications here
     }
     
     return savedMatches;
@@ -149,7 +149,7 @@ export class MatchesService {
     }
     
     // Send notification for high-score matches
-    if (isNewMatch || match.score >= parseFloat(process.env.MATCH_NOTIFICATION_THRESHOLD || '8.0')) {
+    if (match.score >= parseFloat(process.env.MATCH_NOTIFICATION_THRESHOLD || '8.0')) {
       const project = await this.projectsRepository.findOne({
         where: { id: projectId },
         relations: ['client'],

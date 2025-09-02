@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import * as fs from 'fs';
 import * as dotenv from 'dotenv';
 
-// Load environment variables from .env file
+// Load environment variables before app initialization
 dotenv.config();
 
 async function bootstrap() {

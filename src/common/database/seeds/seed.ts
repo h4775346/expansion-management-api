@@ -184,13 +184,12 @@ async function seedDatabase() {
     }
   }
 
-  // Create clients (non-admin)
+  // Create clients (non-admin) with real emails
   const clientsData = [
-    { name: 'Acme Corporation', email: 'contact@acme.com' },
-    { name: 'Globex Inc.', email: 'info@globex.com' },
-    { name: 'Wayne Enterprises', email: 'hello@wayne.com' },
-    { name: 'Stark Industries', email: 'support@stark.com' },
-    { name: 'Oscorp Ltd.', email: 'service@oscorp.com' },
+    { name: 'Protik Service', email: 'englishh7366@gmail.com' },
+    { name: 'Abanoub Hany', email: 'sw.abanoub.hany@gmail.com' },
+    { name: 'Ali Hany', email: 'a10979516@gmail.com' },
+    { name: 'Yahoo User', email: 'englishh7366@yahoo.com' },
   ];
 
   const clients = [];
@@ -209,7 +208,7 @@ async function seedDatabase() {
       });
       const savedClient = await clientRepository.save(client);
       clients.push(savedClient);
-      console.log(`Client created: ${clientData.name}`);
+      console.log(`Client created: ${clientData.name} (${clientData.email})`);
     } else {
       clients.push(existingClient);
     }
@@ -244,13 +243,6 @@ async function seedDatabase() {
       budget: 125000,
       status: 'active',
       services: [services[7].name, services[8].name], // AI/ML, Blockchain
-    },
-    {
-      client: clients[4],
-      country: 'India',
-      budget: 30000,
-      status: 'active',
-      services: [services[0].name, services[9].name], // Web, IoT
     },
   ];
 

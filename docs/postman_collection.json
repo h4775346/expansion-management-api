@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "269611cf-45d7-4c2a-b535-b05223397daf",
+      "id": "680e238d-c758-4800-85a3-10d125f561ee",
       "name": "Get API welcome message",
       "request": {
         "name": "Get API welcome message",
@@ -21,7 +21,7 @@
       },
       "response": [
         {
-          "id": "28efe6ca-f0dc-4fc0-bf48-3f71fa0c8b68",
+          "id": "f99a6676-8a79-4131-9976-b10dd8f0756a",
           "name": "Welcome message retrieved successfully.",
           "originalRequest": {
             "url": {
@@ -56,7 +56,7 @@
       }
     },
     {
-      "id": "49757b0d-9689-4b13-9d0c-aed5947d624c",
+      "id": "bcfc4ac8-ad1c-4301-a60e-d6fe6a42bdbf",
       "name": "Check API health status",
       "request": {
         "name": "Check API health status",
@@ -76,7 +76,7 @@
       },
       "response": [
         {
-          "id": "d5a2aaeb-2f1f-4e1f-8bd1-bb9b590df78a",
+          "id": "a3a96109-b27e-4ac7-95d6-0a621d2e3b6b",
           "name": "Health status retrieved successfully.",
           "originalRequest": {
             "url": {
@@ -111,11 +111,11 @@
       }
     },
     {
-      "id": "b7f3ea99-02b1-458b-827b-6d1b7187ad82",
+      "id": "12ecf7ab-390b-4cc2-8a77-45c5c755a9c7",
       "name": "auth",
       "item": [
         {
-          "id": "361ae60f-1455-4ac6-a9a8-67376b6a985d",
+          "id": "7cb41bd6-ace3-4b02-8308-8d8cad45e0f8",
           "name": "Register a new client",
           "request": {
             "name": "Register a new client",
@@ -141,7 +141,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"name\": \"Protik Service\",\n  \"password\": \"password123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -151,7 +151,7 @@
           },
           "response": [
             {
-              "id": "df4a5e24-889f-469d-adec-634dab994fad",
+              "id": "291ea671-17ba-48bf-b0ba-e272ea35841d",
               "name": "Client successfully registered.",
               "originalRequest": {
                 "url": {
@@ -168,7 +168,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"name\": \"Protik Service\",\n  \"password\": \"password123\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -189,7 +189,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d471e21f-a47c-4984-8f1a-434b6e8c80fc",
+              "id": "afea0251-83aa-42d1-b00d-7e607f4ade40",
               "name": "Bad request.",
               "originalRequest": {
                 "url": {
@@ -206,7 +206,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"name\": \"Protik Service\",\n  \"password\": \"password123\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -233,7 +233,7 @@
           }
         },
         {
-          "id": "ecd25178-f9ba-47fa-beb8-e7e877072782",
+          "id": "e75c26dc-8f77-4a62-89aa-57e3ad0f305f",
           "name": "Login a client",
           "request": {
             "name": "Login a client",
@@ -259,7 +259,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"password\": \"password123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -269,7 +269,7 @@
           },
           "response": [
             {
-              "id": "48eac54a-7ad5-4b9a-95e6-168e89bfa28e",
+              "id": "b4e49f37-2598-429a-b4d3-8808fa541b53",
               "name": "Client successfully logged in.",
               "originalRequest": {
                 "url": {
@@ -286,7 +286,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"password\": \"password123\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -307,7 +307,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "55b51188-7a6c-4c59-98e6-e87696a6d387",
+              "id": "a48c771b-252e-4be4-96e7-82045be78be4",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -324,7 +324,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"englishh7366@gmail.com\",\n  \"password\": \"password123\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -351,7 +351,7 @@
           }
         },
         {
-          "id": "a1513d27-96be-40bd-b26e-3c32f46ccc11",
+          "id": "d553639e-c5f1-45f7-bf36-62fd5d61a0f7",
           "name": "Get current client profile",
           "request": {
             "name": "Get current client profile",
@@ -380,7 +380,7 @@
           },
           "response": [
             {
-              "id": "7905bf4a-f25b-45e7-b1aa-8e8503100473",
+              "id": "829652c4-ff2b-469a-bca2-5576fc25103b",
               "name": "Client profile retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -420,7 +420,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d470ff44-4dac-4a62-98a7-c18e0e27da9c",
+              "id": "ff0d02da-a257-49f0-88b5-1f42b0e8bdd7",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -469,11 +469,11 @@
       "event": []
     },
     {
-      "id": "26c72ea4-815f-4438-8df4-b4f1d6b56dbb",
+      "id": "4e23068a-de13-490c-ae55-dd769f42e397",
       "name": "clients",
       "item": [
         {
-          "id": "991d173f-33e5-4478-8a95-28d54ed105bc",
+          "id": "7dd72aa1-5895-46d6-a60e-d076d835fa20",
           "name": "Create a new client (admin only)",
           "request": {
             "name": "Create a new client (admin only)",
@@ -506,7 +506,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"email\": \"newclient@example.com\",\n  \"name\": \"New Client\",\n  \"password\": \"securepassword123\",\n  \"role\": \"client\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -516,7 +516,7 @@
           },
           "response": [
             {
-              "id": "fd8072e5-98a2-4378-a739-88eefb769263",
+              "id": "16fd3b5f-56cb-43f1-be81-b891a2ddcf48",
               "name": "Client successfully created.",
               "originalRequest": {
                 "url": {
@@ -542,7 +542,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"newclient@example.com\",\n  \"name\": \"New Client\",\n  \"password\": \"securepassword123\",\n  \"role\": \"client\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -563,7 +563,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "afbe6230-46b3-4601-a7dc-aebccd52a43b",
+              "id": "16a4e8b7-2c12-45d6-b4d0-52f2204467fd",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -589,7 +589,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"newclient@example.com\",\n  \"name\": \"New Client\",\n  \"password\": \"securepassword123\",\n  \"role\": \"client\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -610,7 +610,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "8ea9f7ae-83eb-4f41-84b5-7e843fc72710",
+              "id": "0b3c2520-3c0e-429f-ba82-c84359d0e81e",
               "name": "Forbidden.",
               "originalRequest": {
                 "url": {
@@ -636,7 +636,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"email\": \"newclient@example.com\",\n  \"name\": \"New Client\",\n  \"password\": \"securepassword123\",\n  \"role\": \"client\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -663,7 +663,7 @@
           }
         },
         {
-          "id": "b1e8a661-1d62-4d9c-a2d8-d6e899bb9573",
+          "id": "0ac359bb-e16f-4559-a198-ab97a2c6f14c",
           "name": "Get all clients (admin only)",
           "request": {
             "name": "Get all clients (admin only)",
@@ -691,7 +691,7 @@
           },
           "response": [
             {
-              "id": "c3fcd6dd-be55-4694-90ef-9d259de24b28",
+              "id": "07e23124-87a7-4195-b917-411841aa2565",
               "name": "Clients retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -730,7 +730,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c348f8c3-aa68-4b98-9df2-fc66a5b1210b",
+              "id": "9a458dca-025a-4ac6-bd48-5dc11cfb0592",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -769,7 +769,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "77fc166e-da2b-45f7-b2d6-9b4b0f8789b2",
+              "id": "ca1f87b0-73a9-4dbc-8d97-cf22792c7950",
               "name": "Forbidden.",
               "originalRequest": {
                 "url": {
@@ -814,7 +814,7 @@
           }
         },
         {
-          "id": "a7ba43ef-fcc2-48d0-8b49-611604e83c28",
+          "id": "c7418321-3533-4cd7-8990-5e4255d555be",
           "name": "Get current client profile",
           "request": {
             "name": "Get current client profile",
@@ -843,7 +843,7 @@
           },
           "response": [
             {
-              "id": "b48741ec-329f-48ad-b869-e242064a2a73",
+              "id": "27cb05bb-d9b6-49be-a887-3eef807f402d",
               "name": "Client profile retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -883,7 +883,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c9d2f6d0-70d0-4b05-b0fa-4483ada4a6c3",
+              "id": "57dc1c72-6b27-4d82-be0c-b9ca0747231c",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -929,11 +929,11 @@
           }
         },
         {
-          "id": "e435a6d5-bfaa-4e29-8559-e9a230bad581",
+          "id": "257b5a78-9c9e-4bc4-bead-06ab8c6669f0",
           "name": "{id}",
           "item": [
             {
-              "id": "efb532f4-33c5-4bb9-b851-341dea842f43",
+              "id": "574cda2d-26e0-4513-b1e6-01e86ef031b0",
               "name": "Get a client by ID (admin can see any, clients can see their own)",
               "request": {
                 "name": "Get a client by ID (admin can see any, clients can see their own)",
@@ -970,7 +970,7 @@
               },
               "response": [
                 {
-                  "id": "aee0b690-e0d7-4fdb-add2-91c85d60e20b",
+                  "id": "e19cf8df-f474-44f2-97c6-eaf89db4c1e3",
                   "name": "Client retrieved successfully.",
                   "originalRequest": {
                     "url": {
@@ -1018,7 +1018,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "fb93a8e6-7c54-4796-aa57-fcd24ae08b75",
+                  "id": "47f7f930-d0bc-4c9d-92fb-a89bdc661a13",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -1066,7 +1066,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "6770689d-7394-48b7-9890-47b6591c832b",
+                  "id": "4f4273fc-b250-4fb5-aea7-e9e9760d90d5",
                   "name": "Forbidden.",
                   "originalRequest": {
                     "url": {
@@ -1114,7 +1114,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "ec049fa0-b69c-4a4e-a912-713746271e94",
+                  "id": "1cdc8f2b-1dae-42f4-b874-a043c2f752b7",
                   "name": "Client not found.",
                   "originalRequest": {
                     "url": {
@@ -1168,7 +1168,7 @@
               }
             },
             {
-              "id": "0068297e-affe-4b26-889e-5dffdc562936",
+              "id": "818e4b86-9aeb-40f4-b418-579ca244f030",
               "name": "Update a client by ID (admin can update any, clients can update their own)",
               "request": {
                 "name": "Update a client by ID (admin can update any, clients can update their own)",
@@ -1220,7 +1220,7 @@
               },
               "response": [
                 {
-                  "id": "60e9dd8a-ac4f-476a-a29a-cb9e94c2069c",
+                  "id": "994d1656-f220-40f4-b084-a8d629a9dbbf",
                   "name": "Client updated successfully.",
                   "originalRequest": {
                     "url": {
@@ -1276,7 +1276,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "0de13dc0-8792-4dd5-ace5-00bce1a0e214",
+                  "id": "a809026e-5356-4250-9443-d1dfc95327ac",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -1332,7 +1332,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "b6009cd8-7ae1-4815-b9f2-4eac3b8ad1d9",
+                  "id": "3bddabad-de23-4666-b5c5-9c8c49a7f388",
                   "name": "Forbidden.",
                   "originalRequest": {
                     "url": {
@@ -1388,7 +1388,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "46978ab7-333a-44b0-bcf1-d6e02a5e8f46",
+                  "id": "08c21bbd-128c-4935-a825-f334b149a112",
                   "name": "Client not found.",
                   "originalRequest": {
                     "url": {
@@ -1450,7 +1450,7 @@
               }
             },
             {
-              "id": "8c0764dd-c72f-4d7f-b3ac-6e467715764c",
+              "id": "fed3c0cb-5c25-4305-ac48-29a5bc36a53d",
               "name": "Delete a client by ID (admin only)",
               "request": {
                 "name": "Delete a client by ID (admin only)",
@@ -1487,7 +1487,7 @@
               },
               "response": [
                 {
-                  "id": "c6049c24-9cba-4484-a1a9-be380133ba14",
+                  "id": "17642895-4346-4277-a895-bcfedfe9f81e",
                   "name": "Client deleted successfully.",
                   "originalRequest": {
                     "url": {
@@ -1535,7 +1535,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "1e2d3d9c-02c8-4e80-9457-661061e5272b",
+                  "id": "719d5021-5da8-47a4-9a19-53355b38d498",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -1583,7 +1583,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "04f04a83-bc1e-4047-8816-2a70574d60bd",
+                  "id": "a3dab271-eda7-4b94-938c-c9b7b8a8c936",
                   "name": "Forbidden.",
                   "originalRequest": {
                     "url": {
@@ -1631,7 +1631,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "a75c0c5a-db31-48fc-b6ea-1f5661342729",
+                  "id": "fd79fa42-c82e-485a-a341-7bf724323067",
                   "name": "Client not found.",
                   "originalRequest": {
                     "url": {
@@ -1691,11 +1691,11 @@
       "event": []
     },
     {
-      "id": "725cfb1e-3c46-4031-b367-f9fd2cdc4762",
+      "id": "0aca6ea3-7a89-449d-9ebf-31a76c027f91",
       "name": "projects",
       "item": [
         {
-          "id": "fb775198-0ea3-4470-8fe1-2028b1030f42",
+          "id": "8331d453-3f11-4b78-9cec-af66f3e064cf",
           "name": "Create a new project",
           "request": {
             "name": "Create a new project",
@@ -1728,7 +1728,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"country\": \"USA\",\n  \"budget\": 50000,\n  \"status\": \"active\",\n  \"services_needed\": [\n    \"Web Development\",\n    \"UI/UX Design\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1738,7 +1738,7 @@
           },
           "response": [
             {
-              "id": "862070ac-336f-4436-a8e2-db5e78fcf37a",
+              "id": "4bc79996-2ee8-403b-bb3e-71ead7d6e8ba",
               "name": "Project successfully created.",
               "originalRequest": {
                 "url": {
@@ -1764,7 +1764,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"country\": \"USA\",\n  \"budget\": 50000,\n  \"status\": \"active\",\n  \"services_needed\": [\n    \"Web Development\",\n    \"UI/UX Design\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1785,7 +1785,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "7fcbbcc8-48cf-4c14-aefa-7a41269aea8e",
+              "id": "98332fdc-a750-4414-aa56-07e3668735b6",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -1811,7 +1811,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"country\": \"USA\",\n  \"budget\": 50000,\n  \"status\": \"active\",\n  \"services_needed\": [\n    \"Web Development\",\n    \"UI/UX Design\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1838,7 +1838,7 @@
           }
         },
         {
-          "id": "2a368213-d4ca-4929-b87d-fa308ec23508",
+          "id": "26609bc9-55c5-48a6-a0f8-a5d9505bc4b6",
           "name": "Get all projects (admin) or client's projects",
           "request": {
             "name": "Get all projects (admin) or client's projects",
@@ -1872,7 +1872,7 @@
           },
           "response": [
             {
-              "id": "6cdd05ef-81e2-43fd-99e8-55360fdaa519",
+              "id": "78b8596c-baf9-4807-b35f-e03c1265ffb8",
               "name": "Projects retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -1916,7 +1916,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "bac3ecc0-5d53-4fde-a461-84a6d6e8be53",
+              "id": "67dc5792-0ad7-45dd-a80c-820b9f95493d",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -1966,11 +1966,11 @@
           }
         },
         {
-          "id": "6e65f1cb-baea-4411-9ac8-bed79d884d36",
+          "id": "7682f0a6-9df2-4f4a-b081-8ac0f008e142",
           "name": "{id}",
           "item": [
             {
-              "id": "f3c064c7-a8a5-4a9a-a177-34e956435ee9",
+              "id": "931cff08-5822-47e2-95aa-7f20f83cdf10",
               "name": "Get a project by ID",
               "request": {
                 "name": "Get a project by ID",
@@ -2007,7 +2007,7 @@
               },
               "response": [
                 {
-                  "id": "ad54b9e8-fa2b-4e6f-9616-694d139a5910",
+                  "id": "bf7bb194-5586-49aa-9ab0-b26d117ffa58",
                   "name": "Project retrieved successfully.",
                   "originalRequest": {
                     "url": {
@@ -2055,7 +2055,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "b305f256-dde9-4c69-ad80-9b7d19c6cad7",
+                  "id": "28cff655-2666-48ef-bdb1-cd2988aa5560",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -2103,7 +2103,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "f1ebd31c-5556-4d19-8a4a-c788998ff39e",
+                  "id": "8907ef29-6b47-4b0d-ab98-94db556ddc64",
                   "name": "Project not found.",
                   "originalRequest": {
                     "url": {
@@ -2157,7 +2157,7 @@
               }
             },
             {
-              "id": "04bf6afb-6159-4283-b05d-f7202fdd3acf",
+              "id": "f6d1aa87-2854-4aee-8e1d-68769dd4da63",
               "name": "Update a project",
               "request": {
                 "name": "Update a project",
@@ -2209,7 +2209,7 @@
               },
               "response": [
                 {
-                  "id": "043b097b-d1aa-490d-82d1-27cc1e3f7c20",
+                  "id": "2b08f13e-516a-4ef6-adff-3c561f8355a9",
                   "name": "Project updated successfully.",
                   "originalRequest": {
                     "url": {
@@ -2265,7 +2265,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "c6df5316-af74-4ccd-ad37-880e7c99c0bf",
+                  "id": "543c60e4-cda9-48c1-a411-5c25655441ee",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -2321,7 +2321,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "b3a29340-909b-4307-8a2d-de3785757368",
+                  "id": "e94b2d1d-6d3b-487e-8668-4bce8bff475d",
                   "name": "Project not found.",
                   "originalRequest": {
                     "url": {
@@ -2383,7 +2383,7 @@
               }
             },
             {
-              "id": "9ac7d3da-f428-4af2-9812-e794be51c50b",
+              "id": "fcb54aeb-5838-4511-9917-c0dd1a8bf946",
               "name": "Delete a project",
               "request": {
                 "name": "Delete a project",
@@ -2420,7 +2420,7 @@
               },
               "response": [
                 {
-                  "id": "ab31553c-df18-4f4a-a962-cb678930da74",
+                  "id": "4405007e-0233-4347-bc29-7d2bbe7d5e6e",
                   "name": "Project deleted successfully.",
                   "originalRequest": {
                     "url": {
@@ -2468,7 +2468,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "9e2592f0-36f8-4020-8187-19a33cf309c0",
+                  "id": "b93d6d55-68a0-4077-a4fe-4eb59e096227",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -2516,7 +2516,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "5396621b-34ba-4778-b5c3-c7bdf2ab2957",
+                  "id": "959e2d0b-37d9-4690-9387-2994c5b8e0bb",
                   "name": "Project not found.",
                   "originalRequest": {
                     "url": {
@@ -2570,10 +2570,10 @@
               }
             },
             {
-              "id": "8c258fe6-9398-4bca-925b-13a746e5cd12",
-              "name": "Rebuild matches for a project",
+              "id": "56dfa32c-73ef-4bc6-a878-65025a432a3d",
+              "name": "Rebuild matches for a project (Admin only)",
               "request": {
-                "name": "Rebuild matches for a project",
+                "name": "Rebuild matches for a project (Admin only)",
                 "description": {},
                 "url": {
                   "path": [
@@ -2609,7 +2609,7 @@
               },
               "response": [
                 {
-                  "id": "5a96e24a-63dc-42ec-bdf6-1d57b995eb3a",
+                  "id": "aea42d2a-6ee2-4468-b830-8f1ce051089d",
                   "name": "Matches rebuilt successfully.",
                   "originalRequest": {
                     "url": {
@@ -2659,7 +2659,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "953708da-d0ac-4bb8-bdca-05de5588ca90",
+                  "id": "d954e605-beb0-4a8c-ad0f-96f9ff4fe445",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -2709,7 +2709,57 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "7287c497-3540-4640-b915-f6ced34aec80",
+                  "id": "1fb2764a-10b8-4a41-ab3c-f3f75f78446b",
+                  "name": "Forbidden. Admin access required.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id",
+                        "matches",
+                        "rebuild"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {}
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "0f0f7499-ea6b-48c2-b3df-d2a3edbc920c",
                   "name": "Project not found.",
                   "originalRequest": {
                     "url": {
@@ -2771,11 +2821,11 @@
       "event": []
     },
     {
-      "id": "fb52852b-d811-45e1-b387-cd9e74da4964",
+      "id": "f4999dd1-77c2-4a6c-ba17-492ad11bd370",
       "name": "vendors",
       "item": [
         {
-          "id": "b8247cfd-00e8-421e-bcea-c800ccbe0935",
+          "id": "7aa2cb3b-5867-47ce-896c-13bf0e70ea5a",
           "name": "Create a new vendor (admin only)",
           "request": {
             "name": "Create a new vendor (admin only)",
@@ -2808,7 +2858,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"name\": \"Tech Solutions Inc.\",\n  \"rating\": 4.8,\n  \"response_sla_hours\": 24,\n  \"services\": [\n    \"Web Development\",\n    \"Mobile App Development\",\n    \"UI/UX Design\"\n  ],\n  \"countries\": [\n    \"USA\",\n    \"Canada\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2818,7 +2868,7 @@
           },
           "response": [
             {
-              "id": "f5ebf362-de49-48c8-9a5b-9cec3cd9df6d",
+              "id": "bfb54530-d8f4-4b7f-b43a-24c63180104a",
               "name": "Vendor successfully created.",
               "originalRequest": {
                 "url": {
@@ -2844,7 +2894,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"name\": \"Tech Solutions Inc.\",\n  \"rating\": 4.8,\n  \"response_sla_hours\": 24,\n  \"services\": [\n    \"Web Development\",\n    \"Mobile App Development\",\n    \"UI/UX Design\"\n  ],\n  \"countries\": [\n    \"USA\",\n    \"Canada\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2865,7 +2915,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d7b7a031-42e0-492b-af26-c70210bfba0e",
+              "id": "09e39ad0-4527-4c66-9bb2-a637beab1356",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -2891,7 +2941,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"name\": \"Tech Solutions Inc.\",\n  \"rating\": 4.8,\n  \"response_sla_hours\": 24,\n  \"services\": [\n    \"Web Development\",\n    \"Mobile App Development\",\n    \"UI/UX Design\"\n  ],\n  \"countries\": [\n    \"USA\",\n    \"Canada\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2912,7 +2962,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "89f51113-9fdc-421f-be77-054452366a60",
+              "id": "018ad3f4-9c3d-477c-a38a-0958a67d6cdc",
               "name": "Forbidden.",
               "originalRequest": {
                 "url": {
@@ -2938,7 +2988,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"name\": \"Tech Solutions Inc.\",\n  \"rating\": 4.8,\n  \"response_sla_hours\": 24,\n  \"services\": [\n    \"Web Development\",\n    \"Mobile App Development\",\n    \"UI/UX Design\"\n  ],\n  \"countries\": [\n    \"USA\",\n    \"Canada\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2965,7 +3015,7 @@
           }
         },
         {
-          "id": "e28751e0-1efe-4bb0-8941-a6ee27772326",
+          "id": "eb68daa2-a6d6-4bef-a1f1-0db9e5ecd711",
           "name": "Get all vendors with optional filtering",
           "request": {
             "name": "Get all vendors with optional filtering",
@@ -3004,7 +3054,7 @@
           },
           "response": [
             {
-              "id": "e97fb03d-d816-4a73-a2f3-8a589ee5df47",
+              "id": "26b1388e-9d9c-46a3-aff1-f92f856b5fbc",
               "name": "Vendors retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -3052,7 +3102,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "9d7a7a49-82d7-4ead-84dd-d3fa2b86077f",
+              "id": "e7aec034-fcf8-4813-8abe-881bf77162ec",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -3106,11 +3156,11 @@
           }
         },
         {
-          "id": "ed71ef9f-2bea-4ac0-a867-b99599e3d009",
+          "id": "7880fda0-1a53-4c90-a7ea-46d6d86a9248",
           "name": "{id}",
           "item": [
             {
-              "id": "642d4683-66af-4d67-993d-caea0e5438a9",
+              "id": "dc53d13d-d29f-439d-b561-e7afa25aa0b3",
               "name": "Get a vendor by ID",
               "request": {
                 "name": "Get a vendor by ID",
@@ -3147,7 +3197,7 @@
               },
               "response": [
                 {
-                  "id": "654ecca3-1c22-423f-91dc-603a7e9d5793",
+                  "id": "bd5106bc-3056-467e-be5f-08a38501bc99",
                   "name": "Vendor retrieved successfully.",
                   "originalRequest": {
                     "url": {
@@ -3195,7 +3245,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "45dac5b7-62ed-4787-97e5-6903d858452a",
+                  "id": "d9d54fab-b163-4c72-86a7-55b2e36172a3",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -3243,7 +3293,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "2fc5973f-25e8-4bd3-a5b7-8053e408ad51",
+                  "id": "d978e2eb-b3d9-4787-b980-04752efbf10f",
                   "name": "Vendor not found.",
                   "originalRequest": {
                     "url": {
@@ -3297,7 +3347,7 @@
               }
             },
             {
-              "id": "4e585f1f-fe78-4a83-a371-ffd1eb9dded3",
+              "id": "c0395be6-fbb0-42ed-bcfb-45eb9e733a84",
               "name": "Update a vendor by ID (admin only)",
               "request": {
                 "name": "Update a vendor by ID (admin only)",
@@ -3349,7 +3399,7 @@
               },
               "response": [
                 {
-                  "id": "941faecf-b949-4a8e-9672-f6e9c5f0052c",
+                  "id": "78da9cf0-dfb2-428c-9691-8446b6d61040",
                   "name": "Vendor updated successfully.",
                   "originalRequest": {
                     "url": {
@@ -3405,7 +3455,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "5fbe3ddd-963d-4f52-a6ec-8e658032877f",
+                  "id": "57fae852-51ff-4c3f-9da0-ef3513cf9c0d",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -3461,7 +3511,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "e6b03a89-a77b-48bd-90c2-cd35d7f48f91",
+                  "id": "39747859-691a-410f-8bb8-63f3ca71fe2c",
                   "name": "Forbidden.",
                   "originalRequest": {
                     "url": {
@@ -3517,7 +3567,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "35f016c3-b611-46ec-8ff3-9fe9fbba4e22",
+                  "id": "2fcce1f3-4416-4f92-ad33-3104535b56e8",
                   "name": "Vendor not found.",
                   "originalRequest": {
                     "url": {
@@ -3579,7 +3629,7 @@
               }
             },
             {
-              "id": "0d24d302-901e-4660-93b0-34360a4d2f76",
+              "id": "29770f0a-c496-4f4a-8b35-dd12aa8684dc",
               "name": "Delete a vendor by ID (admin only)",
               "request": {
                 "name": "Delete a vendor by ID (admin only)",
@@ -3616,7 +3666,7 @@
               },
               "response": [
                 {
-                  "id": "8c2daa89-26aa-4da7-9860-c701b2a0741b",
+                  "id": "6163d431-53d2-4f4b-a26e-f270d01fe208",
                   "name": "Vendor deleted successfully.",
                   "originalRequest": {
                     "url": {
@@ -3664,7 +3714,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "5363b15e-48ed-458f-b5a4-188230b9b04c",
+                  "id": "95b49f55-76d6-47e4-b5bb-14b28c7efff3",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -3712,7 +3762,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "4b703294-7b1b-4d79-a5f3-acf274e4cd1a",
+                  "id": "5fe697dd-2ebe-4776-8351-315561fbd892",
                   "name": "Forbidden.",
                   "originalRequest": {
                     "url": {
@@ -3760,7 +3810,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "11c499a5-22cb-438b-b971-8f769cff73e1",
+                  "id": "7f91028c-475e-4a7a-add3-2fd1c2ae9fc1",
                   "name": "Vendor not found.",
                   "originalRequest": {
                     "url": {
@@ -3820,11 +3870,11 @@
       "event": []
     },
     {
-      "id": "e445208a-2fb1-4e34-9c49-3c27ca30f0b0",
+      "id": "3342ea9c-b813-4e2f-9280-4e59dc7f5dac",
       "name": "research",
       "item": [
         {
-          "id": "6503b518-7b5c-4a38-9e6f-37cbbe5b512c",
+          "id": "aa09f79f-16ea-4fc2-8267-3bca12e2c0c4",
           "name": "Create a research document",
           "request": {
             "name": "Create a research document",
@@ -3857,7 +3907,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{}",
+              "raw": "{\n  \"projectId\": \"1\",\n  \"title\": \"Market Analysis for USA Expansion\",\n  \"content\": \"Comprehensive market analysis for expanding web development services in the USA market.\",\n  \"tags\": [\n    \"market-analysis\",\n    \"USA\",\n    \"web-development\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3867,7 +3917,7 @@
           },
           "response": [
             {
-              "id": "52e57839-02ee-46b5-8654-168786965a10",
+              "id": "9d28f267-c780-42f5-9aba-68934ff9afde",
               "name": "Research document successfully created.",
               "originalRequest": {
                 "url": {
@@ -3893,7 +3943,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"projectId\": \"1\",\n  \"title\": \"Market Analysis for USA Expansion\",\n  \"content\": \"Comprehensive market analysis for expanding web development services in the USA market.\",\n  \"tags\": [\n    \"market-analysis\",\n    \"USA\",\n    \"web-development\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3914,7 +3964,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a7f7a778-320c-4fd0-b755-d262d4a37bf4",
+              "id": "60f4bbef-a331-40e9-879c-4028b2e42ab9",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -3940,7 +3990,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{}",
+                  "raw": "{\n  \"projectId\": \"1\",\n  \"title\": \"Market Analysis for USA Expansion\",\n  \"content\": \"Comprehensive market analysis for expanding web development services in the USA market.\",\n  \"tags\": [\n    \"market-analysis\",\n    \"USA\",\n    \"web-development\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3967,7 +4017,7 @@
           }
         },
         {
-          "id": "ba359dfa-276f-4ee2-8639-a02e8c13f28a",
+          "id": "9bb20ff8-eafb-4417-86ae-7199d83f3c98",
           "name": "Get all research documents",
           "request": {
             "name": "Get all research documents",
@@ -3995,7 +4045,7 @@
           },
           "response": [
             {
-              "id": "e150b469-4c08-40f7-bbfb-c2c4da87fc95",
+              "id": "3f8d7b69-5226-4909-8295-281e8e3c4d8b",
               "name": "Research documents retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -4034,7 +4084,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "89958fc4-1267-4054-917c-c53b7214d998",
+              "id": "f879876c-0da4-43b3-8f56-653cb26bfd99",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -4079,7 +4129,7 @@
           }
         },
         {
-          "id": "6b5a038b-9eb2-4a44-85ca-dc59d50547f2",
+          "id": "315bb11b-4809-4817-aea1-cb29414e2170",
           "name": "Search research documents",
           "request": {
             "name": "Search research documents",
@@ -4108,7 +4158,7 @@
           },
           "response": [
             {
-              "id": "b0532be2-0bec-4614-92d1-c67b949bc120",
+              "id": "8654ddbb-1b48-4597-90b1-e4886a0b9b76",
               "name": "Research documents retrieved successfully.",
               "originalRequest": {
                 "url": {
@@ -4148,7 +4198,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "711c3479-bc21-4d94-a385-10608fcbb4b7",
+              "id": "cd3fa7e0-8edd-43a1-98d5-afff2545cd09",
               "name": "Unauthorized.",
               "originalRequest": {
                 "url": {
@@ -4194,11 +4244,11 @@
           }
         },
         {
-          "id": "d139d463-af6b-4ea4-a1c4-dcdb90029d07",
+          "id": "d8f8ea33-efe2-4e7b-b12b-54ab9e68544f",
           "name": "{id}",
           "item": [
             {
-              "id": "679849ab-43ab-46cb-9576-0a7f9101b11e",
+              "id": "ecec71b0-074e-430f-9e69-07c1c16904bf",
               "name": "Get a research document by ID",
               "request": {
                 "name": "Get a research document by ID",
@@ -4235,7 +4285,7 @@
               },
               "response": [
                 {
-                  "id": "b65eb84f-268c-46c7-8a3c-476daeba514b",
+                  "id": "a55df01b-4bad-475d-a1fd-6cd9f45b561b",
                   "name": "Research document retrieved successfully.",
                   "originalRequest": {
                     "url": {
@@ -4283,7 +4333,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "a13b1313-2f48-4b8c-8608-cbc41b0b9c67",
+                  "id": "da45ff05-dd9f-40e9-bca9-4ca6a0c41bb8",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -4331,7 +4381,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "82671977-29ea-45f8-820f-27d81eb67162",
+                  "id": "0e9345b8-9ed8-4646-aeb6-428fdbfbfe0f",
                   "name": "Research document not found.",
                   "originalRequest": {
                     "url": {
@@ -4385,7 +4435,7 @@
               }
             },
             {
-              "id": "37345816-ff25-4c69-8062-47dfff671e8b",
+              "id": "1c28f76c-9e82-493a-8096-e002690987fa",
               "name": "Update a research document",
               "request": {
                 "name": "Update a research document",
@@ -4437,7 +4487,7 @@
               },
               "response": [
                 {
-                  "id": "7bc1ded9-ece2-4c02-95b3-6b7417197179",
+                  "id": "40fc9ca4-03c5-487a-9bf7-e3193aa3c346",
                   "name": "Research document updated successfully.",
                   "originalRequest": {
                     "url": {
@@ -4493,7 +4543,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "a93519bd-170e-48c8-99c3-2965d0d57961",
+                  "id": "cc26c8ee-6120-48f2-a75d-4f57b7b33161",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -4549,7 +4599,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "aa87b66b-6d25-43d3-88ed-fc7d1201390a",
+                  "id": "71df6fa1-5278-427b-aa90-8e342a4cb13f",
                   "name": "Research document not found.",
                   "originalRequest": {
                     "url": {
@@ -4611,7 +4661,7 @@
               }
             },
             {
-              "id": "3ad60d6b-02e8-464d-a48e-6f87daa5d89e",
+              "id": "503a8cb9-b8d1-4ff6-a06c-2e616382c886",
               "name": "Delete a research document",
               "request": {
                 "name": "Delete a research document",
@@ -4648,7 +4698,7 @@
               },
               "response": [
                 {
-                  "id": "a1a86a88-5d2e-47dc-96cd-7015b020f0c0",
+                  "id": "13f4154f-f390-491f-b568-bde5162a67e7",
                   "name": "Research document deleted successfully.",
                   "originalRequest": {
                     "url": {
@@ -4696,7 +4746,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "a10e1166-0faf-42e3-9ec6-b472720cfc1a",
+                  "id": "35719768-019d-4ee5-a67d-0f40b1266ac5",
                   "name": "Unauthorized.",
                   "originalRequest": {
                     "url": {
@@ -4744,7 +4794,7 @@
                   "_postman_previewlanguage": "text"
                 },
                 {
-                  "id": "1646fccc-c44d-45d9-88f2-3191ac61c8a2",
+                  "id": "948dcf68-630b-49f2-8ae6-99d637919054",
                   "name": "Research document not found.",
                   "originalRequest": {
                     "url": {
@@ -4804,7 +4854,7 @@
       "event": []
     },
     {
-      "id": "d43f7a42-73cb-4b9a-9aee-bd87ce584468",
+      "id": "14c52eea-b9b5-4fb0-9062-a9ef68cdc5ac",
       "name": "Get top vendors by country",
       "request": {
         "name": "Get top vendors by country",
@@ -4833,7 +4883,7 @@
       },
       "response": [
         {
-          "id": "e2481826-279b-40e7-b51c-2b4d5dc54b7e",
+          "id": "b3b18626-1c0d-4920-bf37-550d6fa6ad0e",
           "name": "Top vendors retrieved successfully.",
           "originalRequest": {
             "url": {
@@ -4873,7 +4923,7 @@
           "_postman_previewlanguage": "text"
         },
         {
-          "id": "b6efac8e-c4f5-4312-a802-5be13c1a2aa7",
+          "id": "79076fef-6a2d-4782-97ee-a11dc50f8c78",
           "name": "Unauthorized.",
           "originalRequest": {
             "url": {
@@ -4928,7 +4978,7 @@
     }
   ],
   "info": {
-    "_postman_id": "b26f8c07-a84d-44f3-ab3c-606d7a57a686",
+    "_postman_id": "8cec6154-880d-4922-9fdd-a5b8a1a6f6b2",
     "name": "Expansion Management API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {

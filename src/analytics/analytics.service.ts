@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Match } from '../matches/entities/match.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
 import { VendorCountry } from '../vendors/entities/vendor-country.entity';
-import { ResearchService } from '../research/research.service';
+import { Project } from '../projects/entities/project.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ResearchDoc, ResearchDocDocument } from '../research/schemas/research-doc.schema';
@@ -16,6 +16,8 @@ export class AnalyticsService {
     private matchesRepository: Repository<Match>,
     @InjectRepository(Vendor)
     private vendorsRepository: Repository<Vendor>,
+    @InjectRepository(Project)
+    private projectsRepository: Repository<Project>,
     @InjectModel(ResearchDoc.name)
     private researchDocModel: Model<ResearchDocDocument>,
   ) {}
@@ -71,7 +73,6 @@ export class AnalyticsService {
       
       for (const vendor of vendors) {
         // Get research docs count for projects in this country
-        // We need to find projects in this country and count research docs for them
         const researchDocsCount = await this.getResearchDocsCountForCountry(country);
         
         finalResults.push({
@@ -91,15 +92,23 @@ export class AnalyticsService {
   }
   
   private async getResearchDocsCountForCountry(country: string): Promise<number> {
-    // This is a simplified approach - in a real implementation, you would
-    // need to link research docs to projects and then to countries
-    // For now, we'll return a placeholder value
-    // In a full implementation, you would:
-    // 1. Find projects in the specified country
-    // 2. Get the project IDs
-    // 3. Count research docs with those project IDs
+    // Find projects in the specified country
+    const projects = await this.projectsRepository.find({
+      where: { country: country },
+    });
     
-    // For demonstration purposes, let's return a random count
-    return Math.floor(Math.random() * 10);
+    if (projects.length === 0) {
+      return 0;
+    }
+    
+    // Get the project IDs
+    const projectIds = projects.map(project => project.id.toString());
+    
+    // Count research docs with those project IDs
+    const count = await this.researchDocModel.countDocuments({
+      projectId: { $in: projectIds },
+    });
+    
+    return count;
   }
 }

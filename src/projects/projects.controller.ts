@@ -7,7 +7,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
 import { Paginate, PaginateQuery } from 'nestjs-paginate';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('projects')
 @Controller('projects')

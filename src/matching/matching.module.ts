@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MatchingService } from './matching.service';
 import { MatchingController } from './matching.controller';
 import { MatchesModule } from '../matches/matches.module';
-import { ProjectsModule } from '../projects/projects.module';
 import { Match } from '../matches/entities/match.entity';
 import { Project } from '../projects/entities/project.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
@@ -11,7 +10,6 @@ import { Vendor } from '../vendors/entities/vendor.entity';
 @Module({
   imports: [
     MatchesModule,
-    ProjectsModule,
     TypeOrmModule.forFeature([Match, Project, Vendor])
   ],
   controllers: [MatchingController],

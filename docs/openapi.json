@@ -844,7 +844,7 @@
     "/projects/{id}/matches/rebuild": {
       "post": {
         "operationId": "MatchingController_rebuildMatches",
-        "summary": "Rebuild matches for a project",
+        "summary": "Rebuild matches for a project (Admin only)",
         "parameters": [
           {
             "name": "id",
@@ -861,6 +861,9 @@
           },
           "401": {
             "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden. Admin access required."
           },
           "404": {
             "description": "Project not found."

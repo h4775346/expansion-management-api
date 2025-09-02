@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { getModelToken } from '@nestjs/mongoose';
 import { AnalyticsService } from './analytics.service';
 import { Match } from '../matches/entities/match.entity';
 import { Vendor } from '../vendors/entities/vendor.entity';
-import { ResearchService } from '../research/research.service';
+import { Project } from '../projects/entities/project.entity';
+import { ResearchDoc } from '../research/schemas/research-doc.schema';
 
 // Mock repositories and services
 const mockMatchesRepository = {
@@ -12,6 +14,17 @@ const mockMatchesRepository = {
   find: jest.fn(),
   findOne: jest.fn(),
   remove: jest.fn(),
+  createQueryBuilder: jest.fn(() => ({
+    select: jest.fn().mockReturnThis(),
+    addSelect: jest.fn().mockReturnThis(),
+    innerJoin: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis(),
+    groupBy: jest.fn().mockReturnThis(),
+    addGroupBy: jest.fn().mockReturnThis(),
+    orderBy: jest.fn().mockReturnThis(),
+    addOrderBy: jest.fn().mockReturnThis(),
+    getRawMany: jest.fn().mockResolvedValue([]),
+  })),
 };
 
 const mockVendorsRepository = {
@@ -22,8 +35,16 @@ const mockVendorsRepository = {
   remove: jest.fn(),
 };
 
-const mockResearchService = {
-  findAll: jest.fn(),
+const mockProjectsRepository = {
+  create: jest.fn(),
+  save: jest.fn(),
+  find: jest.fn(),
+  findOne: jest.fn(),
+  remove: jest.fn(),
+};
+
+const mockResearchDocModel = {
+  countDocuments: jest.fn().mockResolvedValue(0),
 };
 
 describe('AnalyticsService', () => {
@@ -42,8 +63,12 @@ describe('AnalyticsService', () => {
           useValue: mockVendorsRepository,
         },
         {
-          provide: ResearchService,
-          useValue: mockResearchService,
+          provide: getRepositoryToken(Project),
+          useValue: mockProjectsRepository,
+        },
+        {
+          provide: getModelToken(ResearchDoc.name),
+          useValue: mockResearchDocModel,
         },
       ],
     }).compile();

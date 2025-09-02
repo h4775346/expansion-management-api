@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>New High-Score Vendor Match</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+    .content { background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .score-box { background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0; }
+    .section { margin: 25px 0; }
+    .section-title { color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 5px; margin-bottom: 15px; }
+    .highlight { background-color: #e3f2fd; padding: 15px; border-left: 4px solid #2196F3; margin: 15px 0; }
+    .services { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+    .service-tag { background-color: #e0e0e0; padding: 5px 10px; border-radius: 20px; font-size: 14px; }
+    .common-service { background-color: #c8e6c9; }
+    .button { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+    .footer { text-align: center; margin-top: 30px; color: #777; font-size: 14px; }
+    .stats { display: flex; justify-content: space-around; text-align: center; margin: 20px 0; }
+    .stat-box { padding: 10px; }
+    .stat-value { font-size: 24px; font-weight: bold; color: #667eea; }
+    .stat-label { font-size: 14px; color: #777; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🌟 New High-Score Vendor Match!</h1>
+      <p>Perfect match found for your project</p>
+    </div>
+    
+    <div class="content">
+      <p>Hello <strong>{{clientName}}</strong>,</p>
+      
+      <p>We're excited to inform you that we've found an excellent vendor match for your project!</p>
+      
+      <div class="score-box">
+        <h2>Match Score: {{matchScore}}/10</h2>
+        <p>This is a high-confidence match based on your project requirements</p>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-value">{{commonServicesCount}}</div>
+          <div class="stat-label">Common Services</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">{{vendorRating}}</div>
+          <div class="stat-label">Vendor Rating</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">{{vendorSLA}}</div>
+          <div class="stat-label">SLA Hours</div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h3 class="section-title">📋 Project Details</h3>
+        <div class="highlight">
+          <p><strong>📍 Country:</strong> {{projectCountry}}</p>
+          <p><strong>💰 Budget:</strong> ${{projectBudget}}</p>
+          <p><strong>📊 Status:</strong> {{projectStatus}}</p>
+        </div>
+        
+        <p><strong>Required Services:</strong></p>
+        <div class="services">
+          {{#each projectServices}}
+          <span class="service-tag">{{this}}</span>
+          {{/each}}
+        </div>
+      </div>
+      
+      <div class="section">
+        <h3 class="section-title">🏢 Vendor Profile</h3>
+        <div class="highlight">
+          <p><strong>🏢 Name:</strong> {{vendorName}}</p>
+          <p><strong>⭐ Rating:</strong> {{vendorRating}} ⭐</p>
+          <p><strong>⏱️ Response SLA:</strong> {{vendorSLA}} hours</p>
+        </div>
+        
+        <p><strong>Vendor Services:</strong></p>
+        <div class="services">
+          {{#each vendorServices}}
+          <span class="service-tag">{{this}}</span>
+          {{/each}}
+        </div>
+        
+        <p><strong>🌍 Coverage:</strong></p>
+        <div class="services">
+          {{#each vendorCountries}}
+          <span class="service-tag">{{this}}</span>
+          {{/each}}
+        </div>
+      </div>
+      
+      <div class="section">
+        <h3 class="section-title">🔗 Service Match</h3>
+        <p><strong>Perfect Match - Common Services:</strong></p>
+        <div class="services">
+          {{#each commonServices}}
+          <span class="service-tag common-service">{{this}}</span>
+          {{/each}}
+        </div>
+      </div>
+      
+      <div style="text-align: center;">
+        <a href="{{frontendUrl}}" class="button">Review This Match</a>
+      </div>
+      
+      <p>Don't miss this opportunity to connect with a high-quality vendor that perfectly matches your project requirements!</p>
+    </div>
+    
+    <div class="footer">
+      <p>Best regards,<br>Expansion Management Team</p>
+      <p><em>This is an automated notification. Please do not reply to this email.</em></p>
+    </div>
+  </div>
+</body>
+</html>

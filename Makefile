@@ -17,6 +17,8 @@ help:
 	@echo "  lint             - Run linter"
 	@echo "  format           - Format code"
 	@echo "  migrate          - Run database migrations"
+	@echo "  migrate-fresh    - Drop schema and run fresh migrations"
+	@echo "  migrate-fresh-seed - Drop schema, run fresh migrations, and seed data"
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
@@ -66,6 +68,17 @@ format:
 .PHONY: migrate
 migrate:
 	$(NPM) run migration:run
+
+.PHONY: migrate-fresh
+migrate-fresh:
+	$(NPM) run typeorm schema:drop -- -d src/common/database/data-source.ts
+	$(NPM) run migration:run
+
+.PHONY: migrate-fresh-seed
+migrate-fresh-seed:
+	$(NPM) run typeorm schema:drop -- -d src/common/database/data-source.ts
+	$(NPM) run migration:run
+	$(NPM) run seed:run
 
 .PHONY: seed
 seed:

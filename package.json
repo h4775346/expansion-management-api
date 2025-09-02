@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "postbuild": "cpy 'src/notifications/templates/**/*' dist/notifications/templates --parents",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -23,7 +24,8 @@
     "migration:generate": "npm run typeorm migration:generate -- -d src/common/database/data-source.ts",
     "seed:run": "ts-node src/common/database/seeds/seed.ts",
     "export:openapi": "ts-node src/scripts/export-openapi.ts",
-    "export:postman": "ts-node src/scripts/export-postman.ts"
+    "export:postman": "ts-node src/scripts/export-postman.ts",
+    "test:email": "ts-node src/scripts/test-email.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -40,6 +42,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^17.2.1",
+    "handlebars": "^4.7.8",
     "mailersend": "^2.6.0",
     "mongoose": "^8.8.3",
     "mysql2": "^3.11.5",
@@ -66,6 +69,7 @@
     "@types/supertest": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "cpy-cli": "^5.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
