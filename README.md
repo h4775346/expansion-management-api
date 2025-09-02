@@ -43,18 +43,16 @@ A **production-ready backend system** for managing client projects, vendor match
 Get started in seconds with our one-command setup:
 
 ### 🪟 Windows
-```powershell
+``powershell
 # Download and run the setup script
 curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.bat
 .\setup.bat
 ```
 
-### 🐧 macOS/Linux
+### 🐧 macOS/Linux (One-Command Universal Setup)
 ```bash
-# Download and run the setup script
-curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh
-chmod +x setup.sh
-./setup.sh
+# Single command that handles everything including Docker installation if needed
+curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 ```
 
 ### 🐳 Docker-Only Approach (Most Efficient)
@@ -77,13 +75,51 @@ docker run -d --name api --link mysql --link mongo -p 3000:3000 \
 ```
 
 That's it! The system will automatically:
-- 📦 Install all dependencies (using --legacy-peer-deps to resolve conflicts)
+- 📦 Install Docker and Docker Compose if needed
+- 📥 Download all required files
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
 - 🌱 Seed the database
 - ▶️ Start the application
 
 🎯 **Access at: http://localhost:3000**
+
+### 🐧 Linux Universal Installation (Detailed)
+
+For Linux users who want to understand what happens under the hood:
+
+1. **The Universal Setup Script Automatically Handles**:
+   - Detection of your Linux distribution (Ubuntu, Debian, CentOS, RHEL, Fedora, etc.)
+   - Docker installation if not present
+   - Docker Compose installation if not present
+   - Download of all required files
+   - Complete system setup and startup
+
+2. **Manual Installation Options** (if you prefer step-by-step):
+
+   **Option A: Install Docker and Docker Compose First**
+   ```bash
+   # Ubuntu/Debian
+   sudo apt update
+   sudo apt install docker.io docker-compose
+   
+   # CentOS/RHEL
+   sudo yum install docker docker-compose
+   
+   # Fedora
+   sudo dnf install docker docker-compose
+   
+   # Start Docker service
+   sudo systemctl start docker
+   sudo systemctl enable docker
+   sudo usermod -aG docker $USER
+   ```
+
+   **Option B: Use the Universal Script**
+   ```bash
+   # This single command does everything:
+   curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
+   ```
 
 ### 🐧 Linux Detailed Installation
 

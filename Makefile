@@ -32,6 +32,7 @@ help:
 	@echo "  download         - Download the necessary files"
 	@echo "  status           - Show status of services"
 	@echo "  logs             - Show logs of services"
+	@echo "  setup-linux      - Run universal Linux setup (installs Docker if needed)"
 
 # Docker targets
 .PHONY: start
@@ -54,6 +55,10 @@ logs:
 download:
 	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
 	curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+
+.PHONY: setup-linux
+setup-linux:
+	curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 
 # Development targets
 .PHONY: start-dev
