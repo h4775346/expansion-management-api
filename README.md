@@ -57,13 +57,14 @@ curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management
 
 ### 🐳 Docker-Only Approach
 ```bash
-# Just download docker-compose.yml and run
-curl -o docker-compose.yml https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+# Clone the repository and start with Docker
+git clone https://github.com/h4775346/expansion-management-api.git
+cd expansion-management-api
+curl -o docker-compose.yml https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.simple.yml
 docker-compose up -d
 ```
 
 That's it! The system will automatically:
-- 📥 Clone the repository
 - 📦 Install all dependencies
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
@@ -76,6 +77,7 @@ That's it! The system will automatically:
 
 - **Node.js** (v16 or higher)
 - **Docker** and **Docker Compose**
+- **Git**
 - **MySQL**
 - **MongoDB**
 

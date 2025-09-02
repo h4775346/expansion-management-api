@@ -1,28 +1,8 @@
 version: '3.8'
 
 services:
-  # Clone the repository and set up the application
-  setup:
-    image: alpine/git
-    volumes:
-      - ./expansion-management-api:/app
-    working_dir: /app
-    entrypoint: ""
-    command: |
-      sh -c "
-      if [ ! -f .git/config ]; then
-        echo 'Cloning repository...'
-        git clone https://github.com/h4775346/expansion-management-api.git .
-      else
-        echo 'Repository already cloned.'
-      fi
-      "
-
-  # Main API service
   api:
-    build: 
-      context: ./expansion-management-api
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "3000:3000"
     environment:
@@ -39,10 +19,8 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
-      setup:
-        condition: service_completed_successfully
     volumes:
-      - ./expansion-management-api:/app
+      - .:/app
       - /app/node_modules
     command: >
       sh -c "
