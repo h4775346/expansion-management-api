@@ -15,8 +15,10 @@ NPM = npm
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  start            - Start all services (pre-built images)"
-	@echo "  start-dev        - Start in development mode (requires source code)"
+	@echo "  start            - Start all services (development with volume mounting)"
+	@echo "  start-prod       - Start all services (production with pre-built images)"
+	@echo "  start-dev        - Start in development mode with Docker (volume mounting)"
+	@echo "  start-local      - Start in development mode locally (requires Node.js)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
 	@echo "  test-e2e         - Run e2e tests"
@@ -36,6 +38,14 @@ help:
 # Docker targets
 .PHONY: start
 start:
+	$(DOCKER_COMPOSE) up -d
+
+.PHONY: start-prod
+start-prod:
+	$(DOCKER_COMPOSE) -f docker-compose.prod.yml up -d
+
+.PHONY: start-dev
+start-dev:
 	$(DOCKER_COMPOSE) up -d
 
 .PHONY: stop
@@ -59,8 +69,8 @@ setup-linux:
 	curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 
 # Development targets
-.PHONY: start-dev
-start-dev:
+.PHONY: start-local
+start-local:
 	$(NPM) run start:dev
 
 # Test targets

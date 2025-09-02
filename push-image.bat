@@ -25,9 +25,9 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Build the image
-echo 🏗️ Building Docker image...
-docker build -t %IMAGE_NAME% .
+REM Build the image using the production Dockerfile
+echo 🏗️ Building Docker image with production Dockerfile...
+docker build -t %IMAGE_NAME% -f Dockerfile.prod .
 if %errorlevel% neq 0 (
     echo ❌ Docker build failed.
     exit /b 1

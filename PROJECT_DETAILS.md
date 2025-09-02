@@ -120,10 +120,17 @@ Also update `README.md` to include:
   MONGO_URI
   JWT_SECRET
   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
-- Docker Compose:
-  - api (Node 20), mysql, mongo (optional redis if using BullMQ)
+- Docker Compose configurations:
+  - `docker-compose.yml` - Development with volume mounting (default)
+  - `docker-compose.dev.yml` - Development with hot reloading
+  - `docker-compose.prod.yml` - Production with pre-built images
+  - `docker-compose.full-install.yml` - Build from source
+  - api (Node 18), mysql, mongo (optional redis if using BullMQ)
   - volumes for data persistence
   - healthchecks for api/mysql/mongo
+- Dockerfiles:
+  - `Dockerfile.dev` - Development image with volume mounting support
+  - `Dockerfile.prod` - Production image with source code built-in
 - Expose Swagger at `/docs`
 - Makefile or npm scripts:
   - build, start:dev, start:prod, test, test:e2e, lint, migration:run, seed:run, export:openapi, export:postman

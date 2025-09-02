@@ -14,7 +14,5 @@ RUN npm install --legacy-peer-deps
 # Expose port
 EXPOSE 3000
 
-# Start the application
-# In development, we'll use npm run start:dev for hot reloading
-# In production, we'll use npm run start:prod
+# Start the application in development mode with hot reloading
 CMD ["npm", "run", "start:dev"]

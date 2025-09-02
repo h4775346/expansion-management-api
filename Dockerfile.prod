@@ -8,13 +8,20 @@ COPY package*.json ./
 # Install dependencies - important to do this in the container to get correct architecture binaries
 RUN npm install --legacy-peer-deps
 
-# In development with volume mounting, we don't need to copy source files
-# They will be mounted from the host
+# Copy source code
+COPY . .
+
+# Remove any existing node_modules to ensure clean build
+RUN rm -rf node_modules
+
+# Reinstall dependencies in container
+RUN npm install --legacy-peer-deps
+
+# Build the application
+RUN npm run build
 
 # Expose port
 EXPOSE 3000
 
 # Start the application
-# In development, we'll use npm run start:dev for hot reloading
-# In production, we'll use npm run start:prod
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:prod"]

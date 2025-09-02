@@ -9,62 +9,52 @@ REPO_NAME="expansion-management-api"
 VERSION="v1.0.0"
 LATEST="latest"
 
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
-echo -e "${YELLOW}🚀 Starting Docker image build and push process...${NC}"
+echo "🚀 Starting Docker image build and push process..."
 
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
-    echo -e "${RED}❌ Docker is not running. Please start Docker and try again.${NC}"
+    echo "❌ Docker is not running. Please start Docker and try again."
     exit 1
 fi
 
 # Login to Docker Hub
-echo -e "${YELLOW}🔐 Logging in to Docker Hub...${NC}"
+echo "🔐 Logging in to Docker Hub..."
 docker login
-
 if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Docker login failed. Please check your credentials.${NC}"
+    echo "❌ Docker login failed. Please check your credentials."
     exit 1
 fi
 
-# Build the image
-echo -e "${YELLOW}🏗️ Building Docker image...${NC}"
-docker build -t $IMAGE_NAME .
-
+# Build the image using the production Dockerfile
+echo "🏗️ Building Docker image with production Dockerfile..."
+docker build -t $IMAGE_NAME -f Dockerfile.prod .
 if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Docker build failed.${NC}"
+    echo "❌ Docker build failed."
     exit 1
 fi
 
 # Tag the image
-echo -e "${YELLOW}🏷️ Tagging Docker image...${NC}"
+echo "🏷️ Tagging Docker image..."
 docker tag $IMAGE_NAME $DOCKER_HUB_USER/$REPO_NAME:$VERSION
 docker tag $IMAGE_NAME $DOCKER_HUB_USER/$REPO_NAME:$LATEST
 
 # Push version tag
-echo -e "${YELLOW}📤 Pushing version tag $VERSION...${NC}"
+echo "📤 Pushing version tag $VERSION..."
 docker push $DOCKER_HUB_USER/$REPO_NAME:$VERSION
-
 if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Failed to push version tag.${NC}"
+    echo "❌ Failed to push version tag."
     exit 1
 fi
 
 # Push latest tag
-echo -e "${YELLOW}📤 Pushing latest tag...${NC}"
+echo "📤 Pushing latest tag..."
 docker push $DOCKER_HUB_USER/$REPO_NAME:$LATEST
-
 if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Failed to push latest tag.${NC}"
+    echo "❌ Failed to push latest tag."
     exit 1
 fi
 
-echo -e "${GREEN}✅ Docker image successfully pushed to Docker Hub!${NC}"
-echo -e "${GREEN}Image URLs:${NC}"
-echo -e "${GREEN}  - https://hub.docker.com/r/$DOCKER_HUB_USER/$REPO_NAME/tags?page=1&name=$VERSION${NC}"
-echo -e "${GREEN}  - https://hub.docker.com/r/$DOCKER_HUB_USER/$REPO_NAME/tags?page=1&name=$LATEST${NC}"
+echo "✅ Docker image successfully pushed to Docker Hub!"
+echo "Image URLs:"
+echo "  - https://hub.docker.com/r/$DOCKER_HUB_USER/$REPO_NAME/tags?page=1&name=$VERSION"
+echo "  - https://hub.docker.com/r/$DOCKER_HUB_USER/$REPO_NAME/tags?page=1&name=$LATEST"

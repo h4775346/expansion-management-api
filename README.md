@@ -69,7 +69,8 @@ docker run -d --name api -p 3000:3000 --link mysql --link mongo \
   -e MYSQL_USER=root -e MYSQL_PASSWORD=password \
   -e MONGO_URI=mongodb://mongo:27017/expansion_management \
   -e JWT_SECRET=your_jwt_secret_key \
-  abanoubhany/expansion-management-api:latest
+  -v $(pwd):/app \
+  expansion-api:dev
 ```
 
 That's it! The system will automatically:
@@ -124,7 +125,7 @@ For Linux users who want to understand what happens under the hood:
 For Linux users who prefer manual control or troubleshooting, here's a step-by-step approach:
 
 1. **Prerequisites Check**:
-``bash
+```bash
 # Verify Docker is installed
 docker --version
 
@@ -523,12 +524,43 @@ npm run start:prod
 
 ### 🐳 Docker Deployment
 
+The system supports multiple Docker deployment approaches:
+
+#### Development Mode (with Volume Mounting)
+This approach mounts your local source code into the container, allowing for live code changes without rebuilding:
+
 ```bash
-# Build and start all services
+# Build and start all services with volume mounting for development
 docker-compose up -d
 
+# Changes to your source code will be reflected immediately
+```
+
+#### Production Mode (Pre-built Images)
+For production deployment, you can use pre-built images:
+
+```bash
+# Start all services using pre-built images
+docker-compose -f docker-compose.prod.yml up -d
+
 # Scale the API service (optional)
-docker-compose up -d --scale api=3
+docker-compose -f docker-compose.prod.yml up -d --scale api=3
+```
+
+#### Building from Source
+If you prefer to build the images from source:
+
+```bash
+# Build and start all services from source
+docker-compose -f docker-compose.full-install.yml up -d
+```
+
+#### Development with Hot Reloading
+For active development with hot reloading:
+
+```bash
+# Start in development mode with volume mounting
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
 ### 🩺 Health Checks
