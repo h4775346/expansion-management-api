@@ -22,11 +22,10 @@ echo Docker found.
 echo.
 
 echo Downloading necessary files...
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml' -OutFile 'docker-compose.full-install.yml'"
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod' -OutFile 'Dockerfile.prod'"
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml' -OutFile 'docker-compose.yml'"
 
 echo Starting system with Docker Compose...
-docker-compose -f docker-compose.full-install.yml up -d
+docker-compose up -d
 
 echo.
 echo System is starting up! This may take 2-3 minutes.
@@ -39,7 +38,7 @@ echo Login with:
 echo Email: englishh7366@gmail.com
 echo Password: password123
 echo.
-echo To stop the system later, run: docker-compose -f docker-compose.full-install.yml down
+echo To stop the system later, run: docker-compose down
 echo.
 
 pause

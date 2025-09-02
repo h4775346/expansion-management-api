@@ -43,39 +43,37 @@ A **production-ready backend system** for managing client projects, vendor match
 Get started in seconds with our one-command setup:
 
 ### 🪟 Windows
-``powershell
+```
 # Download and run the setup script
 curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.bat
 .\setup.bat
 ```
 
 ### 🐧 macOS/Linux (One-Command Universal Setup)
-```bash
+``bash
 # Single command that handles everything including Docker installation if needed
 curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 ```
 
 ### 🐳 Docker-Only Approach (Most Efficient)
 ```bash
-# For systems with Docker Compose
-curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
-curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-docker-compose -f docker-compose.full-install.yml up -d
+# For systems with Docker and Docker Compose
+curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+docker-compose up -d
 
 # For systems with only Docker (no Docker Compose)
-curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-docker build -t expansion-api -f Dockerfile.prod .
 docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=expansion_management -p 3307:3306 mysql:8.0
 docker run -d --name mongo -p 27017:27017 mongo:5.0
-docker run -d --name api --link mysql --link mongo -p 3000:3000 \
+docker run -d --name api -p 3000:3000 --link mysql --link mongo \
   -e MYSQL_HOST=mysql -e MYSQL_PORT=3306 -e MYSQL_DB=expansion_management \
   -e MYSQL_USER=root -e MYSQL_PASSWORD=password \
   -e MONGO_URI=mongodb://mongo:27017/expansion_management \
-  -e JWT_SECRET=your_jwt_secret_key expansion-api
+  -e JWT_SECRET=your_jwt_secret_key \
+  abanoubhany/expansion-management-api:latest
 ```
 
 That's it! The system will automatically:
-- 📦 Install Docker and Docker Compose if needed
+- 📦 Install Docker and Docker Compose if needed (Linux only)
 - 📥 Download all required files
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
@@ -126,7 +124,7 @@ For Linux users who want to understand what happens under the hood:
 For Linux users who prefer manual control or troubleshooting, here's a step-by-step approach:
 
 1. **Prerequisites Check**:
-```bash
+``bash
 # Verify Docker is installed
 docker --version
 
@@ -291,19 +289,14 @@ docker-compose -f docker-compose.full-install.yml build --no-cache
 ## ⚡ Quick Start
 
 ```bash
-# Clone the repository
+# Option 1: Use pre-built Docker images (recommended for quick start)
+curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+docker-compose up -d
+
+# Option 2: Clone the repository and build from source
 git clone https://github.com/h4775346/expansion-management-api.git
 cd expansion-management-api
-
-# Install dependencies (using --legacy-peer-deps to resolve conflicts)
-npm install --legacy-peer-deps
-
-# Copy environment file and configure
-cp .env.example .env
-# Edit .env with your configuration
-
-# Start with Docker
-docker-compose up -d
+docker-compose -f docker-compose.full-install.yml up -d
 
 # The API will be available at http://localhost:3000
 ```
@@ -350,10 +343,23 @@ For a complete list of environment variables, see [.env.example](.env.example).
 
 ## 🚀 Running the Application
 
-### 🐳 With Docker
+### 🐳 With Docker (Pre-built Images - Recommended)
 
 ```bash
-# Start all services
+# Start all services using pre-built images
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+### 🐳 With Docker (Build from Source)
+
+```bash
+# Start all services and build from source
 docker-compose -f docker-compose.full-install.yml up -d
 
 # View logs
@@ -559,26 +565,26 @@ The CI/CD pipeline is defined in [.github/workflows/ci.yml](.github/workflows/ci
 
 The project includes a Makefile with common commands:
 
-```bash
-# Build the application
+``bash
+# Build the application (requires source code)
 make build
 
-# Start all services
+# Start all services (using pre-built images)
 make start
 
-# Start in development mode
+# Start in development mode (requires source code)
 make start-dev
 
-# Run unit tests
+# Run unit tests (requires source code)
 make test
 
-# Run e2e tests
+# Run e2e tests (requires source code)
 make test-e2e
 
-# Generate documentation
+# Generate documentation (requires source code)
 make docs
 
-# Seed the database
+# Seed the database (requires source code)
 make seed
 ```
 

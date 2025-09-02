@@ -8,16 +8,15 @@ else
 endif
 
 # Variables
-DOCKER_COMPOSE_FILE = -f docker-compose.full-install.yml
+DOCKER_COMPOSE_FILE = docker-compose.yml
 NPM = npm
 
 # Default target
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  build            - Build the application"
-	@echo "  start            - Start all services"
-	@echo "  start-dev        - Start in development mode"
+	@echo "  start            - Start all services (pre-built images)"
+	@echo "  start-dev        - Start in development mode (requires source code)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
 	@echo "  test-e2e         - Run e2e tests"
@@ -29,7 +28,7 @@ help:
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
-	@echo "  download         - Download the necessary files"
+	@echo "  download         - Download the necessary files for simple setup"
 	@echo "  status           - Show status of services"
 	@echo "  logs             - Show logs of services"
 	@echo "  setup-linux      - Run universal Linux setup (installs Docker if needed)"
@@ -37,24 +36,23 @@ help:
 # Docker targets
 .PHONY: start
 start:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up -d
+	$(DOCKER_COMPOSE) up -d
 
 .PHONY: stop
 stop:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) down
+	$(DOCKER_COMPOSE) down
 
 .PHONY: status
 status:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) ps
+	$(DOCKER_COMPOSE) ps
 
 .PHONY: logs
 logs:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) logs -f
+	$(DOCKER_COMPOSE) logs -f
 
 .PHONY: download
 download:
-	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
-	curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
 
 .PHONY: setup-linux
 setup-linux:

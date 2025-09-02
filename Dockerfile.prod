@@ -20,8 +20,20 @@ RUN npm install --legacy-peer-deps
 # Build the application
 RUN npm run build
 
+# Create a startup script that runs migrations and then starts the app
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "📦 Installing dependencies..."' >> /app/start.sh && \
+    echo 'npm install --legacy-peer-deps' >> /app/start.sh && \
+    echo 'echo "🔄 Running database migrations..."' >> /app/start.sh && \
+    echo 'npm run migration:run' >> /app/start.sh && \
+    echo 'echo "🌱 Seeding database with test data..."' >> /app/start.sh && \
+    echo 'npm run seed:run' >> /app/start.sh && \
+    echo 'echo "🚀 Starting application..."' >> /app/start.sh && \
+    echo 'npm run start:prod' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
 # Expose port
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start:prod"]
+CMD ["/app/start.sh"]

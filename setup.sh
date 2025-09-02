@@ -155,27 +155,24 @@ main() {
             echo "✅ Docker Compose V2 available"
             DOCKER_COMPOSE_CMD="docker compose"
         else
-            echo "❌ Failed to install Docker Compose. Using manual Docker approach."
-            use_manual_docker_approach
-            return 0
+            echo "❌ Failed to install Docker Compose. Please install Docker Compose manually."
+            exit 1
         fi
     fi
     
-    # Download necessary files
-    echo "📥 Downloading necessary files..."
-    curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
-    curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+    # Download the simple docker-compose file
+    echo "📥 Downloading docker-compose.yml..."
+    curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
     
     # Start with Docker Compose
     echo "サービ Starting all services with Docker Compose..."
-    $DOCKER_COMPOSE_CMD -f docker-compose.full-install.yml up -d
+    $DOCKER_COMPOSE_CMD up -d
     
     echo
     echo "🎉 Setup completed successfully!"
     echo
-    echo "⏳ This may take 3-5 minutes for the first time as Docker:"
+    echo "⏳ This may take 2-3 minutes for the first time as Docker:"
     echo "   - Pulls required images"
-    echo "   - Builds the application"
     echo "   - Sets up databases"
     echo "   - Runs migrations and seeding"
     echo
@@ -187,65 +184,9 @@ main() {
     echo "   👨‍💼 Admin: admin@expansion.com / admin123"
     echo "   👥 Client: englishh7366@gmail.com / password123"
     echo
-    echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD -f docker-compose.full-install.yml down"
+    echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD down"
     echo
     echo "💡 For more details, check the README.md file"
-    echo
-}
-
-# Function for manual Docker approach (when Compose is not available)
-use_manual_docker_approach() {
-    echo "🔄 Using manual Docker approach (no Compose required)..."
-    
-    # Download the Dockerfile
-    echo "📥 Downloading Dockerfile.prod..."
-    curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-    
-    echo "🏗️ Building API image..."
-    docker build -t expansion-api -f Dockerfile.prod .
-    
-    echo "🗄️ Starting databases..."
-    docker run -d --name mysql-db \
-      -e MYSQL_ROOT_PASSWORD=password \
-      -e MYSQL_DATABASE=expansion_management \
-      -p 3307:3306 \
-      mysql:8.0
-    
-    docker run -d --name mongo-db \
-      -p 27017:27017 \
-      mongo:5.0
-    
-    echo "⏳ Waiting for databases to start (30 seconds)..."
-    sleep 30
-    
-    echo "🚀 Starting API service..."
-    docker run -d --name expansion-api \
-      --link mysql-db:mysql \
-      --link mongo-db:mongo \
-      -p 3000:3000 \
-      -e MYSQL_HOST=mysql \
-      -e MYSQL_PORT=3306 \
-      -e MYSQL_DB=expansion_management \
-      -e MYSQL_USER=root \
-      -e MYSQL_PASSWORD=password \
-      -e MONGO_URI=mongodb://mongo:27017/expansion_management \
-      -e JWT_SECRET=your_jwt_secret_key \
-      expansion-api
-    
-    echo
-    echo "🎉 Setup completed using manual Docker commands!"
-    echo
-    echo "📋 Access your application at:"
-    echo "   🔗 API: http://localhost:3000"
-    echo "   📚 Docs: http://localhost:3000/docs"
-    echo
-    echo "👤 Test Accounts:"
-    echo "   👨‍💼 Admin: admin@expansion.com / admin123"
-    echo "   👥 Client: englishh7366@gmail.com / password123"
-    echo
-    echo "🛑 To stop the services later:"
-    echo "   docker stop expansion-api mysql-db mongo-db"
-    echo "   docker rm expansion-api mysql-db mongo-db"
     echo
 }
 

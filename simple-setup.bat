@@ -15,18 +15,17 @@ if %errorlevel% neq 0 (
 echo Docker found. Starting system...
 
 REM Download necessary files
-echo Downloading docker-compose.full-install.yml and Dockerfile.prod...
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml' -OutFile 'docker-compose.full-install.yml'"
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod' -OutFile 'Dockerfile.prod'"
+echo Downloading docker-compose.yml...
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml' -OutFile 'docker-compose.yml'"
 
 REM Start everything
 echo Starting all services...
-docker-compose -f docker-compose.full-install.yml up -d
+docker-compose up -d
 
 echo.
 echo System starting... Access at: http://localhost:3000
 echo Login: englishh7366@gmail.com / password123
-echo To stop: docker-compose -f docker-compose.full-install.yml down
+echo To stop: docker-compose down
 echo.
 
 pause
