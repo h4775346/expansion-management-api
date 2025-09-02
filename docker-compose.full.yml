@@ -47,7 +47,7 @@ services:
     command: >
       sh -c "
       echo '📦 Installing dependencies...' &&
-      npm install &&
+      npm install --legacy-peer-deps&&
       echo '🔄 Running database migrations...' &&
       npm run migration:run &&
       echo '🌱 Seeding database with test data...' &&
