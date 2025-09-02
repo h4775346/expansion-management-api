@@ -1,0 +1,49 @@
+# Stage 1: Clone and build
+FROM node:18-alpine as builder
+
+# Install git
+RUN apk add --no-cache git
+
+# Set working directory
+WORKDIR /app
+
+# Clone the repository
+ARG REPO_URL=https://github.com/h4775346/expansion-management-api.git
+ARG BRANCH=main
+RUN git clone -b $BRANCH $REPO_URL .
+
+# Install dependencies
+RUN npm install --legacy-peer-deps
+
+# Build the application
+RUN npm run build
+
+# Stage 2: Runtime
+FROM node:18-alpine
+
+# Install git for runtime updates
+RUN apk add --no-cache git
+
+# Set working directory
+WORKDIR /app
+
+# Copy built files from builder stage
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.env.example ./
+
+# Install production dependencies only
+RUN npm install --production --legacy-peer-deps
+
+# Create a startup script that pulls latest code and starts app
+RUN echo '#!/bin/sh\n\
+echo "Pulling latest code..."\n\
+git pull origin main\n\
+echo "Starting application..."\n\
+node dist/main.js' > /app/start.sh && chmod +x /app/start.sh
+
+# Expose port
+EXPOSE 3000
+
+# Start the application
+CMD ["/app/start.sh"]
