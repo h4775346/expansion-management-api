@@ -1,7 +1,14 @@
 # Makefile for Expansion Management System
 
+# Detect Docker Compose version
+ifeq ($(shell command -v docker-compose 2> /dev/null),)
+    DOCKER_COMPOSE = docker compose
+else
+    DOCKER_COMPOSE = docker-compose
+endif
+
 # Variables
-DOCKER_COMPOSE = docker-compose -f docker-compose.full-install.yml
+DOCKER_COMPOSE_FILE = -f docker-compose.full-install.yml
 NPM = npm
 
 # Default target
@@ -29,19 +36,19 @@ help:
 # Docker targets
 .PHONY: start
 start:
-	$(DOCKER_COMPOSE) up -d
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up -d
 
 .PHONY: stop
 stop:
-	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) down
 
 .PHONY: status
 status:
-	$(DOCKER_COMPOSE) ps
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) ps
 
 .PHONY: logs
 logs:
-	$(DOCKER_COMPOSE) logs -f
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) logs -f
 
 .PHONY: download
 download:

@@ -59,12 +59,21 @@ chmod +x setup.sh
 
 ### 🐳 Docker-Only Approach (Most Efficient)
 ```bash
-# Download the docker-compose file and Dockerfile
+# For systems with Docker Compose
 curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
 curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-
-# Start with Docker
 docker-compose -f docker-compose.full-install.yml up -d
+
+# For systems with only Docker (no Docker Compose)
+curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+docker build -t expansion-api -f Dockerfile.prod .
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=expansion_management -p 3307:3306 mysql:8.0
+docker run -d --name mongo -p 27017:27017 mongo:5.0
+docker run -d --name api --link mysql --link mongo -p 3000:3000 \
+  -e MYSQL_HOST=mysql -e MYSQL_PORT=3306 -e MYSQL_DB=expansion_management \
+  -e MYSQL_USER=root -e MYSQL_PASSWORD=password \
+  -e MONGO_URI=mongodb://mongo:27017/expansion_management \
+  -e JWT_SECRET=your_jwt_secret_key expansion-api
 ```
 
 That's it! The system will automatically:
@@ -82,20 +91,26 @@ For Linux users who prefer manual control or troubleshooting, here's a step-by-s
 
 1. **Prerequisites Check**:
 ```bash
-# Verify Docker and Docker Compose are installed
+# Verify Docker is installed
 docker --version
-docker-compose --version
 
-# If not installed, install Docker:
+# Check if Docker Compose is installed
+if command -v docker-compose &> /dev/null; then
+    echo "Docker Compose found: $(docker-compose --version)"
+else
+    echo "Docker Compose not found - we'll install it or use alternative methods"
+fi
+
+# If Docker is not installed, install it:
 # Ubuntu/Debian:
 sudo apt update
-sudo apt install docker.io docker-compose
+sudo apt install docker.io
 
 # CentOS/RHEL:
-# sudo yum install docker docker-compose
+# sudo yum install docker
 
 # Fedora:
-# sudo dnf install docker docker-compose
+# sudo dnf install docker
 
 # Start and enable Docker service
 sudo systemctl start docker
@@ -103,30 +118,71 @@ sudo systemctl enable docker
 sudo usermod -aG docker $USER  # Add current user to docker group
 ```
 
-2. **Download Required Files**:
+2. **Option 1: Install Docker Compose (Recommended)**:
 ```bash
-# Create a project directory
-mkdir expansion-management
-cd expansion-management
+# Install Docker Compose
+# Method 1: Using pip (if python3 and pip are available)
+sudo apt install python3-pip  # Ubuntu/Debian
+pip3 install docker-compose
 
-# Download the necessary files
+# Method 2: Direct download
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify installation
+docker-compose --version
+```
+
+3. **Option 2: Use Docker Compose V2 (Built into Docker)**:
+```bash
+# Many modern Docker installations include Compose V2
+docker compose version
+
+# If available, use docker compose instead of docker-compose
 curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
-curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+docker compose -f docker-compose.full-install.yml up -d
 ```
 
-3. **Start the System**:
+4. **Option 3: Manual Docker Commands (No Compose Required)**:
 ```bash
-# Start all services in detached mode
-docker-compose -f docker-compose.full-install.yml up -d
+# Download the Dockerfile
+curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
 
-# Check the status of services
-docker-compose -f docker-compose.full-install.yml ps
+# Build the API image
+docker build -t expansion-api -f Dockerfile.prod .
 
-# View logs (optional)
-docker-compose -f docker-compose.full-install.yml logs -f
+# Run the databases
+docker run -d --name mysql-db \
+  -e MYSQL_ROOT_PASSWORD=password \
+  -e MYSQL_DATABASE=expansion_management \
+  -p 3307:3306 \
+  mysql:8.0
+
+docker run -d --name mongo-db \
+  -p 27017:27017 \
+  mongo:5.0
+
+# Wait for databases to be ready
+echo "Waiting for databases to start..."
+sleep 30
+
+# Run the API (it will automatically run migrations and seeding)
+docker run -d --name expansion-api \
+  --link mysql-db:mysql \
+  --link mongo-db:mongo \
+  -p 3000:3000 \
+  -e MYSQL_HOST=mysql \
+  -e MYSQL_PORT=3306 \
+  -e MYSQL_DB=expansion_management \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=password \
+  -e MONGO_URI=mongodb://mongo:27017/expansion_management \
+  -e JWT_SECRET=your_jwt_secret_key \
+  expansion-api
 ```
 
-4. **Verify Installation**:
+5. **Verify Installation**:
 ```bash
 # Wait 2-3 minutes for the first-time setup to complete
 # Then check if the API is running
@@ -138,7 +194,7 @@ xdg-open http://localhost:3000/docs  # On Ubuntu/Debian
 open http://localhost:3000/docs      # On macOS
 ```
 
-5. **Stop the System**:
+6. **Stop the System**:
 ```bash
 # Stop all services
 docker-compose -f docker-compose.full-install.yml down
@@ -393,7 +449,7 @@ Role: admin
 
 ## 🧪 Testing
 
-```bash
+```
 # Run unit tests
 npm run test
 
