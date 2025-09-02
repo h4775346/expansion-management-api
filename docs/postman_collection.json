@@ -1,0 +1,4939 @@
+{
+  "item": [
+    {
+      "id": "269611cf-45d7-4c2a-b535-b05223397daf",
+      "name": "Get API welcome message",
+      "request": {
+        "name": "Get API welcome message",
+        "description": {},
+        "url": {
+          "path": [
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "28efe6ca-f0dc-4fc0-bf48-3f71fa0c8b68",
+          "name": "Welcome message retrieved successfully.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "49757b0d-9689-4b13-9d0c-aed5947d624c",
+      "name": "Check API health status",
+      "request": {
+        "name": "Check API health status",
+        "description": {},
+        "url": {
+          "path": [
+            "health"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d5a2aaeb-2f1f-4e1f-8bd1-bb9b590df78a",
+          "name": "Health status retrieved successfully.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b7f3ea99-02b1-458b-827b-6d1b7187ad82",
+      "name": "auth",
+      "item": [
+        {
+          "id": "361ae60f-1455-4ac6-a9a8-67376b6a985d",
+          "name": "Register a new client",
+          "request": {
+            "name": "Register a new client",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df4a5e24-889f-469d-adec-634dab994fad",
+              "name": "Client successfully registered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d471e21f-a47c-4984-8f1a-434b6e8c80fc",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecd25178-f9ba-47fa-beb8-e7e877072782",
+          "name": "Login a client",
+          "request": {
+            "name": "Login a client",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48eac54a-7ad5-4b9a-95e6-168e89bfa28e",
+              "name": "Client successfully logged in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55b51188-7a6c-4c59-98e6-e87696a6d387",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1513d27-96be-40bd-b26e-3c32f46ccc11",
+          "name": "Get current client profile",
+          "request": {
+            "name": "Get current client profile",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7905bf4a-f25b-45e7-b1aa-8e8503100473",
+              "name": "Client profile retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d470ff44-4dac-4a62-98a7-c18e0e27da9c",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "26c72ea4-815f-4438-8df4-b4f1d6b56dbb",
+      "name": "clients",
+      "item": [
+        {
+          "id": "991d173f-33e5-4478-8a95-28d54ed105bc",
+          "name": "Create a new client (admin only)",
+          "request": {
+            "name": "Create a new client (admin only)",
+            "description": {},
+            "url": {
+              "path": [
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd8072e5-98a2-4378-a739-88eefb769263",
+              "name": "Client successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afbe6230-46b3-4601-a7dc-aebccd52a43b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ea9f7ae-83eb-4f41-84b5-7e843fc72710",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1e8a661-1d62-4d9c-a2d8-d6e899bb9573",
+          "name": "Get all clients (admin only)",
+          "request": {
+            "name": "Get all clients (admin only)",
+            "description": {},
+            "url": {
+              "path": [
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3fcd6dd-be55-4694-90ef-9d259de24b28",
+              "name": "Clients retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c348f8c3-aa68-4b98-9df2-fc66a5b1210b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77fc166e-da2b-45f7-b2d6-9b4b0f8789b2",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7ba43ef-fcc2-48d0-8b49-611604e83c28",
+          "name": "Get current client profile",
+          "request": {
+            "name": "Get current client profile",
+            "description": {},
+            "url": {
+              "path": [
+                "clients",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b48741ec-329f-48ad-b869-e242064a2a73",
+              "name": "Client profile retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9d2f6d0-70d0-4b05-b0fa-4483ada4a6c3",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e435a6d5-bfaa-4e29-8559-e9a230bad581",
+          "name": "{id}",
+          "item": [
+            {
+              "id": "efb532f4-33c5-4bb9-b851-341dea842f43",
+              "name": "Get a client by ID (admin can see any, clients can see their own)",
+              "request": {
+                "name": "Get a client by ID (admin can see any, clients can see their own)",
+                "description": {},
+                "url": {
+                  "path": [
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "aee0b690-e0d7-4fdb-add2-91c85d60e20b",
+                  "name": "Client retrieved successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "fb93a8e6-7c54-4796-aa57-fcd24ae08b75",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "6770689d-7394-48b7-9890-47b6591c832b",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "ec049fa0-b69c-4a4e-a912-713746271e94",
+                  "name": "Client not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "0068297e-affe-4b26-889e-5dffdc562936",
+              "name": "Update a client by ID (admin can update any, clients can update their own)",
+              "request": {
+                "name": "Update a client by ID (admin can update any, clients can update their own)",
+                "description": {},
+                "url": {
+                  "path": [
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [
+                {
+                  "id": "60e9dd8a-ac4f-476a-a29a-cb9e94c2069c",
+                  "name": "Client updated successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "0de13dc0-8792-4dd5-ace5-00bce1a0e214",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "b6009cd8-7ae1-4815-b9f2-4eac3b8ad1d9",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "46978ab7-333a-44b0-bcf1-d6e02a5e8f46",
+                  "name": "Client not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "8c0764dd-c72f-4d7f-b3ac-6e467715764c",
+              "name": "Delete a client by ID (admin only)",
+              "request": {
+                "name": "Delete a client by ID (admin only)",
+                "description": {},
+                "url": {
+                  "path": [
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c6049c24-9cba-4484-a1a9-be380133ba14",
+                  "name": "Client deleted successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "1e2d3d9c-02c8-4e80-9457-661061e5272b",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "04f04a83-bc1e-4047-8816-2a70574d60bd",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "a75c0c5a-db31-48fc-b6ea-1f5661342729",
+                  "name": "Client not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "clients",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "725cfb1e-3c46-4031-b367-f9fd2cdc4762",
+      "name": "projects",
+      "item": [
+        {
+          "id": "fb775198-0ea3-4470-8fe1-2028b1030f42",
+          "name": "Create a new project",
+          "request": {
+            "name": "Create a new project",
+            "description": {},
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "862070ac-336f-4436-a8e2-db5e78fcf37a",
+              "name": "Project successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fcbbcc8-48cf-4c14-aefa-7a41269aea8e",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a368213-d4ca-4929-b87d-fa308ec23508",
+          "name": "Get all projects (admin) or client's projects",
+          "request": {
+            "name": "Get all projects (admin) or client's projects",
+            "description": {},
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6cdd05ef-81e2-43fd-99e8-55360fdaa519",
+              "name": "Projects retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bac3ecc0-5d53-4fde-a461-84a6d6e8be53",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e65f1cb-baea-4411-9ac8-bed79d884d36",
+          "name": "{id}",
+          "item": [
+            {
+              "id": "f3c064c7-a8a5-4a9a-a177-34e956435ee9",
+              "name": "Get a project by ID",
+              "request": {
+                "name": "Get a project by ID",
+                "description": {},
+                "url": {
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ad54b9e8-fa2b-4e6f-9616-694d139a5910",
+                  "name": "Project retrieved successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "b305f256-dde9-4c69-ad80-9b7d19c6cad7",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "f1ebd31c-5556-4d19-8a4a-c788998ff39e",
+                  "name": "Project not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "04bf6afb-6159-4283-b05d-f7202fdd3acf",
+              "name": "Update a project",
+              "request": {
+                "name": "Update a project",
+                "description": {},
+                "url": {
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [
+                {
+                  "id": "043b097b-d1aa-490d-82d1-27cc1e3f7c20",
+                  "name": "Project updated successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "c6df5316-af74-4ccd-ad37-880e7c99c0bf",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "b3a29340-909b-4307-8a2d-de3785757368",
+                  "name": "Project not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "9ac7d3da-f428-4af2-9812-e794be51c50b",
+              "name": "Delete a project",
+              "request": {
+                "name": "Delete a project",
+                "description": {},
+                "url": {
+                  "path": [
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ab31553c-df18-4f4a-a962-cb678930da74",
+                  "name": "Project deleted successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "9e2592f0-36f8-4020-8187-19a33cf309c0",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "5396621b-34ba-4778-b5c3-c7bdf2ab2957",
+                  "name": "Project not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "8c258fe6-9398-4bca-925b-13a746e5cd12",
+              "name": "Rebuild matches for a project",
+              "request": {
+                "name": "Rebuild matches for a project",
+                "description": {},
+                "url": {
+                  "path": [
+                    "projects",
+                    ":id",
+                    "matches",
+                    "rebuild"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5a96e24a-63dc-42ec-bdf6-1d57b995eb3a",
+                  "name": "Matches rebuilt successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id",
+                        "matches",
+                        "rebuild"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "953708da-d0ac-4bb8-bdca-05de5588ca90",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id",
+                        "matches",
+                        "rebuild"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "7287c497-3540-4640-b915-f6ced34aec80",
+                  "name": "Project not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "projects",
+                        ":id",
+                        "matches",
+                        "rebuild"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<number>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "POST",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fb52852b-d811-45e1-b387-cd9e74da4964",
+      "name": "vendors",
+      "item": [
+        {
+          "id": "b8247cfd-00e8-421e-bcea-c800ccbe0935",
+          "name": "Create a new vendor (admin only)",
+          "request": {
+            "name": "Create a new vendor (admin only)",
+            "description": {},
+            "url": {
+              "path": [
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5ebf362-de49-48c8-9a5b-9cec3cd9df6d",
+              "name": "Vendor successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7b7a031-42e0-492b-af26-c70210bfba0e",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89f51113-9fdc-421f-be77-054452366a60",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e28751e0-1efe-4bb0-8941-a6ee27772326",
+          "name": "Get all vendors with optional filtering",
+          "request": {
+            "name": "Get all vendors with optional filtering",
+            "description": {},
+            "url": {
+              "path": [
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e97fb03d-d816-4a73-a2f3-8a589ee5df47",
+              "name": "Vendors retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d7a7a49-82d7-4ead-84dd-d3fa2b86077f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed71ef9f-2bea-4ac0-a867-b99599e3d009",
+          "name": "{id}",
+          "item": [
+            {
+              "id": "642d4683-66af-4d67-993d-caea0e5438a9",
+              "name": "Get a vendor by ID",
+              "request": {
+                "name": "Get a vendor by ID",
+                "description": {},
+                "url": {
+                  "path": [
+                    "vendors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "654ecca3-1c22-423f-91dc-603a7e9d5793",
+                  "name": "Vendor retrieved successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "45dac5b7-62ed-4787-97e5-6903d858452a",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "2fc5973f-25e8-4bd3-a5b7-8053e408ad51",
+                  "name": "Vendor not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "4e585f1f-fe78-4a83-a371-ffd1eb9dded3",
+              "name": "Update a vendor by ID (admin only)",
+              "request": {
+                "name": "Update a vendor by ID (admin only)",
+                "description": {},
+                "url": {
+                  "path": [
+                    "vendors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [
+                {
+                  "id": "941faecf-b949-4a8e-9672-f6e9c5f0052c",
+                  "name": "Vendor updated successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "5fbe3ddd-963d-4f52-a6ec-8e658032877f",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "e6b03a89-a77b-48bd-90c2-cd35d7f48f91",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "35f016c3-b611-46ec-8ff3-9fe9fbba4e22",
+                  "name": "Vendor not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "0d24d302-901e-4660-93b0-34360a4d2f76",
+              "name": "Delete a vendor by ID (admin only)",
+              "request": {
+                "name": "Delete a vendor by ID (admin only)",
+                "description": {},
+                "url": {
+                  "path": [
+                    "vendors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8c2daa89-26aa-4da7-9860-c701b2a0741b",
+                  "name": "Vendor deleted successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "5363b15e-48ed-458f-b5a4-188230b9b04c",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "4b703294-7b1b-4d79-a5f3-acf274e4cd1a",
+                  "name": "Forbidden.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "11c499a5-22cb-438b-b971-8f769cff73e1",
+                  "name": "Vendor not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "vendors",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e445208a-2fb1-4e34-9c49-3c27ca30f0b0",
+      "name": "research",
+      "item": [
+        {
+          "id": "6503b518-7b5c-4a38-9e6f-37cbbe5b512c",
+          "name": "Create a research document",
+          "request": {
+            "name": "Create a research document",
+            "description": {},
+            "url": {
+              "path": [
+                "research"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52e57839-02ee-46b5-8654-168786965a10",
+              "name": "Research document successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a7f7a778-320c-4fd0-b755-d262d4a37bf4",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba359dfa-276f-4ee2-8639-a02e8c13f28a",
+          "name": "Get all research documents",
+          "request": {
+            "name": "Get all research documents",
+            "description": {},
+            "url": {
+              "path": [
+                "research"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e150b469-4c08-40f7-bbfb-c2c4da87fc95",
+              "name": "Research documents retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89958fc4-1267-4054-917c-c53b7214d998",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b5a038b-9eb2-4a44-85ca-dc59d50547f2",
+          "name": "Search research documents",
+          "request": {
+            "name": "Search research documents",
+            "description": {},
+            "url": {
+              "path": [
+                "research",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0532be2-0bec-4614-92d1-c67b949bc120",
+              "name": "Research documents retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "711c3479-bc21-4d94-a385-10608fcbb4b7",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "research",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d139d463-af6b-4ea4-a1c4-dcdb90029d07",
+          "name": "{id}",
+          "item": [
+            {
+              "id": "679849ab-43ab-46cb-9576-0a7f9101b11e",
+              "name": "Get a research document by ID",
+              "request": {
+                "name": "Get a research document by ID",
+                "description": {},
+                "url": {
+                  "path": [
+                    "research",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b65eb84f-268c-46c7-8a3c-476daeba514b",
+                  "name": "Research document retrieved successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "a13b1313-2f48-4b8c-8608-cbc41b0b9c67",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "82671977-29ea-45f8-820f-27d81eb67162",
+                  "name": "Research document not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "37345816-ff25-4c69-8062-47dfff671e8b",
+              "name": "Update a research document",
+              "request": {
+                "name": "Update a research document",
+                "description": {},
+                "url": {
+                  "path": [
+                    "research",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [
+                {
+                  "id": "7bc1ded9-ece2-4c02-95b3-6b7417197179",
+                  "name": "Research document updated successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "a93519bd-170e-48c8-99c3-2965d0d57961",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "aa87b66b-6d25-43d3-88ed-fc7d1201390a",
+                  "name": "Research document not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PATCH",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "id": "3ad60d6b-02e8-464d-a48e-6f87daa5d89e",
+              "name": "Delete a research document",
+              "request": {
+                "name": "Delete a research document",
+                "description": {},
+                "url": {
+                  "path": [
+                    "research",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a1a86a88-5d2e-47dc-96cd-7015b020f0c0",
+                  "name": "Research document deleted successfully.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "a10e1166-0faf-42e3-9ec6-b472720cfc1a",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                },
+                {
+                  "id": "1646fccc-c44d-45d9-88f2-3191ac61c8a2",
+                  "name": "Research document not found.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "research",
+                        ":id"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": [
+                        {
+                          "disabled": false,
+                          "type": "any",
+                          "value": "<string>",
+                          "key": "id",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "header": [
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "DELETE",
+                    "body": {}
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "body": "",
+                  "cookie": [],
+                  "_postman_previewlanguage": "text"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ],
+          "event": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d43f7a42-73cb-4b9a-9aee-bd87ce584468",
+      "name": "Get top vendors by country",
+      "request": {
+        "name": "Get top vendors by country",
+        "description": {},
+        "url": {
+          "path": [
+            "analytics",
+            "top-vendors"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{bearerToken}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "e2481826-279b-40e7-b51c-2b4d5dc54b7e",
+          "name": "Top vendors retrieved successfully.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "analytics",
+                "top-vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b6efac8e-c4f5-4312-a802-5be13c1a2aa7",
+          "name": "Unauthorized.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "analytics",
+                "top-vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b26f8c07-a84d-44f3-ab3c-606d7a57a686",
+    "name": "Expansion Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing client projects, vendor matching, and analytics",
+      "type": "text/plain"
+    }
+  }
+}

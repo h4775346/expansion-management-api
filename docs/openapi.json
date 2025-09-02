@@ -1,0 +1,1201 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "summary": "Get API welcome message",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Welcome message retrieved successfully."
+          }
+        },
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "AppController_getHealth",
+        "summary": "Check API health status",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Health status retrieved successfully."
+          }
+        },
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "AuthController_register",
+        "summary": "Register a new client",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Client successfully registered."
+          },
+          "400": {
+            "description": "Bad request."
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "summary": "Login a client",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Client successfully logged in."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "operationId": "AuthController_getProfile",
+        "summary": "Get current client profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Client profile retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/clients": {
+      "post": {
+        "operationId": "ClientsController_create",
+        "summary": "Create a new client (admin only)",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Client successfully created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ClientsController_findAll",
+        "summary": "Get all clients (admin only)",
+        "parameters": [
+          {
+            "name": "select",
+            "required": false,
+            "in": "query",
+            "description": "Columns to select (comma-separated)",
+            "schema": {
+              "example": "id,name,email"
+            }
+          },
+          {
+            "name": "searchBy",
+            "required": false,
+            "in": "query",
+            "description": "Columns to search in (comma-separated)",
+            "schema": {
+              "example": "name,email"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search term",
+            "schema": {
+              "example": "john"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Sort by column and direction (e.g., name:ASC)",
+            "schema": {
+              "example": "id:ASC"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Clients retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/clients/me": {
+      "get": {
+        "operationId": "ClientsController_getProfile",
+        "summary": "Get current client profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Client profile retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/clients/{id}": {
+      "get": {
+        "operationId": "ClientsController_findOne",
+        "summary": "Get a client by ID (admin can see any, clients can see their own)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Client not found."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ClientsController_update",
+        "summary": "Update a client by ID (admin can update any, clients can update their own)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Client updated successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Client not found."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ClientsController_remove",
+        "summary": "Delete a client by ID (admin only)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Client not found."
+          }
+        },
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/projects": {
+      "post": {
+        "operationId": "ProjectsController_create",
+        "summary": "Create a new project",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Project successfully created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ProjectsController_findAll",
+        "summary": "Get all projects (admin) or client's projects",
+        "parameters": [
+          {
+            "name": "select",
+            "required": false,
+            "in": "query",
+            "description": "Columns to select (comma-separated)",
+            "schema": {
+              "example": "id,name,description"
+            }
+          },
+          {
+            "name": "searchBy",
+            "required": false,
+            "in": "query",
+            "description": "Columns to search in (comma-separated)",
+            "schema": {
+              "example": "name,description"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search term",
+            "schema": {
+              "example": "project"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Sort by column and direction (e.g., name:ASC)",
+            "schema": {
+              "example": "id:ASC"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "example": 1
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projects retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "operationId": "ProjectsController_findOne",
+        "summary": "Get a project by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        },
+        "tags": [
+          "projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ProjectsController_update",
+        "summary": "Update a project",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project updated successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        },
+        "tags": [
+          "projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ProjectsController_remove",
+        "summary": "Delete a project",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        },
+        "tags": [
+          "projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/vendors": {
+      "post": {
+        "operationId": "VendorsController_create",
+        "summary": "Create a new vendor (admin only)",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vendor successfully created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          }
+        },
+        "tags": [
+          "vendors"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "VendorsController_findAll",
+        "summary": "Get all vendors with optional filtering",
+        "parameters": [
+          {
+            "name": "country",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "select",
+            "required": false,
+            "in": "query",
+            "description": "Columns to select (comma-separated)",
+            "schema": {
+              "example": "id,name,country"
+            }
+          },
+          {
+            "name": "searchBy",
+            "required": false,
+            "in": "query",
+            "description": "Columns to search in (comma-separated)",
+            "schema": {
+              "example": "name,country"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search term",
+            "schema": {
+              "example": "vendor"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Sort by column and direction (e.g., name:ASC)",
+            "schema": {
+              "example": "id:ASC"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendors retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "vendors"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/vendors/{id}": {
+      "get": {
+        "operationId": "VendorsController_findOne",
+        "summary": "Get a vendor by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Vendor not found."
+          }
+        },
+        "tags": [
+          "vendors"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "VendorsController_update",
+        "summary": "Update a vendor by ID (admin only)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vendor updated successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Vendor not found."
+          }
+        },
+        "tags": [
+          "vendors"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "VendorsController_remove",
+        "summary": "Delete a vendor by ID (admin only)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "404": {
+            "description": "Vendor not found."
+          }
+        },
+        "tags": [
+          "vendors"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/projects/{id}/matches/rebuild": {
+      "post": {
+        "operationId": "MatchingController_rebuildMatches",
+        "summary": "Rebuild matches for a project",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matches rebuilt successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Project not found."
+          }
+        },
+        "tags": [
+          "matching"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/research": {
+      "post": {
+        "operationId": "ResearchController_create",
+        "summary": "Create a research document",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResearchDocDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Research document successfully created."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ResearchController_findAll",
+        "summary": "Get all research documents",
+        "parameters": [
+          {
+            "name": "select",
+            "required": false,
+            "in": "query",
+            "description": "Columns to select (comma-separated)",
+            "schema": {
+              "example": "title,content,createdAt"
+            }
+          },
+          {
+            "name": "searchBy",
+            "required": false,
+            "in": "query",
+            "description": "Columns to search in (comma-separated)",
+            "schema": {
+              "example": "title,content"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search term",
+            "schema": {
+              "example": "document"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Sort by column and direction (e.g., name:ASC)",
+            "schema": {
+              "example": "createdAt:DESC"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Research documents retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/research/search": {
+      "get": {
+        "operationId": "ResearchController_search",
+        "summary": "Search research documents",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Research documents retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/research/{id}": {
+      "get": {
+        "operationId": "ResearchController_findOne",
+        "summary": "Get a research document by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Research document retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Research document not found."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ResearchController_update",
+        "summary": "Update a research document",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResearchDocDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Research document updated successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Research document not found."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ResearchController_remove",
+        "summary": "Delete a research document",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Research document deleted successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "Research document not found."
+          }
+        },
+        "tags": [
+          "research"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/analytics/top-vendors": {
+      "get": {
+        "operationId": "AnalyticsController_getTopVendors",
+        "summary": "Get top vendors by country",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Top vendors retrieved successfully."
+          },
+          "401": {
+            "description": "Unauthorized."
+          }
+        },
+        "tags": [
+          "analytics"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Expansion Management API",
+    "description": "API for managing client projects, vendor matching, and analytics",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "RegisterDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateClientDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateClientDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProjectDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateProjectDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateVendorDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateVendorDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateResearchDocDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}
