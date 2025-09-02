@@ -23,6 +23,8 @@ help:
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
 	@echo "  download         - Download the necessary files"
+	@echo "  status           - Show status of services"
+	@echo "  logs             - Show logs of services"
 
 # Docker targets
 .PHONY: start
@@ -32,6 +34,14 @@ start:
 .PHONY: stop
 stop:
 	$(DOCKER_COMPOSE) down
+
+.PHONY: status
+status:
+	$(DOCKER_COMPOSE) ps
+
+.PHONY: logs
+logs:
+	$(DOCKER_COMPOSE) logs -f
 
 .PHONY: download
 download:

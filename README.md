@@ -52,7 +52,9 @@ curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-managemen
 ### 🐧 macOS/Linux
 ```bash
 # Download and run the setup script
-curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh && chmod +x setup.sh && ./setup.sh
+curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
 ### 🐳 Docker-Only Approach (Most Efficient)
@@ -73,6 +75,118 @@ That's it! The system will automatically:
 - ▶️ Start the application
 
 🎯 **Access at: http://localhost:3000**
+
+### 🐧 Linux Detailed Installation
+
+For Linux users who prefer manual control or troubleshooting, here's a step-by-step approach:
+
+1. **Prerequisites Check**:
+```bash
+# Verify Docker and Docker Compose are installed
+docker --version
+docker-compose --version
+
+# If not installed, install Docker:
+# Ubuntu/Debian:
+sudo apt update
+sudo apt install docker.io docker-compose
+
+# CentOS/RHEL:
+# sudo yum install docker docker-compose
+
+# Fedora:
+# sudo dnf install docker docker-compose
+
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER  # Add current user to docker group
+```
+
+2. **Download Required Files**:
+```bash
+# Create a project directory
+mkdir expansion-management
+cd expansion-management
+
+# Download the necessary files
+curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
+curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+```
+
+3. **Start the System**:
+```bash
+# Start all services in detached mode
+docker-compose -f docker-compose.full-install.yml up -d
+
+# Check the status of services
+docker-compose -f docker-compose.full-install.yml ps
+
+# View logs (optional)
+docker-compose -f docker-compose.full-install.yml logs -f
+```
+
+4. **Verify Installation**:
+```bash
+# Wait 2-3 minutes for the first-time setup to complete
+# Then check if the API is running
+curl http://localhost:3000/health
+
+# Access API documentation
+xdg-open http://localhost:3000/docs  # On Ubuntu/Debian
+# or
+open http://localhost:3000/docs      # On macOS
+```
+
+5. **Stop the System**:
+```bash
+# Stop all services
+docker-compose -f docker-compose.full-install.yml down
+
+# Stop services and remove volumes (WARNING: This will delete all data)
+docker-compose -f docker-compose.full-install.yml down -v
+```
+
+### 🐧 Linux Troubleshooting
+
+**Common Issues and Solutions**:
+
+1. **Permission Denied with Docker**:
+```bash
+# Solution: Add your user to the docker group
+sudo usermod -aG docker $USER
+# Then log out and log back in, or run:
+newgrp docker
+```
+
+2. **Port Already in Use**:
+```bash
+# Check what's using the ports
+sudo lsof -i :3000  # API port
+sudo lsof -i :3307  # MySQL port
+sudo lsof -i :27017 # MongoDB port
+
+# Kill the processes if needed
+sudo kill -9 <PID>
+```
+
+3. **Insufficient Memory**:
+```bash
+# Check system resources
+free -h
+df -h
+
+# If low on memory, stop other services or increase swap space
+```
+
+4. **Docker Build Issues**:
+```bash
+# Clean up Docker cache
+docker system prune -a
+
+# Rebuild with no cache
+docker-compose -f docker-compose.full-install.yml build --no-cache
+```
 
 ## 📋 Prerequisites
 
