@@ -51,7 +51,7 @@ curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-managemen
 
 ### 🐧 macOS/Linux (One-Command Universal Setup)
 # Single command that handles everything including Docker installation if needed
-``bash
+```bash
 curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 ```
 
