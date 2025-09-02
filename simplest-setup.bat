@@ -21,8 +21,9 @@ if %errorlevel% neq 0 (
 echo Docker found.
 echo.
 
-echo Downloading docker-compose file...
+echo Downloading necessary files...
 powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml' -OutFile 'docker-compose.full-install.yml'"
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod' -OutFile 'Dockerfile.prod'"
 
 echo Starting system with Docker Compose...
 docker-compose -f docker-compose.full-install.yml up -d

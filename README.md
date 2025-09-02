@@ -57,13 +57,15 @@ curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management
 
 ### 🐳 Docker-Only Approach (Most Efficient)
 ```bash
-# Download just the docker-compose file and start with Docker
+# Download the docker-compose file and Dockerfile
 curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
+curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
+
+# Start with Docker
 docker-compose -f docker-compose.full-install.yml up -d
 ```
 
 That's it! The system will automatically:
-- 📦 Clone the repository inside the container
 - 📦 Install all dependencies (using --legacy-peer-deps to resolve conflicts)
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations

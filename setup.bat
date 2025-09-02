@@ -22,9 +22,10 @@ if %errorlevel% neq 0 (
 
 echo ✅ Docker found.
 
-REM Download docker-compose file directly
-echo 📥 Downloading docker-compose file...
+REM Download necessary files
+echo 📥 Downloading necessary files...
 powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml' -OutFile 'docker-compose.full-install.yml'"
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod' -OutFile 'Dockerfile.prod'"
 
 REM Start with Docker Compose
 echo 🐳 Starting all services with Docker Compose...
@@ -33,7 +34,7 @@ docker-compose -f docker-compose.full-install.yml up -d
 echo.
 echo 🎉 Setup initiated! Services are starting up...
 echo.
-echo ⏳ This may take 3-5 minutes for the first time as Docker pulls images and clones the repository.
+echo ⏳ This may take 3-5 minutes for the first time as Docker pulls images and builds the application.
 echo.
 echo 📋 Once running, access your application at:
 echo    🔗 API: http://localhost:3000

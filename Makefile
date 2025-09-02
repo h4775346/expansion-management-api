@@ -22,7 +22,7 @@ help:
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
-	@echo "  download         - Download the docker-compose file"
+	@echo "  download         - Download the necessary files"
 
 # Docker targets
 .PHONY: start
@@ -36,6 +36,7 @@ stop:
 .PHONY: download
 download:
 	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
+	curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
 
 # Development targets
 .PHONY: start-dev

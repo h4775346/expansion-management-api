@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   api:
-    image: node:18-alpine
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
     environment:
@@ -19,17 +21,10 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
-    working_dir: /app
-    volumes:
-      - expansion_app:/app
+    # Build, run migrations and seed data after the container starts
     command: >
       sh -c "
-      echo '📦 Installing system dependencies...' &&
-      apk add --no-cache python3 make g++ &&
-      echo '📥 Cloning repository...' &&
-      rm -rf /app/* /app/.* 2>/dev/null || true &&
-      git clone https://github.com/h4775346/expansion-management-api.git /app &&
-      echo '📦 Installing Node.js dependencies...' &&
+      echo '📦 Installing dependencies...' &&
       npm install --legacy-peer-deps &&
       echo '🏗️ Building application...' &&
       npm run build &&
@@ -67,6 +62,5 @@ services:
       retries: 10
 
 volumes:
-  expansion_app:
   mysql_data:
   mongo_data:
