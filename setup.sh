@@ -36,10 +36,6 @@ echo "📥 Cloning repository from GitHub..."
 git clone https://github.com/h4775346/expansion-management-api.git
 cd expansion-management-api
 
-# Download the simple docker-compose file
-echo "📥 Downloading docker-compose configuration..."
-curl -o docker-compose.yml https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.simple.yml
-
 # Copy environment file
 echo "⚙️  Setting up environment..."
 cp .env.example .env

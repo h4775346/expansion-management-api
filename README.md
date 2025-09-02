@@ -60,12 +60,11 @@ curl -o setup.sh https://raw.githubusercontent.com/h4775346/expansion-management
 # Clone the repository and start with Docker
 git clone https://github.com/h4775346/expansion-management-api.git
 cd expansion-management-api
-curl -o docker-compose.yml https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.simple.yml
 docker-compose up -d
 ```
 
 That's it! The system will automatically:
-- 📦 Install all dependencies
+- 📦 Install all dependencies (using --legacy-peer-deps to resolve conflicts)
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
 - 🌱 Seed the database
@@ -88,8 +87,8 @@ That's it! The system will automatically:
 git clone https://github.com/h4775346/expansion-management-api.git
 cd expansion-management-api
 
-# Install dependencies
-npm install
+# Install dependencies (using --legacy-peer-deps to resolve conflicts)
+npm install --legacy-peer-deps
 
 # Copy environment file and configure
 cp .env.example .env
@@ -111,7 +110,7 @@ cd expansion-management-api
 
 2. Install dependencies:
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 3. Copy the environment file:
