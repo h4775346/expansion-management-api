@@ -10,6 +10,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: expansion_management
+        ports:
+          - 3307:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      mongodb:
+        image: mongo:5.0
+        ports:
+          - 27017:27017
+        options: --health-cmd="echo 'db.runCommand(\"ping\").ok' | mongosh localhost:27017/test --quiet" --health-interval=10s --health-timeout=5s --health-retries=3
+
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -26,14 +42,25 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build
-      run: npm run build
+    - name: Copy environment file
+      run: cp .env.example .env
 
-    - name: Lint
+    - name: Run linting
       run: npm run lint
 
-    - name: Test
+    - name: Run unit tests
       run: npm run test
+      env:
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_PORT: 3307
+        MONGO_URI: mongodb://localhost:27017/expansion_management
 
-    - name: Test E2E
+    - name: Run build
+      run: npm run build
+
+    - name: Run e2e tests
       run: npm run test:e2e
+      env:
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_PORT: 3307
+        MONGO_URI: mongodb://localhost:27017/expansion_management

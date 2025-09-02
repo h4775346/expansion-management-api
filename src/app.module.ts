@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './common/database/database.module';
@@ -13,6 +14,11 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
+    // Rate limiting - 10 requests per minute
+    ThrottlerModule.forRoot([{
+      ttl: 60000,
+      limit: 10,
+    }]),
     DatabaseModule,
     AuthModule,
     ClientsModule,

@@ -2,271 +2,284 @@
 
 ## Context and Goals
 
-The Expansion Management System is designed to help organizations manage client projects, match them with appropriate vendors, and provide analytics on vendor performance. The system aims to:
+The Expansion Management System is designed to streamline client project management, vendor matching, and analytics for business expansion operations. The system enables organizations to efficiently match vendors with client projects based on geographic and service capabilities, improving operational efficiency and decision-making.
 
-1. Provide a centralized platform for project and vendor management
-2. Automate vendor-project matching based on business rules
-3. Enable research document storage and retrieval
-4. Offer analytics on vendor performance
-5. Send notifications for important events
-6. Ensure data consistency and security
+### Business Goals
+
+1. Automate vendor-client matching processes based on country and service overlap
+2. Centralize vendor and project data in a single system
+3. Scale matching logic across multiple countries and services
+4. Provide analytics and notification systems for high-potential matches
+5. Enable research document storage and full-text search capabilities
+
+### Technical Goals
+
+1. Build a maintainable and scalable backend using NestJS
+2. Implement dual-database strategy for optimal data modeling
+3. Provide comprehensive API documentation with examples
+4. Ensure security with JWT authentication and role-based access control
+5. Implement automated testing and CI/CD pipelines
 
 ## Architecture Overview
 
 ```mermaid
 graph TD
-    A[Client Applications] --> B[API Gateway]
+    A[Client Applications] --> B[API Gateway/Nginx]
     B --> C[NestJS Application]
     C --> D[(MySQL Database)]
     C --> E[(MongoDB Database)]
     C --> F[SMTP Server]
-    C --> G[Scheduler]
-    G --> C
+    C --> G[Scheduled Jobs]
+    
+    subgraph "Application Layer"
+        C
+    end
+    
+    subgraph "Data Layer"
+        D
+        E
+    end
+    
+    subgraph "External Services"
+        F
+        G
+    end
 ```
 
 ### Component Diagram
 
 ```mermaid
-graph TD
-    A[API Layer] --> B[Auth Module]
+graph LR
+    A[Frontend Clients] --> B[Auth Module]
     A --> C[Client Module]
     A --> D[Project Module]
     A --> E[Vendor Module]
     A --> F[Matching Module]
     A --> G[Research Module]
     A --> H[Analytics Module]
-    A --> I[Notification Module]
-    A --> J[Scheduler Module]
     
-    B --> K[(MySQL)]
-    C --> K
-    D --> K
-    E --> K
-    F --> K
-    G --> K
+    B --> I[(MySQL)]
+    C --> I
+    D --> I
+    E --> I
+    F --> I
+    F --> J[(MongoDB)]
+    G --> J
+    H --> I
+    H --> J
     
-    H --> K
-    H --> L[(MongoDB)]
+    F --> K[Notification Service]
+    K --> L[SMTP Server]
     
-    I --> M[SMTP Server]
-    
-    J --> F
-    J --> I
+    M[Scheduler] --> F
+    M --> N[SLA Monitor]
 ```
 
 ## Data Model
 
+### MySQL Schema (ERD)
+
 ```mermaid
-classDiagram
-    class Client {
-        +id: int
-        +name: string
-        +email: string
-        +password: string
-        +created_at: datetime
+erDiagram
+    CLIENTS ||--o{ PROJECTS : has
+    PROJECTS ||--o{ PROJECT_SERVICES : requires
+    PROJECT_SERVICES }|--|| SERVICES : uses
+    VENDORS ||--o{ VENDOR_SERVICES : provides
+    VENDORS ||--o{ VENDOR_COUNTRIES : operates_in
+    VENDOR_SERVICES }|--|| SERVICES : uses
+    PROJECTS ||--o{ MATCHES : matched
+    VENDORS ||--o{ MATCHES : matched
+
+    CLIENTS {
+        int id PK
+        string name
+        string email
+        string password
+        string role
+        datetime created_at
     }
     
-    class Project {
-        +id: int
-        +client_id: int
-        +country: string
-        +budget: decimal
-        +status: string
-        +created_at: datetime
+    PROJECTS {
+        int id PK
+        int client_id FK
+        string country
+        int budget
+        string status
+        datetime created_at
     }
     
-    class Vendor {
-        +id: int
-        +name: string
-        +rating: float
-        +response_sla_hours: int
-        +created_at: datetime
+    VENDORS {
+        int id PK
+        string name
+        float rating
+        int response_sla_hours
+        datetime created_at
     }
     
-    class Service {
-        +id: int
-        +name: string
+    SERVICES {
+        int id PK
+        string name
     }
     
-    class Match {
-        +id: int
-        +project_id: int
-        +vendor_id: int
-        +score: float
-        +created_at: datetime
+    PROJECT_SERVICES {
+        int project_id PK
+        int service_id PK
     }
     
-    class ResearchDoc {
-        +_id: ObjectId
-        +projectId: string
-        +title: string
-        +content: string
-        +tags: string[]
-        +createdAt: datetime
+    VENDOR_SERVICES {
+        int vendor_id PK
+        int service_id PK
     }
     
-    Client "1" -- "0..*" Project
-    Project "1" -- "0..*" Match
-    Vendor "1" -- "0..*" Match
-    Project "0..*" -- "0..*" Service : project_services
-    Vendor "0..*" -- "0..*" Service : vendor_services
-    Vendor "0..*" -- "0..*" Country : vendor_countries
+    VENDOR_COUNTRIES {
+        int vendor_id PK
+        string country PK
+    }
+    
+    MATCHES {
+        int id PK
+        int project_id FK
+        int vendor_id FK
+        float score
+        datetime created_at
+    }
 ```
 
-## Sequence Diagrams
+### MongoDB Schema
 
-### Create Project → Rebuild Matches → Notify Client
+```mermaid
+classDiagram
+    class ResearchDoc {
+        +ObjectId _id
+        +string projectId
+        +string title
+        +string content
+        +string[] tags
+        +Date createdAt
+    }
+    
+    class ResearchDocIndexes {
+        +text title
+        +text content
+        +string projectId
+        +string[] tags
+    }
+    
+    ResearchDoc --> ResearchDocIndexes : has
+```
+
+## Matching Algorithm
+
+The core of the system is the vendor-project matching algorithm that scores potential matches based on:
+
+1. **Service Overlap**: Number of services that match between vendor and project
+2. **Vendor Rating**: Quality score of the vendor
+3. **SLA Weight**: Response time factor
+
+### Scoring Formula
+
+```
+score = (overlapCount * 2) + vendor.rating + SLA_weight
+SLA_weight = max(0, 10 - response_sla_hours/24)
+```
+
+### Sequence Diagram: Matching Process
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant API
     participant MatchingService
-    participant NotificationService
     participant Database
-    
-    Client->>API: POST /projects
-    API->>Database: Create project
-    Database-->>API: Project created
-    API-->>Client: 201 Created
-    
+    participant NotificationService
+
     Client->>API: POST /projects/{id}/matches/rebuild
-    API->>MatchingService: Rebuild matches
-    MatchingService->>Database: Get project & vendors
-    Database-->>MatchingService: Data retrieved
-    MatchingService->>Database: Calculate & store matches
-    Database-->>MatchingService: Matches saved
-    MatchingService-->>API: Matches result
-    API->>NotificationService: Check for high scores
-    NotificationService->>Database: Get client email
-    Database-->>NotificationService: Client data
-    NotificationService->>SMTP: Send email
-    SMTP-->>NotificationService: Email sent
-    API-->>Client: Matches data
+    API->>MatchingService: rebuildMatches(projectId)
+    MatchingService->>Database: Get project with services
+    Database-->>MatchingService: Project data
+    MatchingService->>Database: Get vendors in same country
+    Database-->>MatchingService: Vendor list
+    loop For each vendor
+        MatchingService->>Database: Get vendor services
+        Database-->>MatchingService: Vendor services
+        MatchingService->>MatchingService: Calculate overlap
+        MatchingService->>MatchingService: Compute score
+        MatchingService->>Database: Upsert match
+        Database-->>MatchingService: Match saved
+    end
+    alt High score match found
+        MatchingService->>NotificationService: sendHighScoreMatchNotification()
+        NotificationService->>SMTP: Send email
+        SMTP-->>NotificationService: Email sent
+    end
+    MatchingService-->>API: Matches list
+    API-->>Client: 200 OK + matches
 ```
 
-### Daily Job → Recalculate → SLA Check
+### Sequence Diagram: Daily Job
 
 ```mermaid
 sequenceDiagram
     participant Scheduler
     participant MatchingService
-    participant NotificationService
     participant Database
-    participant SMTP
-    
-    Scheduler->>MatchingService: Rebuild active project matches
+    participant NotificationService
+
+    Scheduler->>MatchingService: handleDailyMatchesRebuild()
     MatchingService->>Database: Get active projects
-    Database-->>MatchingService: Projects list
+    Database-->>MatchingService: Project list
     loop For each project
-        MatchingService->>Database: Calculate matches
-        Database-->>MatchingService: Match data
-        MatchingService->>Database: Store matches
-        Database-->>MatchingService: Matches saved
+        MatchingService->>MatchingService: rebuildMatches(project.id)
+        MatchingService->>Database: Update matches
+        alt New high score match
+            MatchingService->>NotificationService: send notification
+        end
     end
-    MatchingService-->>Scheduler: Process complete
-    
-    Scheduler->>NotificationService: Check SLA violations
-    NotificationService->>Database: Get projects with SLA issues
-    Database-->>NotificationService: Violation data
-    NotificationService->>SMTP: Send SLA violation emails
-    SMTP-->>NotificationService: Emails sent
-    NotificationService-->>Scheduler: Process complete
+    MatchingService-->>Scheduler: Job completed
 ```
-
-## Matching Algorithm
-
-### Rationale
-
-The matching algorithm is designed to provide relevant vendor recommendations based on:
-
-1. **Geographic proximity**: Vendors must be in the same country as the project
-2. **Service alignment**: Vendors must provide at least one service that the project requires
-3. **Performance metrics**: Vendor rating and response SLA are factored into the score
-
-### Formula
-
-The matching score is calculated as:
-
-```
-Score = (Overlap Count × 2) + Vendor Rating + SLA Weight
-
-Where:
-- Overlap Count = Number of services that match between project and vendor
-- Vendor Rating = Vendor's rating (0-5 scale)
-- SLA Weight = max(0, 10 - response_sla_hours/24)
-```
-
-### Complexity
-
-- Time Complexity: O(V × S) where V is the number of vendors in the country and S is the average number of services per vendor
-- Space Complexity: O(M) where M is the number of matches generated
-
-### Edge Cases
-
-1. **No matching vendors**: Returns empty result set
-2. **No overlapping services**: Score is based only on rating and SLA
-3. **Vendors with no rating**: Rating component is zero
-4. **Vendors with no SLA**: SLA component is zero
-
-### Idempotency
-
-The matching algorithm is idempotent - running it multiple times with the same inputs will produce the same results. Matches are upserted based on the unique constraint (project_id, vendor_id).
 
 ## Security
 
 ### Authentication
 
-- JWT tokens for API authentication
+- JWT-based authentication with role-based access control
+- Two roles: `client` and `admin`
 - Password hashing with bcrypt
-- Role-based access control (client, admin)
+- Secure token expiration
 
 ### Authorization
 
 - Route-level guards for role-based access
-- Data isolation by client ownership
-- Admin-only access to certain endpoints
+- Admin-only endpoints for sensitive operations
+- Client-scoped data access
 
-### Validation
+### Data Protection
 
-- Input validation on all endpoints
-- Sanitization of user inputs
-- Parameterized database queries
-
-### Rate Limiting
-
-- API rate limiting to prevent abuse
-- Brute force protection for login
-
-### CORS
-
-- Configured CORS policies for web applications
+- Environment variables for secrets
+- Input validation and sanitization
+- SQL injection prevention through ORM
+- Rate limiting to prevent abuse
 
 ## Scalability Considerations
 
 ### Read/Write Patterns
 
-- **Read-heavy**: Analytics, vendor listings, project details
-- **Write-moderate**: Project creation, vendor matching, research docs
+- High read frequency for project and vendor data
+- Moderate write frequency for matches and research docs
+- Periodic batch processing for analytics
 
 ### Indexing Strategy
 
-1. **MySQL**:
-   - Primary keys on all ID columns
-   - Foreign key indexes
-   - Unique constraint on (project_id, vendor_id) in matches
-   - Indexes on frequently queried columns (country, status)
-
-2. **MongoDB**:
-   - Text index on (title, content) for search
-   - Compound index on (projectId, tags) for filtering
+- Primary keys on all entity IDs
+- Foreign key indexes for relationships
+- Composite indexes for frequent query patterns
+- Text indexes for MongoDB research documents
 
 ### Caching Plan
 
-- Redis caching for:
-  - Frequently accessed vendor lists
-  - Analytics data
-  - User sessions
+- In-memory caching for frequently accessed data
+- Redis integration for distributed caching
+- Cache invalidation on data updates
 
 ## Observability
 
@@ -274,16 +287,41 @@ The matching algorithm is idempotent - running it multiple times with the same i
 
 - Structured logging with request IDs
 - Error logging with stack traces
-- Audit trails for important operations
-
-### Request IDs
-
-- Unique request IDs for tracing
-- Correlation across services
+- Performance monitoring logs
 
 ### Metrics
 
 - API response times
 - Database query performance
-- Error rates
-- System resource usage
+- Match computation statistics
+- Email delivery metrics
+
+### Health Checks
+
+- Database connectivity
+- External service availability
+- Application responsiveness
+
+## Deployment Architecture
+
+```mermaid
+graph LR
+    A[Load Balancer] --> B[API Instance 1]
+    A --> C[API Instance 2]
+    A --> D[API Instance 3]
+    
+    B --> E[(MySQL Primary)]
+    C --> E
+    D --> E
+    
+    E --> F[(MySQL Replica)]
+    
+    B --> G[(MongoDB)]
+    C --> G
+    D --> G
+    
+    H[Cron Jobs] --> E
+    H --> G
+```
+
+This deployment architecture supports horizontal scaling of the API layer while maintaining consistent data access patterns.
