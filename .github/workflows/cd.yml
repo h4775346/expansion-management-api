@@ -1,0 +1,39 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      run: npm test
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production server..."
+        # Add your deployment commands here
+        # For example, you could:
+        # 1. Build a Docker image
+        # 2. Push to a container registry
+        # 3. Deploy to a cloud platform
+      env:
+        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
