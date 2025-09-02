@@ -38,7 +38,11 @@ echo Once running, access the application at:
 echo API: http://localhost:3000
 echo Docs: http://localhost:3000/docs
 echo.
-echo Sample user credentials:
+echo Admin Login:
+echo Email: admin@example.com
+echo Password: admin123
+echo.
+echo Client Login:
 echo Email: englishh7366@gmail.com
 echo Password: password123
 echo.

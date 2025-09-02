@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: abanoubhany/expansion-management-api:latest
+    image: abanoubhany/expansion-management-api:prebuilt
     ports:
       - "3000:3000"
     environment:

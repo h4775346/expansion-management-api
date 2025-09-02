@@ -57,7 +57,7 @@ if %choice%==1 (
     echo Docs: http://localhost:3000/docs
     echo.
     echo Test Accounts:
-    echo Admin: admin@expansion.com / admin123
+    echo Admin: admin@example.com / admin123
     echo Client: englishh7366@gmail.com / password123
     echo.
     echo To stop the services later, run: docker-compose down
@@ -105,7 +105,7 @@ if %choice%==1 (
     echo Docs: http://localhost:3000/docs
     echo.
     echo Test Accounts:
-    echo Admin: admin@expansion.com / admin123
+    echo Admin: admin@example.com / admin123
     echo Client: englishh7366@gmail.com / password123
     echo.
     echo To stop the services later, run: docker-compose -f docker-compose.full-install.yml down

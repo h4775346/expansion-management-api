@@ -22,8 +22,6 @@ RUN npm run build
 
 # Create a startup script that runs migrations and then starts the app
 RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'echo "📦 Installing dependencies..."' >> /app/start.sh && \
-    echo 'npm install --legacy-peer-deps' >> /app/start.sh && \
     echo 'echo "🔄 Running database migrations..."' >> /app/start.sh && \
     echo 'npm run migration:run' >> /app/start.sh && \
     echo 'echo "🌱 Seeding database with test data..."' >> /app/start.sh && \

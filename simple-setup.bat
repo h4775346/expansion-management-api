@@ -24,7 +24,8 @@ docker-compose up -d
 
 echo.
 echo System starting... Access at: http://localhost:3000
-echo Login: englishh7366@gmail.com / password123
+echo Admin Login: admin@example.com / admin123
+echo Client Login: englishh7366@gmail.com / password123
 echo To stop: docker-compose down
 echo.
 

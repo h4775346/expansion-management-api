@@ -442,45 +442,46 @@ After seeding, the following test data will be available:
 
 #### 👨‍💼 Admin Account
 ```
-Email: admin@expansion.com
+Email: admin@example.com
 Password: admin123
 Role: admin
 ```
 
 #### 👥 Client Accounts
 ```
-1. English Client
+1. Protik Service
    Email: englishh7366@gmail.com
    Password: password123
    Role: client
 
-2. Yahoo Client
-   Email: englishh7366@yahoo.com
-   Password: password123
-   Role: client
-
-3. Abanoub Client
+2. Abanoub Hany
    Email: sw.abanoub.hany@gmail.com
    Password: password123
    Role: client
 
-4. Another Client
+3. Ali Hany
    Email: a10979516@gmail.com
+   Password: password123
+   Role: client
+
+4. Yahoo User
+   Email: englishh7366@yahoo.com
    Password: password123
    Role: client
 ```
 
 #### 🏢 Sample Vendors
-- **WebDev Solutions** (USA) - Web Development, UI/UX Design
-- **MobileFirst Inc** (UK) - Mobile App Development, DevOps, Cloud Services
-- **DataInsights GmbH** (Germany) - Data Analytics, Cybersecurity
-- **AI Innovations Co** (Japan) - AI/ML, Blockchain
+- **Tech Solutions Inc.** (USA) - Web Development, Mobile App Development, UI/UX Design
+- **Cloud Experts LLC** (UK, Germany, France) - Cloud Infrastructure, Data Analytics
+- **Security First Ltd.** (USA, UK, Australia) - Cybersecurity, AI/Machine Learning
+- **Innovate Tech Co.** (Japan, South Korea, Singapore) - Web Development, DevOps, Blockchain
+- **Global IT Services** (India, Brazil, Mexico) - Mobile App Development, Data Analytics, IoT Solutions
 
 #### 📋 Sample Projects
-- **USA Web Project** for English Client
-- **UK Mobile Project** for Yahoo Client
-- **German Data Project** for Abanoub Client
-- **Japanese AI Project** for Another Client
+- **USA Web Project** for Protik Service (USA) - Web Development, UI/UX Design
+- **UK Mobile Project** for Abanoub Hany (UK) - Mobile App Development, DevOps, Cloud Infrastructure
+- **German Data Project** for Ali Hany (Germany) - Data Analytics, Cybersecurity
+- **Japanese AI Project** for Yahoo User (Japan) - AI/Machine Learning, Blockchain
 
 #### 📚 Research Documents
 - Market analysis for USA expansion
