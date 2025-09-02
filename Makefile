@@ -24,20 +24,10 @@ help:
 	@echo "  clean            - Clean build artifacts"
 	@echo "  download         - Download the docker-compose file"
 
-# Build targets
-.PHONY: build
-build:
-	$(NPM) run build
-
 # Docker targets
 .PHONY: start
 start:
 	$(DOCKER_COMPOSE) up -d
-
-.PHONY: start-dev
-start-dev:
-	$(DOCKER_COMPOSE) up mysql mongo -d
-	$(NPM) run start:dev
 
 .PHONY: stop
 stop:
@@ -46,6 +36,11 @@ stop:
 .PHONY: download
 download:
 	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
+
+# Development targets
+.PHONY: start-dev
+start-dev:
+	$(NPM) run start:dev
 
 # Test targets
 .PHONY: test
@@ -94,6 +89,11 @@ seed:
 docs:
 	$(NPM) run export:openapi
 	$(NPM) run export:postman
+
+# Build targets
+.PHONY: build
+build:
+	$(NPM) run build
 
 # Clean targets
 .PHONY: clean

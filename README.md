@@ -63,6 +63,7 @@ docker-compose -f docker-compose.full-install.yml up -d
 ```
 
 That's it! The system will automatically:
+- 📦 Clone the repository inside the container
 - 📦 Install all dependencies (using --legacy-peer-deps to resolve conflicts)
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations

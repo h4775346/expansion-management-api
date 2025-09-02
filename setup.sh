@@ -9,17 +9,6 @@ echo
 
 echo "🚀 Starting setup process..."
 
-# Check if Git is installed
-echo "🔍 Checking for Git..."
-if ! command -v git &> /dev/null
-then
-    echo "❌ Error: Git is not installed."
-    echo "   Please install Git and try again."
-    echo "   Download from: https://git-scm.com/downloads"
-    exit 1
-fi
-echo "✅ Git found."
-
 # Check if Docker is installed
 echo "🔍 Checking for Docker..."
 if ! command -v docker &> /dev/null
@@ -42,7 +31,7 @@ docker-compose -f docker-compose.full-install.yml up -d
 echo
 echo "🎉 Setup initiated! Services are starting up..."
 echo
-echo "⏳ This may take 2-3 minutes for the first time as Docker pulls images."
+echo "⏳ This may take 3-5 minutes for the first time as Docker pulls images and clones the repository."
 echo
 echo "📋 Once running, access your application at:"
 echo "   🔗 API: http://localhost:3000"
