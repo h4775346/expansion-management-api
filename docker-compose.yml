@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: node:18
+    build: .
     ports:
       - "3000:3000"
     environment:
@@ -20,25 +20,18 @@ services:
       mongo:
         condition: service_healthy
     volumes:
-      - ./app:/app
+      - .:/app
       - /app/node_modules
-    working_dir: /app
+    # Run migrations and seed data after the container starts
     command: >
       sh -c "
-      if [ ! -f package.json ]; then
-        echo 'Cloning repository...'
-        apk add --no-cache git
-        git clone https://github.com/h4775346/expansion-management-api.git .
-      fi &&
-      echo 'Installing dependencies...' &&
+      echo '📦 Installing dependencies...' &&
       npm install &&
-      echo 'Building application...' &&
-      npm run build &&
-      echo 'Running migrations...' &&
+      echo '🔄 Running database migrations...' &&
       npm run migration:run &&
-      echo 'Seeding database...' &&
+      echo '🌱 Seeding database with test data...' &&
       npm run seed:run &&
-      echo 'Starting application...' &&
+      echo '🚀 Starting application...' &&
       npm run start:prod
       "
 
