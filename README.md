@@ -122,7 +122,7 @@ curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/ex
 ```
 
 #### 🪟 Windows (CMD)
-``cmd
+```cmd
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
 ```
 
@@ -163,7 +163,7 @@ curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansio
 ```
 
 #### 🪟 Windows (CMD)
-``cmd
+```cmd
 curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-local.bat && .\install-local.bat
 ```
 
@@ -175,12 +175,12 @@ curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/mast
 ### Docker Installation
 
 #### 🪟 Windows (PowerShell)
-``powershell
+```powershell
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat; .\install-with-docker.bat
 ```
 
 #### 🪟 Windows (CMD)
-``cmd
+```cmd
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
 ```
 
