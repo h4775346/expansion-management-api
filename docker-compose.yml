@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -24,6 +24,20 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
+    # Build, run migrations and seed data after the container starts
+    command: >
+      sh -c "
+      echo '📦 Installing dependencies...' &&
+      npm install --legacy-peer-deps &&
+      echo '🏗️ Building application...' &&
+      npm run build &&
+      echo '🔄 Running database migrations...' &&
+      npm run migration:run &&
+      echo '🌱 Seeding database with test data...' &&
+      npm run seed:run &&
+      echo '🚀 Starting application...' &&
+      npm run start:dev
+      "
 
   mysql:
     image: mysql:8.0

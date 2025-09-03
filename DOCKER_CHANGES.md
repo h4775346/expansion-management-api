@@ -1,60 +1,70 @@
 # Docker Configuration Changes
 
-This document summarizes the changes made to the Docker configuration to support volume mounting instead of pre-installing project files in the image.
+This document summarizes the changes made to simplify the Docker configuration.
 
 ## Changes Made
 
-### 1. New Dockerfiles
-- **Dockerfile.dev**: Development Dockerfile that supports volume mounting
-- **Dockerfile.prod**: Production Dockerfile that builds the application into the image
+### 1. Simplified Dockerfile
+- **[Dockerfile](file:///d:/job/expansion-management/Dockerfile)**: Single Dockerfile that supports both development and production builds
 
-### 2. Updated Docker Compose Files
-- **docker-compose.yml**: Updated to use development approach with volume mounting (default)
-- **docker-compose.dev.yml**: Development configuration with volume mounting
-- **docker-compose.prod.yml**: Production configuration using pre-built images
-- **docker-compose.git.yml**: Kept as is for git-based deployments
+### 2. Unified Docker Compose Configuration
+- **[docker-compose.yml](file:///d:/job/expansion-management/docker-compose.yml)**: Single configuration that uses volume mounting for development and includes all necessary setup steps
 
-### 3. Updated Scripts
-- **push-image.bat**: Modified to use Dockerfile.prod for building production images
-- **push-image.sh**: Added shell script equivalent for Unix systems
+### 3. Simplified Installation Scripts
+- **[install-with-docker.bat](file:///d:/job/expansion-management/install-with-docker.bat)**: Windows installation script for Docker-based setup
+- **[install-with-docker.sh](file:///d:/job/expansion-management/install-with-docker.sh)**: Unix/Linux/macOS installation script for Docker-based setup
+- **[install-local.bat](file:///d:/job/expansion-management/install-local.bat)**: Windows installation script for local setup (without Docker)
+- **[install-local.sh](file:///d:/job/expansion-management/install-local.sh)**: Unix/Linux/macOS installation script for local setup (without Docker)
 
-### 4. Documentation Updates
-- **README.md**: Updated to explain the different Docker deployment approaches
-- **PROJECT_DETAILS.md**: Updated to document the Docker configuration changes
-- **Makefile**: Updated to include new targets for different deployment modes
+### 4. Removed Unnecessary Files
+- Removed multiple Docker Compose files (dev, prod, git, autoupdate, full-install, volume)
+- Removed multiple Dockerfiles (dev, prod, git, prebuilt, multistage)
+- Removed complex setup scripts (setup.bat, setup.sh, simple-setup.bat, etc.)
 
-## Deployment Options
+## New Simplified Approach
 
-### Development Mode (Volume Mounting)
+### Docker Installation (Recommended)
 ```bash
-docker-compose up -d
-```
-This approach mounts your local source code into the container, allowing for live code changes without rebuilding.
+# Windows:
+.\install-with-docker.bat
 
-### Production Mode (Pre-built Images)
+# macOS/Linux:
+./install-with-docker.sh
+```
+
+This approach:
+1. Uses Docker Compose with volume mounting for development
+2. Automatically builds the application inside the container
+3. Sets up all dependencies (MySQL, MongoDB)
+4. Runs migrations and seeds the database
+5. Starts the application with hot reloading
+
+### Local Installation (Without Docker)
 ```bash
-docker-compose -f docker-compose.prod.yml up -d
+# Windows:
+.\install-local.bat
+
+# macOS/Linux:
+./install-local.sh
 ```
-Uses pre-built images from Docker Hub for faster startup.
 
-### Building from Source
-```bash
-docker-compose -f docker-compose.full-install.yml up -d
-```
-Builds the images from source code.
+This approach:
+1. Installs Node.js dependencies locally
+2. Builds the application locally
+3. Provides instructions for setting up databases manually
 
-## Benefits of Volume Mounting Approach
+## Benefits of the Simplified Approach
 
-1. **Faster Development**: Changes to source code are immediately reflected in the running container
-2. **Reduced Build Times**: No need to rebuild the image for every code change
-3. **Easier Debugging**: Direct access to source files in the container
-4. **Consistent Environment**: Development and production environments can be configured differently
+1. **Reduced Complexity**: Only one Docker Compose file and one Dockerfile to maintain
+2. **Cross-Platform Compatibility**: Same installation process works on Windows, macOS, and Linux
+3. **Clear Options**: Users can choose between Docker-based or local installation
+4. **Faster Development**: Volume mounting allows for hot reloading without rebuilding images
+5. **Easier Maintenance**: Fewer files to keep in sync
 
 ## How It Works
 
-1. The development Dockerfile (Dockerfile.dev) sets up the environment with all dependencies
+1. The Dockerfile sets up the Node.js environment with all dependencies
 2. The docker-compose.yml file mounts the current directory to /app in the container
 3. A named volume for node_modules ensures dependencies are isolated from the host
 4. The application runs in development mode with hot reloading enabled
-
-This approach provides a better developer experience while maintaining the ability to deploy with pre-built images in production.
+5. Database migrations and seeding are automatically run when the container starts

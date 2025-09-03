@@ -8,16 +8,13 @@ else
 endif
 
 # Variables
-DOCKER_COMPOSE_FILE = docker-compose.yml
 NPM = npm
 
 # Default target
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  start            - Start all services (development with volume mounting)"
-	@echo "  start-prod       - Start all services (production with pre-built images)"
-	@echo "  start-dev        - Start in development mode with Docker (volume mounting)"
+	@echo "  start            - Start all services with Docker"
 	@echo "  start-local      - Start in development mode locally (requires Node.js)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
@@ -30,22 +27,10 @@ help:
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
-	@echo "  download         - Download the necessary files for simple setup"
-	@echo "  status           - Show status of services"
-	@echo "  logs             - Show logs of services"
-	@echo "  setup-linux      - Run universal Linux setup (installs Docker if needed)"
 
 # Docker targets
 .PHONY: start
 start:
-	$(DOCKER_COMPOSE) up -d
-
-.PHONY: start-prod
-start-prod:
-	$(DOCKER_COMPOSE) -f docker-compose.prod.yml up -d
-
-.PHONY: start-dev
-start-dev:
 	$(DOCKER_COMPOSE) up -d
 
 .PHONY: stop
@@ -59,14 +44,6 @@ status:
 .PHONY: logs
 logs:
 	$(DOCKER_COMPOSE) logs -f
-
-.PHONY: download
-download:
-	curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
-
-.PHONY: setup-linux
-setup-linux:
-	curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
 
 # Development targets
 .PHONY: start-local

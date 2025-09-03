@@ -44,38 +44,21 @@ Get started in seconds with our one-command setup:
 
 ### 🪟 Windows
 ```
-# Download and run the setup script
-curl -o setup.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.bat
-.\setup.bat
+# Download and run the Docker installation script
+curl -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat
+.\install-with-docker.bat
 ```
 
-### 🐧 macOS/Linux (One-Command Universal Setup)
-# Single command that handles everything including Docker installation if needed
+### 🐧 macOS/Linux
 ```bash
-curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
-```
-
-### 🐳 Docker-Only Approach (Most Efficient)
-```bash
-# For systems with Docker and Docker Compose
-curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
-docker-compose up -d
-
-# For systems with only Docker (no Docker Compose)
-docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=expansion_management -p 3307:3306 mysql:8.0
-docker run -d --name mongo -p 27017:27017 mongo:5.0
-docker run -d --name api -p 3000:3000 --link mysql --link mongo \
-  -e MYSQL_HOST=mysql -e MYSQL_PORT=3306 -e MYSQL_DB=expansion_management \
-  -e MYSQL_USER=root -e MYSQL_PASSWORD=password \
-  -e MONGO_URI=mongodb://mongo:27017/expansion_management \
-  -e JWT_SECRET=your_jwt_secret_key \
-  -v $(pwd):/app \
-  expansion-api:dev
+# Download and run the Docker installation script
+curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
+chmod +x install-with-docker.sh
+./install-with-docker.sh
 ```
 
 That's it! The system will automatically:
-- 📦 Install Docker and Docker Compose if needed (Linux only)
-- 📥 Download all required files
+- 📦 Build and start all services with Docker
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
 - 🌱 Seed the database
@@ -83,244 +66,64 @@ That's it! The system will automatically:
 
 🎯 **Access at: http://localhost:3000**
 
-### 🐧 Linux Universal Installation (Detailed)
-
-For Linux users who want to understand what happens under the hood:
-
-1. **The Universal Setup Script Automatically Handles**:
-   - Detection of your Linux distribution (Ubuntu, Debian, CentOS, RHEL, Fedora, etc.)
-   - Docker installation if not present
-   - Docker Compose installation if not present
-   - Download of all required files
-   - Complete system setup and startup
-
-2. **Manual Installation Options** (if you prefer step-by-step):
-
-   **Option A: Install Docker and Docker Compose First**
-   ```bash
-   # Ubuntu/Debian
-   sudo apt update
-   sudo apt install docker.io docker-compose
-   
-   # CentOS/RHEL
-   sudo yum install docker docker-compose
-   
-   # Fedora
-   sudo dnf install docker docker-compose
-   
-   # Start Docker service
-   sudo systemctl start docker
-   sudo systemctl enable docker
-   sudo usermod -aG docker $USER
-   ```
-
-   **Option B: Use the Universal Script**
-   ```bash
-   # This single command does everything:
-   curl -sSL https://raw.githubusercontent.com/h4775346/expansion-management-api/master/setup.sh | bash
-   ```
-
-### 🐧 Linux Detailed Installation
-
-For Linux users who prefer manual control or troubleshooting, here's a step-by-step approach:
-
-1. **Prerequisites Check**:
-```bash
-# Verify Docker is installed
-docker --version
-
-# Check if Docker Compose is installed
-if command -v docker-compose &> /dev/null; then
-    echo "Docker Compose found: $(docker-compose --version)"
-else
-    echo "Docker Compose not found - we'll install it or use alternative methods"
-fi
-
-# If Docker is not installed, install it:
-# Ubuntu/Debian:
-sudo apt update
-sudo apt install docker.io
-
-# CentOS/RHEL:
-# sudo yum install docker
-
-# Fedora:
-# sudo dnf install docker
-
-# Start and enable Docker service
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker $USER  # Add current user to docker group
-```
-
-2. **Option 1: Install Docker Compose (Recommended)**:
-```bash
-# Install Docker Compose
-# Method 1: Using pip (if python3 and pip are available)
-sudo apt install python3-pip  # Ubuntu/Debian
-pip3 install docker-compose
-
-# Method 2: Direct download
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Verify installation
-docker-compose --version
-```
-
-3. **Option 2: Use Docker Compose V2 (Built into Docker)**:
-```bash
-# Many modern Docker installations include Compose V2
-docker compose version
-
-# If available, use docker compose instead of docker-compose
-curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.full-install.yml
-curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-docker compose -f docker-compose.full-install.yml up -d
-```
-
-4. **Option 3: Manual Docker Commands (No Compose Required)**:
-```bash
-# Download the Dockerfile
-curl -o Dockerfile.prod https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile.prod
-
-# Build the API image
-docker build -t expansion-api -f Dockerfile.prod .
-
-# Run the databases
-docker run -d --name mysql-db \
-  -e MYSQL_ROOT_PASSWORD=password \
-  -e MYSQL_DATABASE=expansion_management \
-  -p 3307:3306 \
-  mysql:8.0
-
-docker run -d --name mongo-db \
-  -p 27017:27017 \
-  mongo:5.0
-
-# Wait for databases to be ready
-echo "Waiting for databases to start..."
-sleep 30
-
-# Run the API (it will automatically run migrations and seeding)
-docker run -d --name expansion-api \
-  --link mysql-db:mysql \
-  --link mongo-db:mongo \
-  -p 3000:3000 \
-  -e MYSQL_HOST=mysql \
-  -e MYSQL_PORT=3306 \
-  -e MYSQL_DB=expansion_management \
-  -e MYSQL_USER=root \
-  -e MYSQL_PASSWORD=password \
-  -e MONGO_URI=mongodb://mongo:27017/expansion_management \
-  -e JWT_SECRET=your_jwt_secret_key \
-  expansion-api
-```
-
-5. **Verify Installation**:
-```bash
-# Wait 2-3 minutes for the first-time setup to complete
-# Then check if the API is running
-curl http://localhost:3000/health
-
-# Access API documentation
-xdg-open http://localhost:3000/docs  # On Ubuntu/Debian
-# or
-open http://localhost:3000/docs      # On macOS
-```
-
-6. **Stop the System**:
-```bash
-# Stop all services
-docker-compose -f docker-compose.full-install.yml down
-
-# Stop services and remove volumes (WARNING: This will delete all data)
-docker-compose -f docker-compose.full-install.yml down -v
-```
-
-### 🐧 Linux Troubleshooting
-
-**Common Issues and Solutions**:
-
-1. **Permission Denied with Docker**:
-```bash
-# Solution: Add your user to the docker group
-sudo usermod -aG docker $USER
-# Then log out and log back in, or run:
-newgrp docker
-```
-
-2. **Port Already in Use**:
-```bash
-# Check what's using the ports
-sudo lsof -i :3000  # API port
-sudo lsof -i :3307  # MySQL port
-sudo lsof -i :27017 # MongoDB port
-
-# Kill the processes if needed
-sudo kill -9 <PID>
-```
-
-3. **Insufficient Memory**:
-```bash
-# Check system resources
-free -h
-df -h
-
-# If low on memory, stop other services or increase swap space
-```
-
-4. **Docker Build Issues**:
-```bash
-# Clean up Docker cache
-docker system prune -a
-
-# Rebuild with no cache
-docker-compose -f docker-compose.full-install.yml build --no-cache
-```
-
 ## 📋 Prerequisites
 
-- **Node.js** (v18 or higher)
+### For Docker Installation (Recommended)
 - **Docker** and **Docker Compose**
-- **Git**
-- **MySQL**
-- **MongoDB**
+
+### For Local Installation
+- **Node.js** (v18 or higher)
+- **npm**
+- **MySQL** server
+- **MongoDB** server
 
 ## ⚡ Quick Start
 
+### With Docker (Recommended)
 ```bash
-# Option 1: Use pre-built Docker images (recommended for quick start)
-curl -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
-docker-compose up -d
+# Option 1: Use the installation script
+# Windows:
+.\install-with-docker.bat
 
-# Option 2: Clone the repository and build from source
-git clone https://github.com/h4775346/expansion-management-api.git
-cd expansion-management-api
-docker-compose -f docker-compose.full-install.yml up -d
+# macOS/Linux:
+./install-with-docker.sh
+
+# Option 2: Manual Docker setup
+docker-compose up -d
 
 # The API will be available at http://localhost:3000
 ```
 
+### Without Docker (Local Installation)
+```bash
+# Option 1: Use the installation script
+# Windows:
+.\install-local.bat
+
+# macOS/Linux:
+./install-local.sh
+
+# Option 2: Manual local setup
+npm install --legacy-peer-deps
+npm run build
+# Set up databases manually (see instructions in scripts)
+npm run start:prod
+```
+
 ## ⚙️ Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/h4775346/expansion-management-api.git
-cd expansion-management-api
-```
+### Docker Installation (Recommended)
+1. Make sure Docker and Docker Compose are installed
+2. Run the installation script:
+   - **Windows**: `.\install-with-docker.bat`
+   - **macOS/Linux**: `./install-with-docker.sh`
 
-2. Install dependencies:
-```bash
-npm install --legacy-peer-deps
-```
-
-3. Copy the environment file:
-```bash
-cp .env.example .env
-```
-
-4. Update the `.env` file with your configuration.
+### Local Installation (Without Docker)
+1. Install prerequisites (Node.js, MySQL, MongoDB)
+2. Run the installation script:
+   - **Windows**: `.\install-local.bat`
+   - **macOS/Linux**: `./install-local.sh`
+3. Follow the database setup instructions provided by the script
 
 ## 🔑 Environment Variables
 
@@ -344,10 +147,10 @@ For a complete list of environment variables, see [.env.example](.env.example).
 
 ## 🚀 Running the Application
 
-### 🐳 With Docker (Pre-built Images - Recommended)
+### 🐳 With Docker (Recommended)
 
 ```bash
-# Start all services using pre-built images
+# Start all services
 docker-compose up -d
 
 # View logs
@@ -357,24 +160,12 @@ docker-compose logs -f
 docker-compose down
 ```
 
-### 🐳 With Docker (Build from Source)
-
-```bash
-# Start all services and build from source
-docker-compose -f docker-compose.full-install.yml up -d
-
-# View logs
-docker-compose -f docker-compose.full-install.yml logs -f
-
-# Stop services
-docker-compose -f docker-compose.full-install.yml down
-```
-
 ### 💻 Locally
 
 1. Start the databases:
 ```bash
-docker-compose up mysql mongo -d
+# You need to start MySQL and MongoDB manually
+# Make sure they're running on the ports specified in your .env file
 ```
 
 2. Run the application:
