@@ -38,7 +38,7 @@ export class AuthService {
     
     const savedClient = await this.clientsRepository.save(client);
     
-    // Generate JWT token
+    // Generate JWT token with role included in payload
     const payload = { email: savedClient.email, sub: savedClient.id, role: savedClient.role };
     return {
       access_token: this.jwtService.sign(payload),
@@ -57,6 +57,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
     
+    // Generate JWT token with role included in payload
     const payload = { email: client.email, sub: client.id, role: client.role };
     return {
       access_token: this.jwtService.sign(payload),
