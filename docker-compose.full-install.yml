@@ -15,7 +15,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MONGO_URI=mongodb://mongo:27017/expansion_management
-      - JWT_SECRET=your_jwt_secret_key
+      - JWT_SECRET=expansion_management_secret_key_2025
       - NODE_ENV=production
     volumes:
       - .:/app

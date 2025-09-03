@@ -122,7 +122,7 @@ curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/ex
 ```
 
 #### 🪟 Windows (CMD)
-```cmd
+``cmd
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
 ```
 
@@ -180,7 +180,7 @@ curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/ex
 ```
 
 #### 🪟 Windows (CMD)
-```cmd
+``cmd
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
 ```
 
@@ -233,14 +233,18 @@ JWT_SECRET=your_strong_secret_key_here_change_this_in_production
 ### With Docker (Recommended)
 
 ```bash
-# Start all services in development mode
-docker compose -f docker-compose.dev.yml up -d
+# Start all services in development mode (with live reloading and auto-seeding)
+docker compose -f docker-compose.dev.yml up
 
 # Start all services in production mode
-docker compose up -d
+docker compose up
 
 # Start all services with automatic database setup (migrations + seeding)
-docker compose -f docker-compose.full-install.yml up -d
+docker compose -f docker-compose.full-install.yml up
+
+# Run development environment with helper script
+./run-dev-docker.sh  # Linux/macOS
+run-dev-docker.bat   # Windows
 
 # View logs
 docker compose -f docker-compose.dev.yml logs -f
@@ -248,6 +252,12 @@ docker compose -f docker-compose.dev.yml logs -f
 # Stop services
 docker compose -f docker-compose.dev.yml down
 ```
+
+The development mode (`docker-compose.dev.yml`) provides:
+- Live code reloading (changes to your source code are reflected immediately)
+- Automatic database migrations and seeding on startup
+- Development environment variables
+- Volume mounting for real-time code changes
 
 ### Locally
 

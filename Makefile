@@ -13,6 +13,7 @@ help:
 	@echo "  start            - Start all services with Docker (development mode)"
 	@echo "  start-prod       - Start all services with Docker (production mode)"
 	@echo "  start-full       - Start all services with Docker (full installation with auto-seeding)"
+	@echo "  start-dev-docker - Start development environment with Docker (live reloading)"
 	@echo "  start-local      - Start in development mode locally (requires Node.js)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
@@ -61,6 +62,10 @@ logs:
 .PHONY: start-local
 start-local:
 	$(NPM) run start:dev
+
+.PHONY: start-dev-docker
+start-dev-docker:
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml up
 
 # Test targets
 .PHONY: test
