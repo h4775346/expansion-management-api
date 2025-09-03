@@ -41,6 +41,18 @@ fi
 echo "📥 Pulling latest changes from GitHub..."
 git pull origin main
 
+# Download required Docker Compose files to ensure they're up to date
+echo "📥 Updating Docker Compose files from repository..."
+if command_exists curl; then
+    curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml
+    curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+    curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile
+elif command_exists wget; then
+    wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml
+    wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
+    wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile
+fi
+
 # Rebuild and restart services with development configuration
 echo "🏗️ Rebuilding and restarting services..."
 $DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d --build

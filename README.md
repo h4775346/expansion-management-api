@@ -132,7 +132,8 @@ curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/mast
 ```
 
 That's it! The system will automatically:
-- 📦 Build and start all services with Docker
+- 📦 Download required configuration files
+- 🏗️ Build and start all services with Docker
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
 - 🌱 Seed the database
