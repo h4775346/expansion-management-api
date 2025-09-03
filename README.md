@@ -211,6 +211,23 @@ The following environment variables are required:
 
 For a complete list of environment variables, see [.env.example](.env.example).
 
+**Important**: You must update the `JWT_SECRET` in your `.env` file with a strong secret key. Using the default placeholder value will cause authentication to fail with "secretOrPrivateKey must have a value" error.
+
+### Common Configuration Issues
+
+#### JWT Secret Not Set
+If you encounter the error "secretOrPrivateKey must have a value", it means the JWT_SECRET environment variable is not properly configured:
+
+1. Check that you have a `.env` file in the root directory
+2. Ensure `JWT_SECRET` is set to a strong secret key (not the placeholder value)
+3. Restart the application after making changes
+
+Example of a proper `.env` configuration:
+```bash
+# JWT Configuration
+JWT_SECRET=your_strong_secret_key_here_change_this_in_production
+```
+
 ## 🚀 Running the Application
 
 ### With Docker (Recommended)

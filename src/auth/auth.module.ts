@@ -5,14 +5,19 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { ClientsModule } from '../clients/clients.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     ClientsModule,
     PassportModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '7d' },
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: '7d' },
+      }),
     }),
   ],
   controllers: [AuthController],
