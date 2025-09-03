@@ -163,7 +163,7 @@ curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansio
 ```
 
 #### 🪟 Windows (CMD)
-```cmd
+``cmd
 curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-local.bat && .\install-local.bat
 ```
 
@@ -175,7 +175,7 @@ curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/mast
 ### Docker Installation
 
 #### 🪟 Windows (PowerShell)
-```powershell
+``powershell
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat; .\install-with-docker.bat
 ```
 
@@ -486,25 +486,25 @@ To set up CI/CD:
 
 The CI/CD pipeline is defined in [.github/workflows/ci.yml](.github/workflows/ci.yml).
 
-### Fixing CI/CD Dependency Issues
+### Dependency Management
 
-If you encounter dependency conflicts in CI/CD (such as "lock file's @nestjs/schedule@6.0.0 does not satisfy @nestjs/schedule@4.1.2"), 
-regenerate the package-lock.json file:
+This project uses `package-lock.json` to ensure consistent dependency versions across all environments. Due to peer dependency conflicts between some packages (e.g., nestjs-paginate and @nestjs/swagger), the project is configured with:
+
+1. **.npmrc configuration**: Automatically uses `--legacy-peer-deps` flag
+2. **CI/CD workflows**: Include `--legacy-peer-deps` flag for consistency
+3. **Fix scripts**: Available to resolve conflicts when they occur
+
+If you encounter dependency conflicts:
 
 ```bash
 # Run the regeneration script
-./regenerate-lockfile.sh
+./fix-dependencies.sh
 
 # Or on Windows
-regenerate-lockfile.bat
+fix-dependencies.bat
 ```
 
-This will:
-1. Remove the outdated package-lock.json
-2. Regenerate it with proper dependency resolution using --legacy-peer-deps flag
-3. Fix version mismatches that cause CI/CD failures
-
-After running the script, commit the updated package-lock.json file.
+This approach provides the benefits of locked dependencies while working around peer dependency conflicts.
 
 ## 🛠️ Development Tools
 
