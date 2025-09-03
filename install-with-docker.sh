@@ -62,6 +62,10 @@ echo "✅ Repository cloned successfully"
 # Change to the cloned directory
 cd "$TEMP_DIR"
 
+# Set UID and GID for Docker container to match host user
+export UID=$(id -u)
+export GID=$(id -g)
+
 # Start all services with development configuration
 echo "🔄 Starting all services with development configuration..."
 echo "   This may take 2-3 minutes for the first time as Docker:"

@@ -26,7 +26,7 @@ services:
     command: >
       sh -c "
       echo '📦 Installing dependencies...' &&
-      npm install --legacy-peer-deps &&
+      npm install --legacy-peer-deps --no-package-lock &&
       echo '🏗️ Building application...' &&
       npm run build &&
       echo '🔄 Running database migrations...' &&
