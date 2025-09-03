@@ -26,6 +26,7 @@ help:
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
 	@echo "  update           - Update from GitHub and rebuild containers"
+	@echo "  fix-deps         - Regenerate package-lock.json to fix dependency conflicts"
 
 # Docker targets
 .PHONY: start
@@ -124,3 +125,7 @@ update:
 clean:
 	rm -rf dist
 	rm -rf coverage
+
+.PHONY: fix-deps
+fix-deps:
+	./regenerate-lockfile.sh

@@ -127,7 +127,7 @@ curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/ex
 ```
 
 #### 🐧 macOS/Linux
-```bash
+```
 curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh | sh
 ```
 
@@ -452,6 +452,26 @@ To set up CI/CD:
    - `DOCKER_PASSWORD` - Your Docker Hub password/token
 
 The CI/CD pipeline is defined in [.github/workflows/ci.yml](.github/workflows/ci.yml).
+
+### Fixing CI/CD Dependency Issues
+
+If you encounter dependency conflicts in CI/CD (such as "lock file's @nestjs/schedule@6.0.0 does not satisfy @nestjs/schedule@4.1.2"), 
+regenerate the package-lock.json file:
+
+```bash
+# Run the regeneration script
+./regenerate-lockfile.sh
+
+# Or on Windows
+regenerate-lockfile.bat
+```
+
+This will:
+1. Remove the outdated package-lock.json
+2. Regenerate it with proper dependency resolution using --legacy-peer-deps flag
+3. Fix version mismatches that cause CI/CD failures
+
+After running the script, commit the updated package-lock.json file.
 
 ## 🛠️ Development Tools
 
