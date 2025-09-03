@@ -7,7 +7,44 @@ A **production-ready backend system** for managing client projects, vendor match
 [![NestJS](https://img.shields.io/badge/NestJS-v10-red.svg)](https://nestjs.com/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://docs.docker.com/compose/)
 
-## 🌟 Key Features
+## 📖 Table of Contents
+
+- [🌟 Overview](#-overview)
+  - [Key Features](#key-features)
+  - [Smart Matching Algorithm](#smart-matching-algorithm)
+- [⚡ Quick Start](#-quick-start)
+  - [Simplest Setup](#simplest-setup)
+  - [Prerequisites](#prerequisites)
+- [⚙️ Installation](#️-installation)
+  - [Local Installation (Without Docker)](#local-installation-without-docker)
+  - [Docker Installation](#docker-installation)
+- [🔐 Configuration](#-configuration)
+  - [Environment Variables](#environment-variables)
+- [🚀 Running the Application](#-running-the-application)
+  - [With Docker (Recommended)](#with-docker-recommended)
+  - [Locally](#locally)
+- [📘 API Documentation](#-api-documentation)
+  - [Authentication](#authentication)
+- [📂 Project Structure](#-project-structure)
+- [🌱 Database](#-database)
+  - [Seeding](#seeding)
+  - [Test Data & Accounts](#test-data--accounts)
+- [🧪 Testing](#-testing)
+- [📦 Deployment](#-deployment)
+  - [Production Deployment](#production-deployment)
+  - [Docker Deployment](#docker-deployment)
+  - [Health Checks](#health-checks)
+- [📚 Documentation](#-documentation)
+- [🔄 CI/CD](#-cicd)
+- [🛠️ Development Tools](#️-development-tools)
+  - [Makefile Commands](#makefile-commands)
+- [🤝 Contributing](#-contributing)
+- [📜 License](#-license)
+- [🆘 Support](#-support)
+
+## 🌟 Overview
+
+### Key Features
 
 - **🔐 Authentication**: JWT-based authentication with role-based access control (client, admin)
 - **📋 Project Management**: Create and manage client projects with country and service requirements
@@ -18,11 +55,11 @@ A **production-ready backend system** for managing client projects, vendor match
 - **📧 Notifications**: Email notifications for high-score matches
 - **⏰ Scheduling**: Daily job to rebuild matches and check SLA violations
 
-## 🤖 Smart Matching Algorithm
+### Smart Matching Algorithm
 
 The Expansion Management System uses an intelligent matching algorithm to connect clients with suitable vendors based on project requirements. Here's how it works:
 
-### How Matching Works
+#### How Matching Works
 
 1. **Project Creation**: Clients create projects specifying required services and target countries
 2. **Vendor Database**: Vendors register their capabilities including offered services and serviceable countries
@@ -31,7 +68,7 @@ The Expansion Management System uses an intelligent matching algorithm to connec
    - **Country Overlap**: Projects and vendors must operate in the same countries
    - **Scoring System**: Each match is scored based on the percentage of service and country overlap
 
-### Matching Formula
+#### Matching Formula
 
 The matching score is calculated using the following formula:
 
@@ -43,7 +80,7 @@ Where:
 - **Service Match %** = (Number of matching services / Total project services) × 100
 - **Country Match %** = (Number of matching countries / Total project countries) × 100
 
-### Example
+#### Example
 
 A project requiring:
 - Services: Web Development, Mobile App Development
@@ -58,14 +95,14 @@ Matching calculation:
 - Country Match % = (2 matching countries / 2 project countries) × 100 = 100%
 - Final Score = (100% + 100%) / 2 = 100%
 
-### High-Score Notifications
+#### High-Score Notifications
 
 When a match scores above a certain threshold (configurable), the system:
 1. Automatically notifies the client via email
 2. Provides details about the matched vendor
 3. Includes the match score and overlapping services/countries
 
-### Daily Rebuilding
+#### Daily Rebuilding
 
 The matching system runs daily to:
 - Rebuild all matches for existing projects
@@ -73,38 +110,23 @@ The matching system runs daily to:
 - Update matches when project or vendor details change
 - Check for SLA violations (projects without sufficient matches)
 
-## 📖 Table of Contents
+## ⚡ Quick Start
 
-- [✨ Simplest Setup](#-simplest-setup)
-- [📋 Prerequisites](#-prerequisites)
-- [⚙️ Installation](#️-installation)
-- [🔑 Environment Variables](#-environment-variables)
-- [🚀 Running the Application](#-running-the-application)
-- [📘 API Documentation](#-api-documentation)
-- [📂 Project Structure](#-project-structure)
-- [🌱 Database Seeding](#-database-seeding)
-- [🧪 Testing](#-testing)
-- [📦 Deployment](#-deployment)
-- [📚 Documentation](#-documentation)
-- [🔄 CI/CD](#-cicd)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
-
-## ✨ Simplest Setup
+### Simplest Setup
 
 Get started in seconds with our one-command setup:
 
-### 🪟 Windows (PowerShell)
+#### 🪟 Windows (PowerShell)
 ```powershell
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat; .\install-with-docker.bat
 ```
 
-### 🪟 Windows (CMD)
+#### 🪟 Windows (CMD)
 ```cmd
 curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
 ```
 
-### 🐧 macOS/Linux
+#### 🐧 macOS/Linux
 ```bash
 curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh | sh
 ```
@@ -118,12 +140,12 @@ That's it! The system will automatically:
 
 🎯 **Access at: http://localhost:3000**
 
-## 📋 Prerequisites
+### Prerequisites
 
-### For Docker Installation (Recommended)
+#### For Docker Installation (Recommended)
 - **Docker** and **Docker Compose**
 
-### For Local Installation
+#### For Local Installation
 - **Node.js** (v18 or higher)
 - **npm**
 - **MySQL** server
@@ -165,7 +187,9 @@ curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/ex
 curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh | sh
 ```
 
-## 🔑 Environment Variables
+## 🔐 Configuration
+
+### Environment Variables
 
 The following environment variables are required:
 
@@ -187,9 +211,7 @@ For a complete list of environment variables, see [.env.example](.env.example).
 
 ## 🚀 Running the Application
 
-The application can be run in different modes depending on your needs:
-
-### 🐳 With Docker (Recommended)
+### With Docker (Recommended)
 
 ```bash
 # Start all services in development mode
@@ -205,7 +227,7 @@ docker compose -f docker-compose.dev.yml logs -f
 docker compose -f docker-compose.dev.yml down
 ```
 
-### 💻 Locally
+### Locally
 
 1. Start the databases:
 ```bash
@@ -229,7 +251,7 @@ npm run start:prod
 - **OpenAPI JSON**: `http://localhost:3000/docs/openapi.json`
 - **Postman Collection**: Available in `docs/postman_collection.json`
 
-### 🔐 Authentication
+### Authentication
 
 Most endpoints require authentication. To authenticate:
 
@@ -261,7 +283,9 @@ src/
 └── common/        # Shared utilities, DTOs, guards
 ```
 
-## 🌱 Database Seeding
+## 🌱 Database
+
+### Seeding
 
 To seed the database with sample data:
 
@@ -273,7 +297,7 @@ npm run seed:run
 npm run migrate-fresh-seed
 ```
 
-### 🧪 Test Data & Accounts
+### Test Data & Accounts
 
 After seeding, the following test data will be available:
 
@@ -345,7 +369,7 @@ npm run lint
 
 ## 📦 Deployment
 
-### 🏭 Production Deployment
+### Production Deployment
 
 1. Set up your production environment variables in `.env`
 2. Build the application:
@@ -358,7 +382,7 @@ npm run build
 npm run start:prod
 ```
 
-### 🐳 Docker Deployment
+### Docker Deployment
 
 The system supports multiple Docker deployment approaches:
 
@@ -380,7 +404,7 @@ For production deployment, the system uses a multi-stage Dockerfile to create op
 docker compose up -d
 ```
 
-### 🩺 Health Checks
+### Health Checks
 
 The application provides health check endpoints:
 - Application health: `GET /health`
@@ -411,7 +435,9 @@ To set up CI/CD:
 
 The CI/CD pipeline is defined in [.github/workflows/ci.yml](.github/workflows/ci.yml).
 
-## 🛠️ Makefile Commands
+## 🛠️ Development Tools
+
+### Makefile Commands
 
 The project includes a Makefile with common commands:
 
