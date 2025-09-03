@@ -18,16 +18,68 @@ A **production-ready backend system** for managing client projects, vendor match
 - **📧 Notifications**: Email notifications for high-score matches
 - **⏰ Scheduling**: Daily job to rebuild matches and check SLA violations
 
+## 🤖 Smart Matching Algorithm
+
+The Expansion Management System uses an intelligent matching algorithm to connect clients with suitable vendors based on project requirements. Here's how it works:
+
+### How Matching Works
+
+1. **Project Creation**: Clients create projects specifying required services and target countries
+2. **Vendor Database**: Vendors register their capabilities including offered services and serviceable countries
+3. **Automated Matching**: The system automatically matches projects with vendors based on:
+   - **Service Overlap**: Projects and vendors must have matching service capabilities
+   - **Country Overlap**: Projects and vendors must operate in the same countries
+   - **Scoring System**: Each match is scored based on the percentage of service and country overlap
+
+### Matching Formula
+
+The matching score is calculated using the following formula:
+
+```
+Match Score = (Service Match % + Country Match %) / 2
+```
+
+Where:
+- **Service Match %** = (Number of matching services / Total project services) × 100
+- **Country Match %** = (Number of matching countries / Total project countries) × 100
+
+### Example
+
+A project requiring:
+- Services: Web Development, Mobile App Development
+- Countries: USA, Canada
+
+A vendor offering:
+- Services: Web Development, UI/UX Design, Mobile App Development
+- Countries: USA, UK, Canada
+
+Matching calculation:
+- Service Match % = (2 matching services / 2 project services) × 100 = 100%
+- Country Match % = (2 matching countries / 2 project countries) × 100 = 100%
+- Final Score = (100% + 100%) / 2 = 100%
+
+### High-Score Notifications
+
+When a match scores above a certain threshold (configurable), the system:
+1. Automatically notifies the client via email
+2. Provides details about the matched vendor
+3. Includes the match score and overlapping services/countries
+
+### Daily Rebuilding
+
+The matching system runs daily to:
+- Rebuild all matches for existing projects
+- Incorporate newly added vendors
+- Update matches when project or vendor details change
+- Check for SLA violations (projects without sufficient matches)
+
 ## 📖 Table of Contents
 
 - [✨ Simplest Setup](#-simplest-setup)
 - [📋 Prerequisites](#-prerequisites)
-- [⚡ Quick Start](#-quick-start)
 - [⚙️ Installation](#️-installation)
 - [🔑 Environment Variables](#-environment-variables)
 - [🚀 Running the Application](#-running-the-application)
-  - [🐳 With Docker](#-with-docker)
-  - [💻 Locally](#-locally)
 - [📘 API Documentation](#-api-documentation)
 - [📂 Project Structure](#-project-structure)
 - [🌱 Database Seeding](#-database-seeding)
@@ -42,58 +94,19 @@ A **production-ready backend system** for managing client projects, vendor match
 
 Get started in seconds with our one-command setup:
 
-### 🪟 Windows
-```
-# Download and run the Docker installation script
-curl -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat
-.\install-with-docker.bat
+### 🪟 Windows (PowerShell)
+```powershell
+curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat; .\install-with-docker.bat
 ```
 
-### 🐧 macOS
+### 🪟 Windows (CMD)
+```cmd
+curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
+```
+
+### 🐧 macOS/Linux
 ```bash
-# Download and run the Docker installation script
-curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
-chmod +x install-with-docker.sh
-./install-with-docker.sh
-```
-
-### 🐧 Linux (Ubuntu/Debian)
-```bash
-# Install Docker and Docker Compose if not already installed
-sudo apt update
-sudo apt install docker.io docker-compose
-
-# Add current user to docker group
-sudo usermod -aG docker $USER
-# Log out and back in for this to take effect
-
-# Download and run the Docker installation script
-curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
-chmod +x install-with-docker.sh
-./install-with-docker.sh
-```
-
-### 🐧 Linux (CentOS/RHEL/Fedora)
-```
-# Install Docker and Docker Compose if not already installed
-# CentOS/RHEL
-sudo yum install docker docker-compose
-
-# Fedora
-sudo dnf install docker docker-compose
-
-# Start and enable Docker service
-sudo systemctl start docker
-sudo systemctl enable docker
-
-# Add current user to docker group
-sudo usermod -aG docker $USER
-# Log out and back in for this to take effect
-
-# Download and run the Docker installation script
-curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
-chmod +x install-with-docker.sh
-./install-with-docker.sh
+curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh | sh
 ```
 
 That's it! The system will automatically:
@@ -116,53 +129,41 @@ That's it! The system will automatically:
 - **MySQL** server
 - **MongoDB** server
 
-## ⚡ Quick Start
-
-### With Docker (Recommended)
-```bash
-# Option 1: Use the installation script
-# Windows:
-.\install-with-docker.bat
-
-# macOS/Linux:
-./install-with-docker.sh
-
-# Option 2: Manual Docker setup
-docker-compose up -d
-
-# The API will be available at http://localhost:3000
-```
-
-### Without Docker (Local Installation)
-```bash
-# Option 1: Use the installation script
-# Windows:
-.\install-local.bat
-
-# macOS/Linux:
-./install-local.sh
-
-# Option 2: Manual local setup
-npm install --legacy-peer-deps
-npm run build
-# Set up databases manually (see instructions in scripts)
-npm run start:prod
-```
-
 ## ⚙️ Installation
 
-### Docker Installation (Recommended)
-1. Make sure Docker and Docker Compose are installed
-2. Run the installation script:
-   - **Windows**: `.\install-with-docker.bat`
-   - **macOS/Linux**: `./install-with-docker.sh`
-
 ### Local Installation (Without Docker)
-1. Install prerequisites (Node.js, MySQL, MongoDB)
-2. Run the installation script:
-   - **Windows**: `.\install-local.bat`
-   - **macOS/Linux**: `./install-local.sh`
-3. Follow the database setup instructions provided by the script
+
+#### 🪟 Windows (PowerShell)
+```powershell
+curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-local.bat; .\install-local.bat
+```
+
+#### 🪟 Windows (CMD)
+```cmd
+curl -s -o install-local.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-local.bat && .\install-local.bat
+```
+
+#### 🐧 macOS/Linux
+```bash
+curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-local.sh | sh
+```
+
+### Docker Installation
+
+#### 🪟 Windows (PowerShell)
+```powershell
+curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat; .\install-with-docker.bat
+```
+
+#### 🪟 Windows (CMD)
+```cmd
+curl -s -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.bat && .\install-with-docker.bat
+```
+
+#### 🐧 macOS/Linux
+```bash
+curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh | sh
+```
 
 ## 🔑 Environment Variables
 
@@ -186,17 +187,22 @@ For a complete list of environment variables, see [.env.example](.env.example).
 
 ## 🚀 Running the Application
 
+The application can be run in different modes depending on your needs:
+
 ### 🐳 With Docker (Recommended)
 
 ```bash
-# Start all services
-docker-compose up -d
+# Start all services in development mode
+docker compose -f docker-compose.dev.yml up -d
+
+# Start all services in production mode
+docker compose up -d
 
 # View logs
-docker-compose logs -f
+docker compose -f docker-compose.dev.yml logs -f
 
 # Stop services
-docker-compose down
+docker compose -f docker-compose.dev.yml down
 ```
 
 ### 💻 Locally
@@ -323,7 +329,7 @@ Role: admin
 
 ## 🧪 Testing
 
-```
+```bash
 # Run unit tests
 npm run test
 
@@ -361,36 +367,17 @@ This approach mounts your local source code into the container, allowing for liv
 
 ```bash
 # Build and start all services with volume mounting for development
-docker-compose up -d
+docker compose -f docker-compose.dev.yml up -d
 
 # Changes to your source code will be reflected immediately
 ```
 
-#### Production Mode (Pre-built Images)
-For production deployment, you can use pre-built images:
+#### Production Mode
+For production deployment, the system uses a multi-stage Dockerfile to create optimized images:
 
 ```bash
-# Start all services using pre-built images
-docker-compose -f docker-compose.prod.yml up -d
-
-# Scale the API service (optional)
-docker-compose -f docker-compose.prod.yml up -d --scale api=3
-```
-
-#### Building from Source
-If you prefer to build the images from source:
-
-```bash
-# Build and start all services from source
-docker-compose -f docker-compose.full-install.yml up -d
-```
-
-#### Development with Hot Reloading
-For active development with hot reloading:
-
-```bash
-# Start in development mode with volume mounting
-docker-compose -f docker-compose.dev.yml up -d
+# Start all services using the production configuration
+docker compose up -d
 ```
 
 ### 🩺 Health Checks
@@ -428,15 +415,15 @@ The CI/CD pipeline is defined in [.github/workflows/ci.yml](.github/workflows/ci
 
 The project includes a Makefile with common commands:
 
-``bash
+```bash
 # Build the application (requires source code)
 make build
 
-# Start all services (using pre-built images)
+# Start all services in development mode
 make start
 
-# Start in development mode (requires source code)
-make start-dev
+# Start all services in production mode
+make start-prod
 
 # Run unit tests (requires source code)
 make test

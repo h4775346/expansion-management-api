@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
     ports:
       - "3000:3000"
     environment:
@@ -16,7 +15,7 @@ services:
       - MYSQL_PASSWORD=password
       - MONGO_URI=mongodb://mongo:27017/expansion_management
       - JWT_SECRET=your_jwt_secret_key
-      - NODE_ENV=production
+      - NODE_ENV=development
     volumes:
       - .:/app
       - /app/node_modules
@@ -25,15 +24,19 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
-    # Run migrations and seed data after the container starts
+    # Build, run migrations and seed data after the container starts
     command: >
       sh -c "
+      echo '📦 Installing dependencies...' &&
+      npm install --legacy-peer-deps &&
+      echo '🏗️ Building application...' &&
+      npm run build &&
       echo '🔄 Running database migrations...' &&
       npm run migration:run &&
       echo '🌱 Seeding database with test data...' &&
       npm run seed:run &&
       echo '🚀 Starting application...' &&
-      node dist/main
+      npm run start:dev
       "
 
   mysql:

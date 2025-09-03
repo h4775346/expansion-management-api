@@ -1,53 +1,57 @@
 @echo off
-REM Script to update Docker containers with latest GitHub changes
+title Update Expansion Management System from GitHub
 
 echo 🔄 Updating Expansion Management System from GitHub...
+echo.
 
-REM Check if running in the correct directory
-if not exist "docker-compose.yml" (
-    echo ❌ Error: docker-compose.yml not found. Please run this script from the project root directory.
+REM Check if Git is installed
+git --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Git is not installed.
+    echo Please install Git and try again.
+    echo.
+    pause
     exit /b 1
 )
 
-REM Stash any local changes
-echo 📦 Stashing local changes (if any)...
-git stash push -m "Auto-stash before update %date% %time%"
+REM Check if Docker is installed
+docker --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Docker is not installed.
+    echo Please install Docker and try again.
+    echo.
+    pause
+    exit /b 1
+)
+
+REM Check if Docker Compose is installed
+docker-compose --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Docker Compose is not installed.
+    echo Please install Docker Compose and try again.
+    echo.
+    pause
+    exit /b 1
+)
+
+echo ✅ Docker Compose is installed:
+docker-compose --version
+echo.
 
 REM Pull latest changes from GitHub
 echo 📥 Pulling latest changes from GitHub...
 git pull origin main
 
-REM Determine which docker-compose file to use
-if exist "docker-compose.full-install.yml" (
-    set COMPOSE_FILE=docker-compose.full-install.yml
-    echo 🔧 Using %COMPOSE_FILE% for update...
-) else (
-    set COMPOSE_FILE=docker-compose.yml
-    echo 🔧 Using %COMPOSE_FILE% for update...
-)
+REM Rebuild and restart services with development configuration
+echo 🏗️ Rebuilding and restarting services...
+docker-compose -f docker-compose.dev.yml up -d --build
 
-REM Stop current containers
-echo ⏹️ Stopping current containers...
-docker-compose -f %COMPOSE_FILE% down
-
-REM Pull latest images
-echo 📥 Pulling latest Docker images...
-docker-compose -f %COMPOSE_FILE% pull
-
-REM Rebuild containers (in case Dockerfile changed)
-echo 🏗️ Rebuilding containers...
-docker-compose -f %COMPOSE_FILE% build --no-cache
-
-REM Start containers
-echo 🚀 Starting updated containers...
-docker-compose -f %COMPOSE_FILE% up -d
-
-REM Run database migrations if needed
-echo 📋 Running database migrations...
-docker-compose -f %COMPOSE_FILE% exec api npm run typeorm migration:run
-
+echo.
 echo ✅ Update completed successfully!
-echo 🌐 Application available at http://localhost:3000
-echo 📚 API Documentation at http://localhost:3000/docs
-
+echo Your Expansion Management System is now running the latest version.
+echo.
+echo 📋 Access your application at:
+echo    🔗 API: http://localhost:3000
+echo    📚 Docs: http://localhost:3000/docs
+echo.
 pause

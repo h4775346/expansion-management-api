@@ -34,9 +34,9 @@ else
     exit 1
 fi
 
-# Start all services
-echo "🔄 Starting all services..."
-$DOCKER_COMPOSE_CMD up -d
+# Start all services with development configuration
+echo "🔄 Starting all services with development configuration..."
+$DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d
 
 echo
 echo "🎉 Installation completed successfully!"
@@ -54,5 +54,5 @@ echo "👤 Test Accounts:"
 echo "   👨‍💼 Admin: admin@example.com / admin123"
 echo "   👥 Client: englishh7366@gmail.com / password123"
 echo
-echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD down"
+echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD -f docker-compose.dev.yml down"
 echo

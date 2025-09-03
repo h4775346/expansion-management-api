@@ -1,11 +1,7 @@
 # Makefile for Expansion Management System
 
-# Detect Docker Compose version
-ifeq ($(shell command -v docker-compose 2> /dev/null),)
-    DOCKER_COMPOSE = docker compose
-else
-    DOCKER_COMPOSE = docker-compose
-endif
+# Use docker compose (V2) instead of docker-compose
+DOCKER_COMPOSE = docker compose
 
 # Variables
 NPM = npm
@@ -14,7 +10,8 @@ NPM = npm
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  start            - Start all services with Docker"
+	@echo "  start            - Start all services with Docker (development mode)"
+	@echo "  start-prod       - Start all services with Docker (production mode)"
 	@echo "  start-local      - Start in development mode locally (requires Node.js)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
@@ -27,23 +24,32 @@ help:
 	@echo "  seed             - Run seed scripts"
 	@echo "  docs             - Generate documentation"
 	@echo "  clean            - Clean build artifacts"
+	@echo "  update           - Update from GitHub and rebuild containers"
 
 # Docker targets
 .PHONY: start
 start:
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml up -d
+
+.PHONY: start-prod
+start-prod:
 	$(DOCKER_COMPOSE) up -d
 
 .PHONY: stop
 stop:
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml down
+
+.PHONY: stop-prod
+stop-prod:
 	$(DOCKER_COMPOSE) down
 
 .PHONY: status
 status:
-	$(DOCKER_COMPOSE) ps
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml ps
 
 .PHONY: logs
 logs:
-	$(DOCKER_COMPOSE) logs -f
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml logs -f
 
 # Development targets
 .PHONY: start-local
@@ -102,6 +108,11 @@ docs:
 .PHONY: build
 build:
 	$(NPM) run build
+
+# Update target
+.PHONY: update
+update:
+	./update-from-github.sh
 
 # Clean targets
 .PHONY: clean

@@ -15,6 +15,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Get Node.js version
 for /f "tokens=*" %%i in ('node --version') do set NODE_VERSION=%%i
 echo ✅ Node.js is installed: %NODE_VERSION%
 
@@ -29,6 +30,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Get npm version
 for /f "tokens=*" %%i in ('npm --version') do set NPM_VERSION=%%i
 echo ✅ npm is installed: %NPM_VERSION%
 
