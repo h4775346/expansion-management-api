@@ -136,7 +136,6 @@ describe('ResearchService', () => {
       const query = { page: 1, limit: 10 };
       
       const userProjects = [{ id: 1 }, { id: 2 }];
-      const projectIds = ['1', '2'];
       
       const researchDocs = [{
         _id: '1',
@@ -188,4 +187,4 @@ describe('ResearchService', () => {
       });
     });
   });
-};
+});

@@ -116,13 +116,6 @@ export class MatchesService {
       savedMatches.push(savedMatch);
     }
     
-    // Send notifications for high-score matches
-    for (const match of savedMatches) {
-      // For rebuild, we want to send notifications for all matches (not just new ones)
-      // The upsert method will handle whether to send notifications based on score
-      // We don't need to send additional notifications here
-    }
-    
     return savedMatches;
   }
 
@@ -135,7 +128,7 @@ export class MatchesService {
     if (match) {
       // Update existing match
       match.score = score;
-      match = await this.matchesRepository.save(match);
+      await this.matchesRepository.save(match);
     } else {
       // Create new match
       match = this.matchesRepository.create({
@@ -143,7 +136,7 @@ export class MatchesService {
         vendor_id: vendorId,
         score,
       });
-      match = await this.matchesRepository.save(match);
+      await this.matchesRepository.save(match);
     }
     
     // Send notification for high-score matches
