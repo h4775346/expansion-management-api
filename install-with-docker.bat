@@ -71,15 +71,25 @@ cd %TEMP_DIR%
 
 REM Start all services with development configuration
 echo 🔄 Starting all services with development configuration...
-docker-compose -f docker-compose.dev.yml up -d
-
-echo.
-echo 🎉 Installation completed successfully!
-echo.
-echo ⏳ This may take 2-3 minutes for the first time as Docker:
+echo    This may take 2-3 minutes for the first time as Docker:
 echo    - Builds the application image
 echo    - Sets up databases
 echo    - Runs migrations and seeding
+echo.
+
+docker-compose -f docker-compose.dev.yml up -d
+
+REM Check if services started successfully
+if %errorlevel% equ 0 (
+    echo ✅ Services started successfully!
+) else (
+    echo ❌ Failed to start services. Check the output above for details.
+    pause
+    exit /b 1
+)
+
+echo.
+echo 🎉 Installation completed successfully!
 echo.
 echo 📋 Once running, access your application at:
 echo    🔗 API: http://localhost:3000

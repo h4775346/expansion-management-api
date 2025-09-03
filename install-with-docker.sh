@@ -64,25 +64,34 @@ cd "$TEMP_DIR"
 
 # Start all services with development configuration
 echo "🔄 Starting all services with development configuration..."
-$DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d
-
-echo
-echo "🎉 Installation completed successfully!"
-echo
-echo "⏳ This may take 2-3 minutes for the first time as Docker:"
+echo "   This may take 2-3 minutes for the first time as Docker:"
 echo "   - Builds the application image"
 echo "   - Sets up databases"
 echo "   - Runs migrations and seeding"
-echo
+echo ""
+
+$DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d
+
+# Check if services started successfully
+if [ $? -eq 0 ]; then
+    echo "✅ Services started successfully!"
+else
+    echo "❌ Failed to start services. Check the output above for details."
+    exit 1
+fi
+
+echo ""
+echo "🎉 Installation completed successfully!"
+echo ""
 echo "📋 Once running, access your application at:"
 echo "   🔗 API: http://localhost:3000"
 echo "   📚 Docs: http://localhost:3000/docs"
-echo
+echo ""
 echo "👤 Test Accounts:"
 echo "   👨‍💼 Admin: admin@example.com / admin123"
 echo "   👥 Client: englishh7366@gmail.com / password123"
-echo
+echo ""
 echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD -f docker-compose.dev.yml down"
-echo
+echo ""
 echo "📁 The application is installed in: $(pwd)"
-echo
+echo ""
