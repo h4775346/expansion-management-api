@@ -19,7 +19,7 @@ export class MatchingController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden. Admin access required.' })
   @ApiResponse({ status: 404, description: 'Project not found.' })
-  async rebuildMatches(@Param('id', ParseIntPipe) id: number, @Request() req) {
+  async rebuildMatches(@Param('id', ParseIntPipe) id: number) {
     return this.matchingService.rebuildMatches(id);
   }
 }

@@ -188,4 +188,4 @@ describe('ResearchService', () => {
       });
     });
   });
-});
+};

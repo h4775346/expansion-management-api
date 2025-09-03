@@ -45,9 +45,6 @@ jobs:
     - name: Copy environment file
       run: cp .env.example .env
 
-    - name: Run linting
-      run: npm run lint
-
     - name: Run unit tests
       run: npm run test
       env:

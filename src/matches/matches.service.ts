@@ -132,8 +132,6 @@ export class MatchesService {
       where: { project_id: projectId, vendor_id: vendorId },
     });
     
-    const isNewMatch = !match;
-    
     if (match) {
       // Update existing match
       match.score = score;

@@ -6,7 +6,7 @@ import { VendorService } from '../../../vendors/entities/vendor-service.entity';
 import { VendorCountry } from '../../../vendors/entities/vendor-country.entity';
 import { Project } from '../../../projects/entities/project.entity';
 import { ProjectService } from '../../../projects/entities/project-service.entity';
-import { ResearchService } from '../../../research/research.service';
+
 import * as bcrypt from 'bcrypt';
 
 async function seedDatabase() {
