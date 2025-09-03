@@ -2,7 +2,7 @@
 /dist
 /node_modules
 /build
-
+PROJECT_DETAILS.md
 # Logs
 logs
 *.log
