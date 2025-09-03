@@ -49,8 +49,47 @@ curl -o install-with-docker.bat https://raw.githubusercontent.com/h4775346/expan
 .\install-with-docker.bat
 ```
 
-### 🐧 macOS/Linux
+### 🐧 macOS
 ```bash
+# Download and run the Docker installation script
+curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
+chmod +x install-with-docker.sh
+./install-with-docker.sh
+```
+
+### 🐧 Linux (Ubuntu/Debian)
+```bash
+# Install Docker and Docker Compose if not already installed
+sudo apt update
+sudo apt install docker.io docker-compose
+
+# Add current user to docker group
+sudo usermod -aG docker $USER
+# Log out and back in for this to take effect
+
+# Download and run the Docker installation script
+curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
+chmod +x install-with-docker.sh
+./install-with-docker.sh
+```
+
+### 🐧 Linux (CentOS/RHEL/Fedora)
+```
+# Install Docker and Docker Compose if not already installed
+# CentOS/RHEL
+sudo yum install docker docker-compose
+
+# Fedora
+sudo dnf install docker docker-compose
+
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Add current user to docker group
+sudo usermod -aG docker $USER
+# Log out and back in for this to take effect
+
 # Download and run the Docker installation script
 curl -o install-with-docker.sh https://raw.githubusercontent.com/h4775346/expansion-management-api/master/install-with-docker.sh
 chmod +x install-with-docker.sh
