@@ -8,7 +8,7 @@ echo Checking for Node.js...
 node --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo ❌ Node.js is not installed.
-    echo Please install Node.js (version 18 or higher) and try again.
+    echo Please install Node.js (version 20 or higher) and try again.
     echo Visit: https://nodejs.org/
     echo.
     pause

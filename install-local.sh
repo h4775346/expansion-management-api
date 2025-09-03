@@ -13,7 +13,7 @@ command_exists() {
 # Check if Node.js is installed
 if ! command_exists node; then
     echo "❌ Node.js is not installed."
-    echo "Please install Node.js (version 18 or higher) and try again."
+    echo "Please install Node.js (version 20 or higher) and try again."
     echo "Visit: https://nodejs.org/"
     exit 1
 fi

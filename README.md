@@ -148,7 +148,7 @@ That's it! The system will automatically:
 - **Git** (to clone the repository)
 
 #### For Local Installation
-- **Node.js** (v18 or higher)
+- **Node.js** (v20 or higher)
 - **npm**
 - **MySQL** server
 - **MongoDB** server
