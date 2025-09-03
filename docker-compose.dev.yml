@@ -23,23 +23,8 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
-    # Build, run migrations and seed data after the container starts
-    command: >
-      sh -c "
-      echo '🔧 Setting permissions...' &&
-      mkdir -p /app/dist &&
-      chmod -R 777 /app &&
-      echo '📦 Installing dependencies...' &&
-      npm install --legacy-peer-deps --no-package-lock &&
-      echo '🏗️ Building application...' &&
-      npm run build &&
-      echo '🔄 Running database migrations...' &&
-      npm run migration:run &&
-      echo '🌱 Seeding database with test data...' &&
-      npm run seed:run &&
-      echo '🚀 Starting application...' &&
-      npm run start:dev
-      "
+    # Simplified command to avoid looping
+    command: npm run start:dev
 
   mysql:
     image: mysql:8.0
