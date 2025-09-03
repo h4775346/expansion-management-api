@@ -132,7 +132,7 @@ curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/mast
 ```
 
 That's it! The system will automatically:
-- 📦 Download required configuration files
+- 📦 Clone the repository with all source code
 - 🏗️ Build and start all services with Docker
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
@@ -145,6 +145,7 @@ That's it! The system will automatically:
 
 #### For Docker Installation (Recommended)
 - **Docker** and **Docker Compose**
+- **Git** (to clone the repository)
 
 #### For Local Installation
 - **Node.js** (v18 or higher)

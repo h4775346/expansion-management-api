@@ -34,34 +34,31 @@ else
     exit 1
 fi
 
-# Download required Docker Compose files if they don't exist
-echo "📥 Downloading required configuration files..."
-
-# Check if we're running from the repository directory or a temporary location
-if [ -f "docker-compose.dev.yml" ] && [ -f "docker-compose.yml" ]; then
-    echo "✅ Docker Compose files already exist locally"
+# Check if Git is installed (needed for cloning the repository)
+if command_exists git; then
+    echo "✅ Git is installed"
 else
-    echo "📥 Downloading Docker Compose files from repository..."
-    if command_exists curl; then
-        curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml
-        curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
-        curl -s -O https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile
-    elif command_exists wget; then
-        wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml
-        wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml
-        wget -q https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile
-    else
-        echo "❌ Neither curl nor wget is available to download required files."
+    echo "❌ Git is not installed."
+    echo "Git is required to download the source code."
+    echo "Please install Git and try again."
+    echo "Visit: https://git-scm.com/downloads"
+    exit 1
+fi
+
+# Clone the repository if not already in the correct directory
+if [ ! -f "package.json" ] || [ ! -d ".git" ]; then
+    echo "📥 Cloning the Expansion Management System repository..."
+    git clone https://github.com/h4775346/expansion-management-api.git .
+    
+    # Verify clone was successful
+    if [ ! -f "package.json" ]; then
+        echo "❌ Failed to clone the repository or locate package.json"
         exit 1
     fi
     
-    # Verify files were downloaded
-    if [ ! -f "docker-compose.dev.yml" ] || [ ! -f "docker-compose.yml" ] || [ ! -f "Dockerfile" ]; then
-        echo "❌ Failed to download required configuration files."
-        exit 1
-    fi
-    
-    echo "✅ Docker Compose files downloaded successfully"
+    echo "✅ Repository cloned successfully"
+else
+    echo "✅ Already in the Expansion Management System repository"
 fi
 
 # Start all services with development configuration

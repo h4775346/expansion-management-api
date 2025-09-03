@@ -34,36 +34,38 @@ echo ✅ Docker Compose is installed:
 docker-compose --version
 echo.
 
-REM Download required Docker Compose files if they don't exist
-echo 📥 Downloading required configuration files...
+REM Check if Git is installed (needed for cloning the repository)
+git --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ❌ Git is not installed.
+    echo Git is required to download the source code.
+    echo Please install Git and try again.
+    echo Visit: https://git-scm.com/downloads
+    echo.
+    pause
+    exit /b 1
+)
 
-REM Check if we're running from the repository directory or a temporary location
-if exist "docker-compose.dev.yml" if exist "docker-compose.yml" if exist "Dockerfile" (
-    echo ✅ Docker Compose files already exist locally
+echo ✅ Git is installed
+echo.
+
+REM Clone the repository if not already in the correct directory
+if not exist "package.json" (
+    echo 📥 Cloning the Expansion Management System repository...
+    git clone https://github.com/h4775346/expansion-management-api.git temp_clone
+    xcopy /E /Y temp_clone\* .\
+    rmdir /S /Q temp_clone
+    
+    REM Verify clone was successful
+    if not exist "package.json" (
+        echo ❌ Failed to clone the repository or locate package.json
+        pause
+        exit /b 1
+    )
+    
+    echo ✅ Repository cloned successfully
 ) else (
-    echo 📥 Downloading Docker Compose files from repository...
-    powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml' -OutFile 'docker-compose.dev.yml'"
-    powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml' -OutFile 'docker-compose.yml'"
-    powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile' -OutFile 'Dockerfile'"
-    
-    REM Verify files were downloaded
-    if not exist "docker-compose.dev.yml" (
-        echo ❌ Failed to download docker-compose.dev.yml
-        pause
-        exit /b 1
-    )
-    if not exist "docker-compose.yml" (
-        echo ❌ Failed to download docker-compose.yml
-        pause
-        exit /b 1
-    )
-    if not exist "Dockerfile" (
-        echo ❌ Failed to download Dockerfile
-        pause
-        exit /b 1
-    )
-    
-    echo ✅ Docker Compose files downloaded successfully
+    echo ✅ Already in the Expansion Management System repository
 )
 
 REM Start all services with development configuration

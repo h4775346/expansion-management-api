@@ -38,15 +38,9 @@ echo ✅ Docker Compose is installed:
 docker-compose --version
 echo.
 
-REM Pull latest changes from GitHub
-echo 📥 Pulling latest changes from GitHub...
-git pull origin main
-
-REM Download required Docker Compose files to ensure they're up to date
-echo 📥 Updating Docker Compose files from repository...
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.dev.yml' -OutFile 'docker-compose.dev.yml'"
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/docker-compose.yml' -OutFile 'docker-compose.yml'"
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/h4775346/expansion-management-api/master/Dockerfile' -OutFile 'Dockerfile'"
+REM Pull latest changes from GitHub (master branch)
+echo 📥 Pulling latest changes from GitHub (master branch)...
+git pull origin master
 
 REM Rebuild and restart services with development configuration
 echo 🏗️ Rebuilding and restarting services...

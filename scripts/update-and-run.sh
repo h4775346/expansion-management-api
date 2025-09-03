@@ -8,13 +8,13 @@ update_code() {
     echo "Checking for updates..."
     git fetch origin
     LOCAL=$(git rev-parse HEAD)
-    REMOTE=$(git rev-parse origin/main)
+    REMOTE=$(git rev-parse origin/master)
     
     if [ $LOCAL = $REMOTE ]; then
         echo "Code is up to date"
     else
         echo "Updating code..."
-        git pull origin main
+        git pull origin master
         
         # Reinstall dependencies if package.json changed
         if [ -f package.json ]; then
