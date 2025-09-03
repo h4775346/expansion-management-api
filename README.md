@@ -222,6 +222,9 @@ docker compose -f docker-compose.dev.yml up -d
 # Start all services in production mode
 docker compose up -d
 
+# Start all services with automatic database setup (migrations + seeding)
+docker compose -f docker-compose.full-install.yml up -d
+
 # View logs
 docker compose -f docker-compose.dev.yml logs -f
 
@@ -396,6 +399,19 @@ This approach mounts your local source code into the container, allowing for liv
 docker compose -f docker-compose.dev.yml up -d
 
 # Changes to your source code will be reflected immediately
+```
+
+#### Full Installation Mode (Recommended for First-Time Setup)
+This approach automatically handles database setup including migrations and seeding:
+
+```bash
+# Build and start all services with automatic database setup
+docker compose -f docker-compose.full-install.yml up -d
+
+# The system will automatically:
+# 1. Run database migrations
+# 2. Seed the database with sample data
+# 3. Start the application
 ```
 
 #### Production Mode

@@ -66,15 +66,15 @@ cd "$TEMP_DIR"
 export UID=$(id -u)
 export GID=$(id -g)
 
-# Start all services with development configuration
-echo "🔄 Starting all services with development configuration..."
+# Start all services with the full installation configuration
+echo "🔄 Starting all services with full installation configuration..."
 echo "   This may take 2-3 minutes for the first time as Docker:"
 echo "   - Builds the application image"
 echo "   - Sets up databases"
 echo "   - Runs migrations and seeding"
 echo ""
 
-$DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d
+$DOCKER_COMPOSE_CMD -f docker-compose.full-install.yml up -d
 
 # Check if services started successfully
 if [ $? -eq 0 ]; then

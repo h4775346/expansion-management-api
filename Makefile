@@ -12,6 +12,7 @@ help:
 	@echo "Available targets:"
 	@echo "  start            - Start all services with Docker (development mode)"
 	@echo "  start-prod       - Start all services with Docker (production mode)"
+	@echo "  start-full       - Start all services with Docker (full installation with auto-seeding)"
 	@echo "  start-local      - Start in development mode locally (requires Node.js)"
 	@echo "  stop             - Stop all services"
 	@echo "  test             - Run unit tests"
@@ -30,6 +31,10 @@ help:
 .PHONY: start
 start:
 	$(DOCKER_COMPOSE) -f docker-compose.dev.yml up -d
+
+.PHONY: start-full
+start-full:
+	$(DOCKER_COMPOSE) -f docker-compose.full-install.yml up -d
 
 .PHONY: start-prod
 start-prod:
