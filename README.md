@@ -423,17 +423,23 @@ This approach mounts your local source code into the container, allowing for liv
 
 ```bash
 # Build and start all services with volume mounting for development
-docker compose -f docker-compose.dev.yml up -d
+docker compose -f docker-compose.dev.yml up
 
 # Changes to your source code will be reflected immediately
 ```
+
+The development configuration uses a specialized Dockerfile.dev that:
+- Skips the build step for faster startup
+- Uses volume mounting for real-time code changes
+- Automatically runs database migrations and seeding
+- Starts the application in development mode with live reloading
 
 #### Full Installation Mode (Recommended for First-Time Setup)
 This approach automatically handles database setup including migrations and seeding:
 
 ```bash
 # Build and start all services with automatic database setup
-docker compose -f docker-compose.full-install.yml up -d
+docker compose -f docker-compose.full-install.yml up
 
 # The system will automatically:
 # 1. Run database migrations
@@ -446,7 +452,7 @@ For production deployment, the system uses a multi-stage Dockerfile to create op
 
 ```bash
 # Start all services using the production configuration
-docker compose up -d
+docker compose up
 ```
 
 ### Health Checks

@@ -2,8 +2,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
-      target: builder  # Use the builder stage instead of production
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     environment:

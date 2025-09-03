@@ -32,7 +32,7 @@ help:
 # Docker targets
 .PHONY: start
 start:
-	$(DOCKER_COMPOSE) -f docker-compose.dev.yml up -d
+	$(DOCKER_COMPOSE) -f docker-compose.dev.yml up
 
 .PHONY: start-full
 start-full:
