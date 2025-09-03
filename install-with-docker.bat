@@ -49,24 +49,25 @@ if %errorlevel% neq 0 (
 echo ✅ Git is installed
 echo.
 
-REM Clone the repository if not already in the correct directory
-if not exist "package.json" (
-    echo 📥 Cloning the Expansion Management System repository...
-    git clone https://github.com/h4775346/expansion-management-api.git temp_clone
-    xcopy /E /Y temp_clone\* .\
-    rmdir /S /Q temp_clone
-    
-    REM Verify clone was successful
-    if not exist "package.json" (
-        echo ❌ Failed to clone the repository or locate package.json
-        pause
-        exit /b 1
-    )
-    
-    echo ✅ Repository cloned successfully
-) else (
-    echo ✅ Already in the Expansion Management System repository
+REM Create a temporary directory and clone the repository
+echo 📥 Cloning the Expansion Management System repository...
+set TIMESTAMP=%date:~10,4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+set TEMP_DIR=expansion-management-%TIMESTAMP:_=%
+git clone https://github.com/h4775346/expansion-management-api.git %TEMP_DIR%
+
+REM Verify clone was successful
+if not exist "%TEMP_DIR%\package.json" (
+    echo ❌ Failed to clone the repository or locate package.json
+    rmdir /S /Q %TEMP_DIR%
+    pause
+    exit /b 1
 )
+
+echo ✅ Repository cloned successfully
+echo.
+
+REM Change to the cloned directory
+cd %TEMP_DIR%
 
 REM Start all services with development configuration
 echo 🔄 Starting all services with development configuration...
@@ -89,5 +90,7 @@ echo    👨‍💼 Admin: admin@example.com / admin123
 echo    👥 Client: englishh7366@gmail.com / password123
 echo.
 echo 🛑 To stop the services later, run: docker-compose -f docker-compose.dev.yml down
+echo.
+echo 📁 The application is installed in: %cd%
 echo.
 pause

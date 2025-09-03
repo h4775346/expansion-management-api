@@ -45,21 +45,22 @@ else
     exit 1
 fi
 
-# Clone the repository if not already in the correct directory
-if [ ! -f "package.json" ] || [ ! -d ".git" ]; then
-    echo "📥 Cloning the Expansion Management System repository..."
-    git clone https://github.com/h4775346/expansion-management-api.git .
-    
-    # Verify clone was successful
-    if [ ! -f "package.json" ]; then
-        echo "❌ Failed to clone the repository or locate package.json"
-        exit 1
-    fi
-    
-    echo "✅ Repository cloned successfully"
-else
-    echo "✅ Already in the Expansion Management System repository"
+# Create a temporary directory and clone the repository
+echo "📥 Cloning the Expansion Management System repository..."
+TEMP_DIR="expansion-management-$(date +%s)"
+git clone https://github.com/h4775346/expansion-management-api.git "$TEMP_DIR"
+
+# Verify clone was successful
+if [ ! -f "$TEMP_DIR/package.json" ]; then
+    echo "❌ Failed to clone the repository or locate package.json"
+    rm -rf "$TEMP_DIR"
+    exit 1
 fi
+
+echo "✅ Repository cloned successfully"
+
+# Change to the cloned directory
+cd "$TEMP_DIR"
 
 # Start all services with development configuration
 echo "🔄 Starting all services with development configuration..."
@@ -82,4 +83,6 @@ echo "   👨‍💼 Admin: admin@example.com / admin123"
 echo "   👥 Client: englishh7366@gmail.com / password123"
 echo
 echo "🛑 To stop the services later, run: $DOCKER_COMPOSE_CMD -f docker-compose.dev.yml down"
+echo
+echo "📁 The application is installed in: $(pwd)"
 echo

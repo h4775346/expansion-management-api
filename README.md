@@ -132,7 +132,7 @@ curl -s https://raw.githubusercontent.com/h4775346/expansion-management-api/mast
 ```
 
 That's it! The system will automatically:
-- 📦 Clone the repository with all source code
+- 📦 Clone the repository to a new directory
 - 🏗️ Build and start all services with Docker
 - 🗄️ Set up MySQL and MongoDB
 - 🔄 Run database migrations
