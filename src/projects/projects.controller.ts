@@ -39,6 +39,7 @@ export class ProjectsController {
   @ApiQuery({ name: 'select', required: false, description: 'Columns to select (comma-separated)', example: 'id,name,description' })
   findAll(@Request() req, @Paginate() query: PaginateQuery) {
     // Admins can see all projects, clients can only see their own
+    console.log(`User ${req.user.role} retrieving all projects`);
     if (req.user.role === 'admin') {
       return this.projectsService.findAll(undefined, query); // No client ID filter for admins
     } else {
