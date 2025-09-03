@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Request } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Request, Logger } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery, ApiParam } from '@nestjs/swagger';
 import { ResearchService } from './research.service';
 import { CreateResearchDocDto } from './dto/create-research-doc.dto';
 import { SearchResearchDocDto } from './dto/search-research-doc.dto';
@@ -9,6 +9,8 @@ import { Paginate, PaginateQuery } from 'nestjs-paginate';
 @ApiTags('research')
 @Controller('research')
 export class ResearchController {
+  private readonly logger = new Logger(ResearchController.name);
+
   constructor(private readonly researchService: ResearchService) {}
 
   @Post()
@@ -17,7 +19,9 @@ export class ResearchController {
   @ApiOperation({ summary: 'Create a research document' })
   @ApiResponse({ status: 201, description: 'Research document successfully created.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  create(@Body() createResearchDocDto: CreateResearchDocDto) {
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  create(@Request() req, @Body() createResearchDocDto: CreateResearchDocDto) {
+    this.logger.log(`User ${req.user.id} creating research document`);
     return this.researchService.create(createResearchDocDto);
   }
 
@@ -28,13 +32,14 @@ export class ResearchController {
   @ApiResponse({ status: 200, description: 'Research documents retrieved successfully.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   search(@Request() req, @Query() searchDto: SearchResearchDocDto) {
+    this.logger.log(`User ${req.user.id} searching research documents`);
     return this.researchService.search(req.user, searchDto);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get all research documents' })
+  @ApiOperation({ summary: 'Get all research documents with pagination' })
   @ApiResponse({ status: 200, description: 'Research documents retrieved successfully.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiQuery({ name: 'page', required: false, description: 'Page number', example: 1 })
@@ -44,6 +49,7 @@ export class ResearchController {
   @ApiQuery({ name: 'searchBy', required: false, description: 'Columns to search in (comma-separated)', example: 'title,content' })
   @ApiQuery({ name: 'select', required: false, description: 'Columns to select (comma-separated)', example: 'title,content,createdAt' })
   findAll(@Request() req, @Paginate() query: PaginateQuery) {
+    this.logger.log(`User ${req.user.id} retrieving all research documents`);
     return this.researchService.findAll(req.user, query);
   }
 
@@ -53,8 +59,11 @@ export class ResearchController {
   @ApiOperation({ summary: 'Get a research document by ID' })
   @ApiResponse({ status: 200, description: 'Research document retrieved successfully.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Research document not found.' })
+  @ApiParam({ name: 'id', description: 'Research document ID' })
   findOne(@Request() req, @Param('id') id: string) {
+    this.logger.log(`User ${req.user.id} retrieving research document ${id}`);
     return this.researchService.findOne(req.user, id);
   }
 
@@ -64,8 +73,11 @@ export class ResearchController {
   @ApiOperation({ summary: 'Update a research document' })
   @ApiResponse({ status: 200, description: 'Research document updated successfully.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Research document not found.' })
+  @ApiParam({ name: 'id', description: 'Research document ID' })
   update(@Request() req, @Param('id') id: string, @Body() updateResearchDocDto: CreateResearchDocDto) {
+    this.logger.log(`User ${req.user.id} updating research document ${id}`);
     return this.researchService.update(req.user, id, updateResearchDocDto);
   }
 
@@ -75,8 +87,11 @@ export class ResearchController {
   @ApiOperation({ summary: 'Delete a research document' })
   @ApiResponse({ status: 200, description: 'Research document deleted successfully.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Research document not found.' })
+  @ApiParam({ name: 'id', description: 'Research document ID' })
   remove(@Request() req, @Param('id') id: string) {
+    this.logger.log(`User ${req.user.id} deleting research document ${id}`);
     return this.researchService.remove(req.user, id);
   }
 }
