@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: builder  # Use the builder stage instead of production
     ports:
       - "3000:3000"
     environment:
@@ -25,6 +26,9 @@ services:
     # Build, run migrations and seed data after the container starts
     command: >
       sh -c "
+      echo '🔧 Setting permissions...' &&
+      mkdir -p /app/dist &&
+      chmod -R 777 /app &&
       echo '📦 Installing dependencies...' &&
       npm install --legacy-peer-deps --no-package-lock &&
       echo '🏗️ Building application...' &&
