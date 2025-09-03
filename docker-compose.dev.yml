@@ -15,6 +15,14 @@ services:
       - MONGO_URI=mongodb://mongo:27017/expansion_management
       - JWT_SECRET=your_jwt_secret_key
       - NODE_ENV=development
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=465
+      - MAIL_USERNAME=protik.service@gmail.com
+      - MAIL_PASSWORD=ajvyuezhqfheopzd
+      - MAIL_ENCRYPTION=ssl
+      - MAIL_FROM_ADDRESS=protik.service@gmail.com
+      - SMTP_FROM=Expansion Management <protik.service@gmail.com>
     volumes:
       - .:/app
       - /app/node_modules
@@ -24,7 +32,16 @@ services:
       mongo:
         condition: service_healthy
     # Simplified command to avoid looping
-    command: npm run start:dev
+    command: >
+      sh -c "
+      echo '🔄 Waiting for databases to be ready...' &&
+      sleep 10 &&
+      echo '🔄 Running database migrations...' &&
+      npm run migration:run &&
+      echo '🌱 Seeding database with test data...' &&
+      echo '🚀 Starting application...' &&
+      npm run start:dev
+      "
 
   mysql:
     image: mysql:8.0

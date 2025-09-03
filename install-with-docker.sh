@@ -74,7 +74,7 @@ echo "   - Sets up databases"
 echo "   - Runs migrations and seeding"
 echo ""
 
-$DOCKER_COMPOSE_CMD -f docker-compose.full-install.yml up -d
+$DOCKER_COMPOSE_CMD -f docker-compose.dev.yml up -d
 
 # Check if services started successfully
 if [ $? -eq 0 ]; then
